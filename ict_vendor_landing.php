@@ -18,6 +18,8 @@ else {
 <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 <link href="css/rcarousel.css" rel="stylesheet" type="text/css">
 <link href="css/tinycarousel.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/owl.theme.css">
 <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>-->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="js/jquery.tinycarousel.js"></script>
@@ -231,6 +233,8 @@ $('#accordion > ul:eq(0)').show();
 		<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 		<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
 		<script type="text/javascript" src="js/jquery.ui.rcarousel.js"></script>
+	    <script src="js/owl.carousel.min.js"></script>
+
 		<script type="text/javascript">
 			jQuery(function($) {
 				function generatePages() {

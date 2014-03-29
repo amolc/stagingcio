@@ -6,6 +6,8 @@
 <title>cio-choice.sg</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/owl.theme.css">
 	<!-- Required CSS -->
 
 	<!--[if lt IE 9]>
@@ -34,7 +36,18 @@
   <link href="video-js.css" rel="stylesheet" type="text/css">
   <!-- video.js must be in the <head> for older IEs to work. -->
   <script src="video.js"></script>
-
+	<style>
+	.owl-item{
+		 display: block;
+    width: 100%;
+    height: auto;
+	}
+	.video-js{
+		margin: 0 auto;
+min-width: 699px;
+margin-left: 10%;
+	}
+	</style>
   <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
   <script>
     videojs.options.flash.swf = "video-js.swf";
@@ -92,41 +105,34 @@
                                         <div id="black_wrapper">
                                             <div class="black_container">
 											<?php include('navigation.php'); ?>
-                                               
-                                                    <div class="video fl">
-														<?php
+														<div class="video-gallery" style="clear:both">
+                                               		<?php
 														
 															$video_query = mysql_query("select * from videos");
 															while($video_res = mysql_fetch_array($video_query))
 															{
 																$video = $video_res['video_embed_code'];
-															}
-															// echo $video;
+															
+												
 														?>
-														
-														<!--<div id="myElement">Loading the player...</div>-->
-														<div>
-														<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="737" height="415"
-      														poster="admin/upload/Intro_frame_01.jpg"
-    													  data-setup="{}">
-   															
-   															 <source src="intro.webm" type='video/webm' />
-   															 <source src="intro.ogv" type='video/ogg' />
-															 <source src="intro.mp4" type='video/mp4' />
-    
- 														 </video>
-														</div>
+									
+					                                           
+					                                               <!-- <div class="video fl"> -->
+ <div style=""> 	
+ <video id="example_video_1" class="video-js vjs-default-skin" 
+            preload="none" height="400" width="737"
+			poster="admin/upload/Intro_frame_01.jpg"
+			 data-setup="{ }">
+		<source src="admin/<?php echo $video ?>" type='video/mp4' />
+</video>
+ </div>
 
-														<script type="text/javascript">
-															// jwplayer("myElement").setup({
-																// file: "admin/upload/<?php echo $video; ?>",
-																  // height: 415,
-																// width: 737,
-																// image: "admin/upload/Intro_frame_01.jpg"
-															// });
-														</script>
-                                                       <!-- <img src="images/video.jpg" width="737" height="415">-->
-                                                    </div>
+ 
+
+  
+					                                <?php }?>             
+                                               </div>
+                                               <!-- VIDEO GALLERY -->
                                             </div>
                                         </div>
 										<!--<div style="padding-top:50px;height: 560px;" id="advisory_wrapper">-->
@@ -232,9 +238,15 @@
 
     <!-- Google CDN jQuery with fallback to local 
 	<script type="text/javascript" src="js/jquery.min.js"></script>-->
+	<script src="js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){
+			$(".video-gallery").owlCarousel({autoPlay:true,singleItem:true,});
+			$(".video-gallery .owl-page").click(function(){
+					console.log('afasdf');
+					return true;
+			});
 			$(window).load(function(){
 				$("#content_6").mCustomScrollbar({
 					scrollButtons:{

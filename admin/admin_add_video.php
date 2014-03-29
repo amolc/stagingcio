@@ -68,17 +68,19 @@
 
 			<div class="panel-body">
 		<?php
-
+				ini_set('upload_tmp_dir','/tmp'); 
 				 include('../sql_config/database/cio_db.php'); 
 
 			if($_POST['upload_button'] == "Submit"){
-				$allowedExts = array("avi","mp3", "mp4", "wma");
+				$allowedExts = array("avi","mp3", "mp4", "wma",'webm','ogv');
 				$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
 				if ((($_FILES["file"]["type"] == "video/mp4")
 				|| ($_FILES["file"]["type"] == "video/avi")
 				|| ($_FILES["file"]["type"] == "audio/mp3")
 				|| ($_FILES["file"]["type"] == "audio/wma")
+				|| ($_FILES["file"]["type"] == "video/webm")
+				|| ($_FILES["file"]["type"] == "video/ogv")
 
 				&& ($_FILES["file"]["size"] < 120000)
 				&& in_array($extension, $allowedExts)))
@@ -94,15 +96,21 @@
 					echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
 					echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
 
-					if (file_exists("upload/" . $_FILES["file"]["name"]))
+					if (file_exists("tmp/" . $_FILES["file"]["name"]))
 					  {
-					  echo $_FILES["file"]["name"] . " already exists. ";
+					  	 $fileData = pathinfo(basename($_FILES["file"]["name"]));
+					   	 $fileName = uniqid() . '.' .$fileData['extension'];
+						 $target_path = 'tmp/'.$fileName;
+					     move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
+					     echo "Stored in: " . "tmp/" . $target_path;
 					  }
 					else
 					  {
-					  move_uploaded_file($_FILES["file"]["tmp_name"],
-					  "upload/" . $_FILES["file"]["name"]);
-					  echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+					 $fileData = pathinfo(basename($_FILES["file"]["name"]));
+					   	 $fileName = uniqid() . '.' .$fileData['extension'];
+						 $target_path = 'tmp/'.$fileName;
+					  move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
+					  echo "Stored in: " . "tmp/" .  $_FILES["file"]["name"];
 					  }
 					}
 					
@@ -113,7 +121,8 @@
 							*/
 						$video_name = mysql_real_escape_string($_POST['video_name']);
 						// $video_embed_code = mysql_real_escape_string($_POST['video_embed_code']);
-							$video_embed_code = $_FILES["file"]["name"];
+							// $video_embed_code = $_FILES["file"]["name"];
+							$video_embed_code = $target_path;
 						//current date
 						$today_current_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 						$video_insert_date = date("m/d/Y", $today_current_date);

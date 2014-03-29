@@ -85,7 +85,6 @@ include('../sql_config/database/cio_db.php');
 				|| ($_FILES["file"]["type"] == "video/avi")
 				|| ($_FILES["file"]["type"] == "audio/mp3")
 				|| ($_FILES["file"]["type"] == "audio/wma")
-
 				&& ($_FILES["file"]["size"] < 120000)
 				&& in_array($extension, $allowedExts)))
 				  {
@@ -100,15 +99,21 @@ include('../sql_config/database/cio_db.php');
 					echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
 					echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
 
-					if (file_exists("upload/" . $_FILES["file"]["name"]))
+					if (file_exists("tmp/" . $_FILES["file"]["name"]))
 					  {
-					  echo $_FILES["file"]["name"] . " already exists. ";
+					  	 $fileData = pathinfo(basename($_FILES["file"]["name"]));
+					   	 $fileName = uniqid() . '.' .$fileData['extension'];
+						 $target_path = 'tmp/'.$fileName;
+					     move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
+					     echo "Stored in: " . "tmp/" . $target_path;
 					  }
 					else
 					  {
-					  move_uploaded_file($_FILES["file"]["tmp_name"],
-					  "upload/" . $_FILES["file"]["name"]);
-					  echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+				       $fileData = pathinfo(basename($_FILES["file"]["name"]));
+					   	 $fileName = uniqid() . '.' .$fileData['extension'];
+						 $target_path = 'tmp/'.$fileName;
+					  move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
+					  echo "Stored in: " . "tmp/" .  $target_path;
 					  }
 					}
 					
@@ -118,21 +123,22 @@ include('../sql_config/database/cio_db.php');
 							*@date:		7-march-2014 GM+5
 							*/
 						$video_name = mysql_real_escape_string($_POST['video_name']);
+	
 						// $video_embed_code = mysql_real_escape_string($_POST['video_embed_code']);
-							$video_embed_code = $_FILES["file"]["name"];
+							$video_embed_code = $target_path;
 						//current date
 						$today_current_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 						$video_insert_date = date("m/d/Y", $today_current_date);
 
 						
-						$result = mysql_query("SELECT video_id FROM videos");
+						$result = mysql_query("SELECT video_id FROM videos WHERE video_id = '$id'");
 						$num_rows = mysql_num_rows($result);
 						
 						// print_r($num_rows);
 						if ($num_rows > 0)
 						{
 							//echo "exist";
-							$sql   = "UPDATE videos SET video_name='".$video_name."',video_embed_code='".$video_embed_code."',video_insert_date='".$video_insert_date."'";
+							$sql   = "UPDATE videos SET video_name='".$video_name."',video_embed_code='".$video_embed_code."',video_insert_date='".$video_insert_date."' WHERE video_id = '$id'";
 							
 						}
 						else

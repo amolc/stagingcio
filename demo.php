@@ -42,7 +42,7 @@
 // }
 
 					// $response 				= $OBJ_linkedin->profile('~:(id,first-name,last-name,picture-url)');
-					$result         		= new SimpleXMLElement($xml_response);
+					 $result         		= new SimpleXMLElement($xml_response);
 					
 					$registration_email = $result->{'email-address'};
 					$registration_name = $result->{'first-name'};
@@ -55,20 +55,48 @@
           			// $_SESSION['fname'] 		= $result->{'first-name'};
           			// $_SESSION['lname'] 		= $result->{'last-name'};
 					// echo $result->id; 
-          			// echo $result->{'first-name'};
+          			 echo $result->{'first-name'};
           			// echo $result->{'last-name'};
-          			// echo $result->{'email'}; 
-          			// echo $registration_email; 
-          			// echo $result->{'picture-url'};
-					include('sql_config/database/cio_db.php'); 
+          			  $result->{'email'}; 
+          			  echo "<br>" ;
+          			 echo $registration_email; 
+          			 $result->{'picture-url'};
+          		
+					
+				    include('sql_config/database/cio_db.php'); 
 					$today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 					$current_date = date("m/d/Y", $today_date);
-					$result = mysql_query("SELECT registration_name ,registration_email ,registration_type FROM registration WHERE registration_email = '$email' and registration_status='accepted' and login_type='Linkedin'");
-						$row = mysql_fetch_array($result);
+					$result = mysql_query("SELECT registration_name ,registration_email ,registration_type FROM registration WHERE registration_email = '$registration_email' and registration_status='accepted' and login_type='Linkedin'");
+					
+					$row = mysql_fetch_array($result);
+					
+					echo "Adddress found".$row['registration_email']; 
+				
+					echo $num_rows = mysql_num_rows($result);
+					
+					if($num_rows == 0){
+						/* fix : issue 1 - linkedin email update if no email is found. */
+						
+						if(isset($_POST['email'])){
+							
+							$email = trim($email)
+;						 	echo "EMAILLLL - ".$email ;
+						
+							
+						}else{
+							
+							echo "Sorry, there was a problem to identify your email against our system. Please contact support@cio-choice.sg" ;
+						}
+						
+						//$update_query = "update registration set registration_email ='$registration_email' , registration_password ='$registration_password' where registration_email ='$email' and registration_status='accepted' and login_type='Linkedin'";
+						
+						
+					}
+					
+					exit();
 						if (mysql_num_rows($result) > 0)
 						{
-							$update_query = "update registration set registration_email ='$registration_email' , registration_password ='$registration_password' where registration_email ='$email' and registration_status='accepted' and login_type='Linkedin'";
-								
+									
 							mysql_query($update_query)or die(mysql_error());
 							if($row['registration_type']=='CIO') 
 							{
