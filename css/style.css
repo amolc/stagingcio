@@ -305,14 +305,14 @@ color: #E73535;
 .nav ul li > ul li a { float:left; text-decoration:none; color:#fff; text-align:left; display:block; width:250px; text-indent:15px; padding:0px; font-size:14px; font-weight:bold; margin:0px;}
 .nav ul li > ul li a:hover { color:#e73535; background:none;}
 
-.video {
+.video .owl-wrapper-outer {
 	width: 737px;
 	height: 415px;
 	margin: 0px;
 	position: absolute;
-	top:88px;
+	top:43px;
 	left:110px;
-	border:#a70707 solid 1px;
+	/*border:#a70707 solid 1px;*/
 	box-shadow: 0px 5px 5px #231f20;
 	z-index:1;
 }

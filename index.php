@@ -37,16 +37,20 @@
   <!-- video.js must be in the <head> for older IEs to work. -->
   <script src="video.js"></script>
 	<style>
-	.owl-item{
-		 display: block;
-    width: 100%;
-    height: auto;
-	}
-	.video-js{
-		margin: 0 auto;
-min-width: 699px;
-margin-left: 10%;
-	}
+.owl-carousel .owl-wrapper-outer{
+	 width: 76%;
+}
+.owl-theme .owl-controls {
+margin-top: 10px;
+text-align: center;
+position: absolute;
+z-index: 999;
+left: 420px;
+top: 455px;
+}
+.vjs-control-bar{
+	display: none;
+}
 	</style>
   <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
   <script>
@@ -105,33 +109,32 @@ margin-left: 10%;
                                         <div id="black_wrapper">
                                             <div class="black_container">
 											<?php include('navigation.php'); ?>
-														<div class="video-gallery" style="clear:both">
-                                               		<?php
+														
+                                                    <div class="video fl video-gallery">
+														<?php
 														
 															$video_query = mysql_query("select * from videos");
 															while($video_res = mysql_fetch_array($video_query))
 															{
 																$video = $video_res['video_embed_code'];
-															
-												
+														   
+															// echo $video;
 														?>
-									
-					                                           
-					                                               <!-- <div class="video fl"> -->
- <div style=""> 	
- <video id="example_video_1" class="video-js vjs-default-skin" 
-            preload="none" height="400" width="737"
-			poster="admin/upload/Intro_frame_01.jpg"
-			 data-setup="{ }">
-		<source src="admin/<?php echo $video ?>" type='video/mp4' />
-</video>
- </div>
-
- 
-
-  
-					                                <?php }?>             
-                                               </div>
+														
+														<!--<div id="myElement">Loading the player...</div>-->
+														<div>
+														<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="737" height="415"
+      														poster="admin/upload/Intro_frame_01.jpg"
+    													  data-setup="{}">
+   															
+   											
+															 <source src="admin/<?php echo $video; ?>" type='video/mp4' />
+    
+ 														 </video>
+														</div>
+														<?php }?>
+                                                    </div>
+                                            </div>
                                                <!-- VIDEO GALLERY -->
                                             </div>
                                         </div>
@@ -242,11 +245,9 @@ margin-left: 10%;
 	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){
+
 			$(".video-gallery").owlCarousel({autoPlay:true,singleItem:true,});
-			$(".video-gallery .owl-page").click(function(){
-					console.log('afasdf');
-					return true;
-			});
+
 			$(window).load(function(){
 				$("#content_6").mCustomScrollbar({
 					scrollButtons:{
