@@ -62,7 +62,14 @@
 				</li>
 				<li>
 					<a href="admin_all_video.php"><span>Front Page Video</span></a>
-				</li>	
+				</li>
+				<li>
+					<a href="admin_all_landing.php"><span> CIO Landing Slider</span></a>
+				</li>
+				<li>
+					<a href="admin_ict_vendor_landing.php"><span> ICT Vendor Landing Slider</span></a>
+				</li>
+				
 				<li>
 					<a href="admin_add_social_link.php"><span>Add Social Link</span></a>
 

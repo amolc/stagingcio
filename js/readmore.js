@@ -12,7 +12,7 @@
         speed: 100,
         maxHeight: 200,
         heightMargin: 16,
-        moreLink: '<a style="margin-left: 210px;margin-top: 0;text-decoration: underline;" href="#">Read More</a>',
+        moreLink: '<a style="width: 300px;text-decoration: underline;" href="#">Read More</a>',
         lessLink: '<a style="margin-left: 210px;margin-top: 0;text-decoration: underline;" href="#">Close</a>',
         embedCSS: true,
         sectionCSS: 'display: block; width: 100%;',

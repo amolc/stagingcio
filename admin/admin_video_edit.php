@@ -3,6 +3,60 @@ include('../sql_config/database/cio_db.php');
  $id = $_REQUEST['id'];
  $res = mysql_query("select * from videos  where video_id = '$id'")or die (mysql_error());
  $row = mysql_fetch_array($res);
+/**
+*smagic39@gmail.com
+**/
+function checkVideoType($fileName,$path){
+ $allowedExts = array("mp4", 'webm', 'ogv');
+$extension = pathinfo($fileName['name'], PATHINFO_EXTENSION);
+$message = '';
+
+if ((($fileName["type"] == "video/mp4") || ($fileName["type"] == "video/webm") || ($fileName["type"] == "video/ogg")  && in_array($extension, $allowedExts)))
+{
+
+    if ($fileName["error"] > 0)
+    {
+        $message .= "Return Code: " . $fileName["error"] . "<br />";
+    } else
+    {
+        $message .= "Upload: " . $fileName["name"] . "<br />";
+        $message .= "Type: " . $fileName["type"] . "<br />";
+        $message .= "Size: " . ($fileName["size"] / 1024) . " Kb<br />";
+        $message .= "Temp file: " . $fileName["tmp_name"] . "<br />";
+
+        if (file_exists($path . $fileName["name"]))
+        {
+        	
+            $fileData = pathinfo(basename($fileName["name"]));
+            $fileExName = uniqid() . '.' . $fileData['extension'];
+            $target_path = $path . $fileExName;
+            move_uploaded_file($fileName["tmp_name"], $target_path);
+            $message .= "Stored in: " . $target_path;
+        } else
+        {
+
+            $fileData = pathinfo(basename($fileName["name"]));
+            $fileExName = uniqid() . '.' . $fileData['extension'];
+            $target_path = $path . $fileExName;
+            move_uploaded_file($fileName["tmp_name"], $target_path);
+            $message .="Stored in: " . $path . $fileName["name"];
+        }
+    }
+
+} else
+{
+    $message .="Invalid file";
+}
+
+$data = array(
+    'path' => $target_path,
+    'message' => $message
+);
+
+return $data;
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,104 +132,40 @@ include('../sql_config/database/cio_db.php');
 				 include('../sql_config/database/cio_db.php'); 
 
 			if($_POST['upload_button'] == "Submit"){
-				$allowedExts = array("avi","mp3", "mp4", "wma");
-				$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+				    $path1 = checkVideoType($_FILES['video_webm'],'tmp/');
+					$path2 = checkVideoType($_FILES['video_mp4'],'tmp/');
+					$path3 = checkVideoType($_FILES['video_ogv'],'tmp/');
 
-				if ((($_FILES["file"]["type"] == "video/mp4")
-				|| ($_FILES["file"]["type"] == "video/avi")
-				|| ($_FILES["file"]["type"] == "audio/mp3")
-				|| ($_FILES["file"]["type"] == "audio/wma")
-				&& ($_FILES["file"]["size"] < 120000)
-				&& in_array($extension, $allowedExts)))
-				  {
-				  if ($_FILES["file"]["error"] > 0)
-					{
-					echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-					}
-				  else
-					{
-					echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-					echo "Type: " . $_FILES["file"]["type"] . "<br />";
-					echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-					echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-
-					if (file_exists("tmp/" . $_FILES["file"]["name"]))
-					  {
-					  	 $fileData = pathinfo(basename($_FILES["file"]["name"]));
-					   	 $fileName = uniqid() . '.' .$fileData['extension'];
-						 $target_path = 'tmp/'.$fileName;
-					     move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
-					     echo "Stored in: " . "tmp/" . $target_path;
-					  }
-					else
-					  {
-				       $fileData = pathinfo(basename($_FILES["file"]["name"]));
-					   	 $fileName = uniqid() . '.' .$fileData['extension'];
-						 $target_path = 'tmp/'.$fileName;
-					  move_uploaded_file($_FILES["file"]["tmp_name"],$target_path);
-					  echo "Stored in: " . "tmp/" .  $target_path;
-					  }
-					}
-					
-						/*
-							*UPLOAD VIDEO FROM ADMIN
-							*@AUTHER:	razamalik@outlook.com
-							*@date:		7-march-2014 GM+5
-							*/
 						$video_name = mysql_real_escape_string($_POST['video_name']);
-	
-						// $video_embed_code = mysql_real_escape_string($_POST['video_embed_code']);
-							$video_embed_code = $target_path;
-						//current date
 						$today_current_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 						$video_insert_date = date("m/d/Y", $today_current_date);
 
-						
-						$result = mysql_query("SELECT video_id FROM videos WHERE video_id = '$id'");
-						$num_rows = mysql_num_rows($result);
-						
-						// print_r($num_rows);
-						if ($num_rows > 0)
-						{
-							//echo "exist";
-							$sql   = "UPDATE videos SET video_name='".$video_name."',video_embed_code='".$video_embed_code."',video_insert_date='".$video_insert_date."' WHERE video_id = '$id'";
-							
-						}
-						else
-						{
-							//echo "does not exist";
-							$sql   = "insert into videos(video_name,video_embed_code,video_insert_date) values ('$video_name','$video_embed_code','$video_insert_date')";       
-							
-						}
-							
+						$sql   = "UPDATE videos SET video_name='".$video_name."',video_insert_date='".$video_insert_date."' WHERE video_id = '$id'";
 						$query = mysql_query($sql);
+						$video_tmp = mysql_query("select * from videos_type  where video_id = '$id'")or die (mysql_error());
+						$video_type_array = array();
+ 						while($video_row = mysql_fetch_array($video_tmp)){
+ 							$ext = explode('.', $video_row['path']);
+ 							if($ext[1] =='ogv'){$video_type_array['id3'] = $video_row['id']; }
+ 							if($ext[1] =='mp4'){$video_type_array['id2'] = $video_row['id']; }
+ 							if($ext[1] =='webm'){$video_type_array['id1'] = $video_row['id']; }
+
+ 						}
 						if($query)
 						{
 							
-							echo "video add Sucessful";
+							$sql_type1   = "UPDATE videos_type SET path='".$path1['path']."' WHERE video_id = '$id' and id='".$video_type_array['id1']."'";
+						    $query_type[] = mysql_query($sql_type1);
+						    $sql_type2   = "UPDATE videos_type SET path='".$path2['path']."' WHERE video_id = '$id' and id='".$video_type_array['id2']."'";
+						    $query_type[] = mysql_query($sql_type2);
+						    $sql_type3  = "UPDATE videos_type SET path='".$path3['path']."' WHERE video_id = '$id' and id='".$video_type_array['id3']."'";
+						    $query_type[] = mysql_query($sql_type3);
+							$status_query = true; 
 							
 						}
-						else
-						{
-							echo "error";
-						} 
-				
-
+						header('Location: admin_all_video.php?edit=ok');
 								
-				
-
-					
-					
-					
-				  }
-				else
-				  {
-					echo "Invalid file";
-				  }
-			}
-			
-				
-			
+				}
 
 				?>
 
@@ -189,36 +179,19 @@ include('../sql_config/database/cio_db.php');
 							<input type="text" class="form-control" id="field-1" name="video_name" placeholder="Logo Name" value="<?php echo $row['video_name']; ?>">
 						</div>
 					</div>
-							<div class="form-group">
+				    <div class="form-group">
 						<label class="col-sm-3 control-label">Video Upload</label>
-						
 						<div class="col-sm-5">
-							
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
-									<img src="upload/" alt="...">
-								</div>
-								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
-								<div>
-									<span class="btn btn-white btn-file">
-										<span class="fileinput-new">Select Video</span>
-										<span class="fileinput-exists">Change</span>
-										<input type="file" name="file">
-									</span>
-									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-								</div>
-							</div>
-							
+							<label for="video_mp4">Webm</label>
+						    <input type="file" id="video_webm" name="video_webm"  accept="video/webm">
+						    <label for="video_mp4">Mp4</label>
+						    <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4">
+						    <label for="video_mp4">Ogv</label>
+						    <input type="file" id="video_ogv" name="video_ogv" accept="video/ogg">
 						</div>
 					</div>
 					
-					<div style="display:none;" class="form-group">
-						<label for="field-1" class="col-sm-3 control-label">Logo Image</label>
-
-						<div class="col-sm-5">
-							<input type="file" accept="image/gif, image/jpeg, image/x-ms-bmp, image/x-png" class="form-control" name="" id="field-1" placeholder="Logo Image" requireds>
-						</div>
-					</div>
+				
 
 
 					<div class="form-group">

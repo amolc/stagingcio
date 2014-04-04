@@ -152,10 +152,11 @@ echo '<h2 style="color:green">Updated</h2>';
 <br />
 
 <table class="table table-bordered datatable" id="table-1">
-	<thead>
+	<thead> 
 		<tr>
 			<th> Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Accept</th>
 			<th>Delete</th>
@@ -184,6 +185,7 @@ $result = mysql_query("SELECT
 				<tr class="odd gradeX" id="'.$row['registration_id'].'">
 					<td>'.$row['registration_name'].'</td>
 					<td>'.$row['registration_email'].'</td>
+					<td>'.$row['corperate_email'].'</td>
 					<td>'.$row['registration_type'].'</td>
 					<td>
 						<a style="" id="'.$row['registration_id'].'"  class="accept">
@@ -208,6 +210,7 @@ $result = mysql_query("SELECT
 		<tr>
 			<th> Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Accept</th>
 			<th>Delete</th>

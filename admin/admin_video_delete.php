@@ -5,6 +5,7 @@
 	{
 $id = $_REQUEST['id'];
 mysql_query("delete from videos where video_id = '$id'")or die(mysql_error());
+mysql_query("delete from videos_type where video_id = '$id'")or die(mysql_error());
 header('Location: admin_all_video.php?del=ok');
 	}
 	else 

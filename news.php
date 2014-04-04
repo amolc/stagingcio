@@ -17,6 +17,15 @@
       $('#tab-container').easytabs();
     });
     </script> 
+	<style type="text/css">
+	#total_news:hover {
+	color:#fff;
+	}
+		
+	</style>
+	<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "66f4fd4a-f716-4744-b336-7d26381fd2d2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 
 <body>
@@ -28,6 +37,11 @@
 													include('header.php');
 												
 													// $result = mysql_query("SELECT * FROM news");
+												$total_news = mysql_query("select count(1) FROM news");
+												$total_row = mysql_fetch_array($total_news);
+
+												$total = $total_row[0];
+												// echo "Total rows: " . $total;
 													
 												?>
                                         
@@ -44,10 +58,10 @@
                                                   <div class="overview_left fl">
                                                   	<div class="about fl">
                                                     	<h1>NEWS</h1>
-														
+														<h1 style="background: none;"><a style="font-size: 24px;font-weight: bold;" id="total_news" href="news.php">2014 &nbsp;( <?php echo $total;?> )</a></h1>
                                                         <?php
 															
-															$result2 = mysql_query("SELECT * FROM news limit 7 ");
+															$result2 = mysql_query("SELECT * FROM news");
 															while($row2 = mysql_fetch_array($result2)){
 															$title = $row2['news_title'];
 																if (strlen($title) > 25) 
@@ -58,6 +72,8 @@
 															
 															echo '<a style="line-height:22px;" href="view_news.php?id='.$row2['news_id'].'" target="_blank">'.$title.'</a>';
 															}
+															
+															$Keyword = $_GET['tags'];
 														?>
                                                         
                                                         
@@ -67,14 +83,31 @@
                                                	  <div class="singapore_news_right fr">
                                                	    <div class="singapore_news fl">
                                                         	<h1>CIO CHOICE Singapore News</h1>
-                                                            	<div class="latest_news">
+                                                            	<div  style="width: 40%;" class="latest_news">
                                                                   <a href="#" class="active">News</a>
 																   <span style="float:left;">></span>
-                                                                  <a href="#">Latest News</a>
+                                                                  <a href="#">
+																  <?php
+																  if($Keyword=='') {
+																		echo "Latest News";
+																	} 
+																	else {
+																	
+																		echo $Keyword;
+																	}
+																  ?>
+																 
+																  </a>
                                                                 </div>
                                                             
                                                         </div>
-														   
+														      <?php
+															
+															// $result3 = mysql_query("SELECT * FROM news where news_tags LIKE '%Keyword%' ");
+															// while($row3 = mysql_fetch_array($result3)){
+																	// echo "r dffdfs sdf sr". $row3['news_tags'];
+														// }
+														?>
 														
 													<?php
 													// else {
@@ -85,12 +118,20 @@ $per_page =4;
 // if(isset($_REQUEST['tags']))
 // {
 // $Keyword = $_REQUEST['tags'];
-// $Keyword = $_GET['tags'];
+
+if($Keyword == "") {
+$result = mysql_query("SELECT * FROM news");
+}
+else {
+// $result = mysql_query("SELECT * FROM news where news_tags LIKE '%Keyword%'");
+$result = mysql_query("SELECT * FROM news WHERE FIND_IN_SET('".$Keyword."', news_tags)");
+// $result = mysql_query("select * from news where ',' + news_tags + ',' like '%,$Keyword,%'");
+}
 // $Keyword = 'news test ';
-// $result1 = mysql_query("SELECT * FROM news where news_title LIKE '%Keyword%'");
+// $result1 = mysql_query("SELECT * FROM news where tags LIKE '%Keyword%'");
 // }
 // else {
-$result = mysql_query("SELECT * FROM news");
+
 // }
 
 $total_results = mysql_num_rows($result);
@@ -172,12 +213,18 @@ if ($page <= 0)
                                                                 <div class="included_topics fl mrgn_bottom">
                                                                   <a href="view_news.php?id=<?php echo mysql_result($result, $i, 'news_id'); ?>" target="_blank" style="text-decoration: none;" class="read">read more</a>
 																	<div class="social_media fr" style="width:145px;">
-																		<span>
+																		<span class='st_sharethis'></span>
+																		<span class='st_facebook'></span>
+																		<span style="margin-top: -99px;" class='st_twitter'></span>
+																		<span class='st_linkedin'></span>
+																		<span class='st_pinterest'></span>
+																		<span class='st_email'></span>
+																		<!--<span>
 																			<a target="_blank" href="http://www.linkedin.com/company/cio-choice-singapore/" style="margin:0px 0px 0px 5px;"><img src="images/linkedin.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://twitter.com/CIOCHOICE_SG" style="margin:0px 0px 0px 5px;"><img src="images/twitter.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://plus.google.com/+CiochoiceSg1/posts" style="margin:0px 0px 0px 5px;"><img src="images/google_plus.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://www.facebook.com/ciochoice.sg" style="margin:0px 0px 0px 5px;"><img src="images/facebook.png" width="30" height="31"></a>
-																		</span> 
+																		</span> -->
 																	</div>
                                                                     
                                                                 </div>
@@ -195,7 +242,7 @@ if ($page <= 0)
                     // }
                     // echo "</ul></div>";
 					
-					echo ' <div style="margin-left:385px;" class="pagination fl">
+					echo ' <div style="margin-left:273px;" class="pagination fl">
 					 ';
 					  if ($total_pages > 1) {
                         echo paginate($reload, $show_page, $total_pages);
@@ -204,64 +251,7 @@ if ($page <= 0)
             
 										// }		
 										?>
-													<?php
-														if(isset($_REQUEST['tags'])) 
-													{
-														// $Keyword = $_REQUEST['tags'];
-														// $Keyword = $_GET['tags'];
-														$Keyword = 'news test ';
-														$result11 = mysql_query("SELECT * FROM news where news_title LIKE '%Keyword%'");
 													
-														while($row = mysql_fetch_array($result11))
-														{
-													?>	
-                                                        <div class="singapore_news_detail fl">
-                                                        	<a href="view_news.php?id=<?php echo $row['news_id']; ?>" target="_blank" class="read">
-															<img src="admin/upload/news/<?php echo $row['news_img']; ?>" width="661">
-															</a>
-                                                            <h1 style="line-height: 24px!important;"><?php echo $row['news_title']; ?></h1>
-                                                            <h2>Posted: <span><?php echo $row['news_inserted_date']; ?></span></h2>
-																	<?php
-																$description2 = $row['news_description'];
-																$news_tags2 = $row['news_tags'];
-																		if (strlen($description2) > 190) {
-																		$stringCut2 = substr($description2, 0, 300);
-																		 $description2 = substr($stringCut2, 0, strrpos($stringCut2, ' ')).'...';
-																			}
-																	?>
-                                                            <p><?php echo $description2; ?></p>
-                                                            
-                                                            	<div class="included_topics fl">
-                                                                	<span>INCLUDED TOPICS: </span>
-																	<?php
-																	$comma_separated2 = explode(",", $news_tags2);
-																	foreach($comma_separated2 as $key ) {
-																		
-																		 echo '<a href="#">'.$key.'</a>';
-																	}
-																	?>
-                                                                    
-                                                                    
-                                                                </div>
-                                                                <div class="included_topics fl mrgn_bottom">
-                                                                  <a href="view_news.php?id=<?php echo $row['news_id']; ?>" target="_blank" class="read">read more</a>
-																	<div class="social_media fr" style="width:145px;">
-																		<span>
-																			<a target="_blank" href="http://www.linkedin.com/company/cio-choice-singapore/" style="margin:0px 0px 0px 5px;"><img src="images/linkedin.png" width="30" height="31"></a>
-																			<a target="_blank" href="https://twitter.com/CIOCHOICE_SG" style="margin:0px 0px 0px 5px;"><img src="images/twitter.png" width="30" height="31"></a>
-																			<a target="_blank" href="https://plus.google.com/+CiochoiceSg1/posts" style="margin:0px 0px 0px 5px;"><img src="images/google_plus.png" width="30" height="31"></a>
-																			<a target="_blank" href="https://www.facebook.com/ciochoice.sg" style="margin:0px 0px 0px 5px;"><img src="images/facebook.png" width="30" height="31"></a>
-																		</span> 
-																	</div>
-                                                                    
-                                                                </div>
-                                                            
-                                                        </div>
-                                                        <?php  } 
-														}
-														
-														?>                                               
-                                                        
                                                	  </div>
                                                   <div style="clear:both"></div>
                                                 </div>

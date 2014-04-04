@@ -140,7 +140,7 @@
 							<strong>Pending</strong>
 					</li>
 					</ol>
-			
+			 
 <h2>Pending Registrations</h2>
 <div style="margin-left: 352px;display:none;" class="loading">Your Request is processing <img src="upload/loading_gif.gif" alt="" width=80px/></div>
 <div style="color:green;margin-left: 352px;" class="msg"></div>
@@ -160,6 +160,7 @@ echo '<h2 style="color:green">Updated</h2>';
 		<tr>
 			<th> Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Accept / Decline</th>
 			<th>Decline</th>
@@ -188,6 +189,7 @@ $result = mysql_query("SELECT
 				<tr class="odd gradeX" id="'.$row['registration_id'].'">
 					<td>'.$row['registration_name'].'</td>
 					<td>'.$row['registration_email'].'</td>
+					<td>'.$row['corperate_email'].'</td>
 					<td>'.$row['registration_type'].'</td>
 					<td>
 						<a style="" id="'.$row['registration_id'].'"  class="accept">
@@ -215,6 +217,7 @@ $result = mysql_query("SELECT
 		<tr>
 			<th> Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Accept / Decline</th>
 			<th>Decline</th>

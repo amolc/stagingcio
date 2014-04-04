@@ -145,6 +145,9 @@ echo '<h2 style="color:red">Deleted</h2>';
 if(isset($_REQUEST['edit'])){
 echo '<h2 style="color:green">Updated</h2>'; 
 }
+if(isset($_REQUEST['add'])){
+echo '<h2 style="color:green">Videos Added </h2>'; 
+}
  ?>
 <br />
 

@@ -6,7 +6,7 @@
                                                      
 													    	<div id="tab-container"> 
 															  <ul class='etabs'>
-																<li class='tab'><a href="#content_6">Previous Events</a></li>
+																<li class='tab' style="	margin:0px 13px 0px 0px;"><a href="#content_6">Previous Events</a></li>
 																<li class='tab'><a href="#content_7" class="mrgn">Up &amp; Coming Events</a></li>
 															  </ul>
 															    <div id="content_6" class="content three_tabs fl">
@@ -147,7 +147,7 @@
 															@CIOCHOICE_SG
 														</a>
 													</div>
-													<div id="content_7" class="content mrgn" style="overflow-y: auto;height: 363px;width: 420px;">
+													<div id="content_8" class="content mrgn" style="overflow-y: auto;height: 363px;width: 420px;">
 													<div id="twitter-feed" style="width: 340px;">
 													
 													 <?php

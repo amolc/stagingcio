@@ -5,7 +5,9 @@
 <title>Cio Choice</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-
+<link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/owl.theme.css">
 <!--javascript form validator start-->
 <script>
 function checkEmail(email) {   
@@ -30,7 +32,7 @@ function validateForm(formName)
                 
 <style type="text/css">
 .video_1 div iframe {
-width:370px!important;
+width:455px!important;
 height: 200px!important;
 }
 </style>
@@ -74,8 +76,10 @@ height: 200px!important;
 												  ?>
                                                   	<div class="red_carpet fl">
                                                    	  <h1><?php echo $row['title']; ?></h1>
-                                                      <div>
-												<?php 
+                                                     
+												
+												   <div class="facebook_scroll owl-carousel" style="clear: both;overflow: hidden;" >
+                                                           <?php 
 														$gallery_id = $row['gallery_id'];;
 													   $result2 = mysql_query("select * from gallery_videos where gallery_id = '$gallery_id'") or die (mysql_error());
 												  while ($row2 = mysql_fetch_array($result2))  
@@ -89,9 +93,40 @@ height: 200px!important;
                                                             <h3>Posted: <span><?php echo $row2['video_date']; ?></span></h3>
                                                             <p><?php echo $row2['video_description']; ?></p>
                                                         </div>
+                                                        <div class="video_1 fl">
+                                                       		<div style="float:left;"><?php 
+															
+															echo str_replace("<i>"," ",$row2['video_path']); ?></div>
+															 <div style="clear:both;"></div>
+                                                            <h2><?php echo $row2['video_title']; ?></h2>
+                                                            <h3>Posted: <span><?php echo $row2['video_date']; ?></span></h3>
+                                                            <p><?php echo $row2['video_description']; ?></p>
+                                                        </div>
 												<?php } ?>		
+                                                            <?php
+                                                              // $query1 = mysql_query("select * from event_fb_images where event_id='".$id."' LIMIT 1000");
+                                                              // while($res1 = mysql_fetch_array($query1))
+                                                              // {
+                                                                  // $fb_image = $res1['event_fb_pic'];
+                                                                   // if (!empty($fb_image)) {
+                                                                ?>
+                                                           
+                                                              
+                                                                
+                                                             
+                                                                
+
+
+                                                             <?php   
+                                                               
+                                                                // }
+                                                              // }
+                                                            ?>
+                                                     
+                                                           
+                                                              </div>
                                                         
-                                                      </div>
+                                                     
                                                     </div>
 													<?php } ?>
                                                    
@@ -120,9 +155,13 @@ height: 200px!important;
 
     <!-- Google CDN jQuery with fallback to local -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+
 	<script type="text/javascript">
 		(function($){
+        $(".facebook_scroll a[rel^='prettyPhoto']").prettyPhoto();
 			$(window).load(function(){
 				$("#content_6").mCustomScrollbar({
 					scrollButtons:{
@@ -136,7 +175,14 @@ height: 200px!important;
 					},
 					theme:"dark-thick"
 				});
+
+        
 			});
+        $(".facebook_scroll a[rel^='prettyPhoto']").prettyPhoto({
+          social_tools: ''
+        });
+$(".facebook_scroll").owlCarousel({autoPlay:true,items:2});
+
 		})(jQuery);
 	</script>
 

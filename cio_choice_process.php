@@ -8,6 +8,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/twitterfeed.js"></script>
 <link href="css/twitter-styles.css" rel="stylesheet" type="text/css" />
+  <script src="js/jquery.easytabs.min.js" type="text/javascript"></script>
+    
+	<script type="text/javascript">
+    $(document).ready( function() {
+	// alert('okk');
+      $('#tab-container').easytabs();
+    });
+    </script>
 </head>
 
 <body>
@@ -90,7 +98,7 @@
 
 
     <!-- Google CDN jQuery with fallback to local -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	
 	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){

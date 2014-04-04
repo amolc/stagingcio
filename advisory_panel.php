@@ -143,7 +143,7 @@
 <script src="js/readmore.js"></script>
 
   <script>
-    $('.textContainer_Truncate').readmore({maxHeight: 111});
+    $('.textContainer_Truncate').readmore({maxHeight: 50});
   </script>
 </body>
 </html>

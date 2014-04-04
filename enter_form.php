@@ -1,3 +1,15 @@
+<?php
+session_start();
+// include('../include/database/db.php'); 
+if (isset($_SESSION['username']) && isset($_SESSION['ict']))
+{
+    $name = $_SESSION['user_name'];
+    $type = $_SESSION['cio'];
+} else
+{
+    header('Location: login.php');
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -53,6 +65,8 @@ $(document).ready(function()
 											$company_telephone = $_REQUEST['company_telephone'];
 											$post_code = $_REQUEST['post_code'];
 											$country = $_REQUEST['country'];
+											$city = $_REQUEST['city'];
+											$state = $_REQUEST['state'];
 											$company_size = $_REQUEST['company_size'];
 											$cio_category_no = $_REQUEST['cio_category_no'];
 											$category_code = $_REQUEST['category_code'];
@@ -62,13 +76,18 @@ $(document).ready(function()
 											$term = $_REQUEST['term'];
 											$fee_part = $_REQUEST['fee_part'];
 											//echo $term;exit;
-
+							$filter = explode("@",$email);
+							if($filter[1] == "gmail.com" || $filter[1] == "yahoo.com" || $filter[1] == "hotmail.com"|| $filter[1] == "outlook.com")  {
+								header("Location: enter_form.php?email_error=ok"); 
+							}
+							else
+							{
 												if ($term == '1')
 												{
 													$sql="insert into ictpartners 
-													(first_name,last_name,title,email,telephone,mobile,company_name,company_address,company_telephone,post_code,country,company_size,total_products,fee_part)
+													(first_name,last_name,title,email,telephone,mobile,company_name,company_address,company_telephone,post_code,country,company_size,total_products,city,state,fee_part)
 													values
-													('$first_name','$last_name','$title','$email','$user_telephone','$user_mobile','$company_name','$company_address','$company_telephone','$post_code','$country','$company_size','$cio_category_no','$fee_part')";
+													('$first_name','$last_name','$title','$email','$user_telephone','$user_mobile','$company_name','$company_address','$company_telephone','$post_code','$country','$company_size','$cio_category_no','$city','$state','$fee_part')";
 													mysql_query($sql)or die(mysql_error());
 													$partner_id = mysql_insert_id();
 													
@@ -81,10 +100,132 @@ $(document).ready(function()
 														mysql_query($sql2)or die(mysql_error());
 													}
 													
-													echo'<script>window.location.replace("enter_form.php?add=ok");</script>';	
+													$headers  = 'MIME-Version: 1.0' . "\r\n";
+													$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+													
+													$headers .= 'From: contactus@cio-choice.sg' . "\r\n";
+													
+													$to = $email;
+													$subject = "ICT Partners - Submission Form";
+													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
+													$message = '<div style=" height:100%; padding:25px; background:#eaeaea;">
+									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
+										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
+											<div style=" width:210px;height: 225px; margin:0 auto;">
+												<a href="#" style="height:245px;">
+													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
+												</a>
+												<div style="clear:both;"></div>
+											</div>
+										</div>
+										<div style="width:100%; height:65px; float:left; background:#20201f;">
+											<div style=" width:115px;text-align:center; float:left;">
+												<a href="'.$web_url.'/index.php" style=" text-decoration:none; padding:0px 27px; text-align:center; float:left; line-height:65px; font-family: Lato; color:#FFF; font-size:17.5px; font-weight:bold; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px; background:url('.$web_url.'/images/border.jpg) no-repeat right">
+													home
+												</a>
+											</div>
+											
+											<div style="float:right; margin:15px 20px 0px 0px;">
+												<a href="'.$web_url.'/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'" style="width:200px; text-align: left; line-height:35px; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF; font-family:Lato; font-weight:bold; font-size:16px; text-decoration:none; border-radius:15px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">
+													<img src="'.$web_url.'/images/download_pdf.png" width="23" height="22" style="margin: 6px 10px 0 13px; float:left;">
+													Download PDF
+												</a>
+											</div>
+										</div>
+										<div style="width:100%; float:left; padding:20px 0px; text-align:center; color:#20201f;">
+											<h1 style=" float:left; width:90%; font-family:Lato; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
+												Thank you for your submission<br>
+												to CIO CHOICE
+											</h1>
+											<p style=" float:left; width:90%; display:block; font-family:Lato; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
+												1. Please <strong>download your CIO CHOICE pdf entry form</strong> and proceed to <strong>stamp, sign</strong> and <strong>authorize it by a representative</strong> of your company.</p>
+												
+												<div style="float:left; margin:20px 20px 10px 35px;">
+                       		<a href="'.$web_url.'/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'" style="width:200px; text-align: left; line-height:35px; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF; font-family:Lato; font-weight:bold; font-size:16px; text-decoration:none; border-radius:15px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">
+													<img src="'.$web_url.'/images/download_pdf.png" width="23" height="22" style="margin: 6px 10px 0 13px; float:left;">
+													Download PDF
+												</a>
+                        </div>
+                        
+                        <p style=" float:left; width:90%; display:block; font-family:Lato; text-align: left; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">2.  Scan and return your completed form to <a href="#" style="color:#312f2f; font-weight:bold;">registration@cio-choice.sg</a><br>
+<br>
+Once we receive your completed form, we&acute;ll be in touch to confirm your details and let you know you are successfully registered for your selected CIO CHOICE Categories.<br>
+<br>
+<strong>The CIO CHOICE team</strong></p>
+												
+										</div>
+										
+										
+										<div style="float:left; width:100%;">
+										<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 10px;"></div>
+										<div style="float:left; margin:18px 0px 0px 0px;"><img src="'.$web_url.'/images/star_rating.jpg" width="82" height="11"></div>
+										<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
+										</div>
+										<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
+										<div style="width:60%; float:left; height:80px;">
+												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
+												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161">Need help?</span>
+											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161;">Send us your question</a>
+										  </div>
+										<div style="width:170px; float:right; margin-top:22px; margin-right:1%;">
+											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
+											<a href="https://twitter.com/CIOCHOICE_SG" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/twitter.png"></a>
+											<a href="https://plus.google.com/+CiochoiceSg1/posts" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/google_plus.png"></a>
+											<a href="https://www.facebook.com/ciochoice.sg" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/facebook.png"></a>
+											<a href="http://www.youtube.com/user/CIOCHOICEsingapore" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/play.png"></a>
+										</div>
+										
+										<div style="float:left; width:100%; border-top: #EAEAEA solid 1px;">
+											<div style="float:left; margin:0px; width:96%;">
+											  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
+																						
+												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
+																						
+												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
+																						
+												<li style="	float:left; list-style-type: none; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
+											  </ul>
+											  <p style=" float:left; font-family:Lato; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright &copy; 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+										  </div>
+										</div>
+										  
+									  </div>
+									  
+										
+										
+									</div>
+									
+									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family:Lato; font-weight:400px;">
+									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
+									
+									<div style="clear:both;"></div>
+							</div>'; 
+													$from = "contactus@cio-choice.sg";
+													
+													mail($to,$subject,$message,$headers);
+													
+													// echo'<script>window.location.replace("enter_form.php?add=ok");</script>';
+														session_start();
+													$_SESSION['enter_now_msg']='
+																				<div class="your_register">
+																					<h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
+																					<p>Please return your a scanned copy to <a href="#">registration@cio-choice.sg</a>.</p>
+																				</div><br /><br />';
 												}
-																																
-											}	
+												}
+																		session_start();
+						$inactive = 500;
+						if(isset($_SESSION['enter_now_msg']))
+						{ 
+							$enter_now_msg = $_SESSION['enter_now_msg'];	
+
+							$session_life = time() - $_SESSION['start'];
+							if($session_life > $inactive)
+							{
+							session_destroy();					
+							}
+												
+						}	
 											?>
 
 
@@ -93,17 +234,43 @@ $(document).ready(function()
      <?php             
 
 											   include('top_header.php');
-											   include('header.php');
+											  
 									?>
-									
+									<div id="black_wrapper">
+            <div class="inner_nav">
+                <?php include('navigation.php'); ?>
+            </div>
+        </div>
+        <div id="advisory_wrapper">
+            <div class="landing_head" style="margin-top:0px;">
+                <p><img src="images/Landing_logo.jpg" width="240" height="238"></p>
+                <h1>Hi</h1>
+                <h2><?php echo $name; ?><strong style="color:#20201f;">,</strong> </h2>
+                <h3>Welcome to CIO CHOICE <span>SINGAPORE</span></h3>
+            </div>
+        </div>
                                    
                                         
                                  
-                                        <div id="black_wrapper">
-                                            <div class="inner_nav">
-                                              <?php include('navigation.php'); ?>
-                                            </div>
-                                        </div>
+                                         <div id="cio_area">
+            <div class="landing_head" style="margin-top:0px;height:50px;">
+                <div class="cio_area_head fl">
+                    <div class="cio_area fl">
+                        <h6><img src="images/world_icon.jpg" width="43" height="38">   THE ICT VENDOR area</h6>
+                    </div>
+
+                    <div class="logout fr">
+                        <a href="logout.php"><img src="images/logout.jpg" width="17" height="25">logout</a>
+                    </div>
+					
+					<div style="width: 150px;" class="logout fr">
+                        <a href="change_password_ict.php">changePassword</a>
+                    </div>
+
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
 										
 			
 										 <!--<form  action="" method="post">-->
@@ -124,8 +291,13 @@ $(document).ready(function()
 												  <?php
 											if(isset($_REQUEST['add']))
 											{
-											echo '<h1 style="color:green;">Saved</h1>';
+											echo '<div class="your_register">
+                                                    	<h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
+                                                        <p>Please return your a scanned copy to <a href="#">registration@cio-choice.sg</a>.</p>
+                                                    </div><br /><br />';
 											}
+											else
+											{
 											?>
                                                   <div class="video_main fl">
 										           
@@ -186,6 +358,18 @@ $(document).ready(function()
 													<span class="input_lable fl">Post Code/Zip:</span>
 													<br />
 													<input type="text" name="post_code" id="post_code" class="fl input_field" required/>
+													</div>
+													
+													<div class="field fl">
+													<span class="input_lable fl">City:</span>
+													<br />
+													<input type="text" name="city" id="post_code" class="fl input_field" required/>
+													</div>
+													
+													<div class="field fl">
+													<span class="input_lable fl">State:</span>
+													<br />
+													<input type="text" name="state" id="post_code" class="fl input_field" required/>
 													</div>
 													
 													<div class="field fl">
@@ -271,12 +455,10 @@ $(document).ready(function()
                                                         <input class="enter_form_send" type="submit" value="" name="Submit">
                                                     </div>
 											</form>
-                                                    <div class="your_register">
-                                                    	<h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
-                                                        <p>Please return your a scanned copy to <a href="#">registration@cio-choice.sg</a>.</p>
-                                                    </div>
+                                                    
                                                     
                                                   </div>
+												  <?php }?>
                                                 </div>
                                                 <div style="clear:both;"></div>
                                             </div>

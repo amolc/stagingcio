@@ -101,8 +101,10 @@
 																$_SESSION['username']=$username;
 																$_SESSION['user_name']=$row['registration_name'];
 																$_SESSION['cio']=$row['registration_type'];
+																$_SESSION['corperate_email']=$row['corperate_email'];
+																$_SESSION['type']='cio_landing.php';
 																header("location:cio_landing.php?action=yes");
-															
+															 
 															}
 															else if($row['registration_type']=='ICTVendor') 
 															{
@@ -111,6 +113,8 @@
 																$_SESSION['username']=$username; 
 																$_SESSION['user_name']=$row['registration_name'];
 																$_SESSION['ict']=$row['registration_type'];
+																$_SESSION['type']='ict_vendor_landing.php';
+																$_SESSION['corperate_email']=$row['corperate_email'];
 																header("location:ict_vendor_landing.php?action=yes");
 															}
 															

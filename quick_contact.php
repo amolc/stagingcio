@@ -41,7 +41,7 @@
                                             </div>
                                             	
                                                 <div class="become_partner fr">
-                                                	<a href="/registration.php" class="partner">BECOME A PARTNER</a>
+                                                	<a href="/contact_us.php" class="partner">BECOME A PARTNER</a>
                                                     <a href="/enter.php" class="ict">ICT VENDOR? ENTER NOW</a>
                                                 </div>
                                                 </div>

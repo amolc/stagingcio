@@ -136,6 +136,7 @@ echo '<h2 style="color:green">Updated</h2>';
 		<tr>
 			<th> Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Decline</th>
 			<th>Delete</th>
@@ -164,6 +165,7 @@ $result = mysql_query("SELECT
 				<tr class="odd gradeX" id="'.$row['registration_id'].'">
 					<td>'.$row['registration_name'].'</td>
 					<td>'.$row['registration_email'].'</td>
+					<td>'.$row['corperate_email'].'</td>
 					<td>'.$row['registration_type'].'</td>
 					<td>
 						<a style="color: red;" id="'.$row['registration_id'].'" class="decline">
@@ -186,8 +188,9 @@ $result = mysql_query("SELECT
 	</tbody>
 	<tfoot>
 		<tr>
-			<th> Name</th>
+			<th>Name</th>
 			<th>Email</th>
+			<th>Corporate Email</th>
 			<th>Type</th>
 			<th>Decline</th>
 			<th>Delete</th>

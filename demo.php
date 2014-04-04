@@ -68,7 +68,7 @@
 				    include('sql_config/database/cio_db.php'); 
 					$today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 					$current_date = date("m/d/Y", $today_date);
-					$result1 = mysql_query("SELECT registration_name ,registration_email ,registration_type FROM registration WHERE registration_email = '$registration_email' and registration_status='accepted' and login_type='Linkedin'");
+					$result1 = mysql_query("SELECT registration_name ,registration_email ,corperate_email,registration_type FROM registration WHERE registration_email = '$registration_email' and registration_status='accepted' and login_type='Linkedin'");
 					
 					$row1 = mysql_fetch_array($result1);
 					
@@ -81,9 +81,7 @@
 						
 						
 						if(isset($email)){
-							
-	
-;						 	
+											 	
 							
 							$update_query = "update registration set registration_email ='$registration_email' , registration_password ='$registration_password' where registration_email ='$email' and registration_status='accepted' and login_type='Linkedin'";
 						    mysql_query($update_query)or die(mysql_error());
@@ -98,7 +96,7 @@
 					}
 					
 					
-					$result = mysql_query("SELECT registration_name ,registration_email ,registration_type FROM registration WHERE registration_email = '$registration_email' and registration_status='accepted' and login_type='Linkedin'");
+					$result = mysql_query("SELECT registration_name ,registration_email ,corperate_email,registration_type FROM registration WHERE registration_email = '$registration_email' and registration_status='accepted' and login_type='Linkedin'");
 					$row = mysql_fetch_array($result);
 					
 						if (mysql_num_rows($result) > 0)
@@ -112,6 +110,8 @@
 								$_SESSION['username']=$row['registration_email'];
 								$_SESSION['user_name']=$row['registration_name'];
 								$_SESSION['cio']=$row['registration_type'];
+								$_SESSION['type']='cio_landing.php';
+								$_SESSION['corperate_email']=$row['corperate_email'];
 								header("location:cio_landing.php?action=yes");
 							
 							}
@@ -122,6 +122,8 @@
 								$_SESSION['username']=$row['registration_email'];
 								$_SESSION['user_name']=$row['registration_name'];
 								$_SESSION['ict']=$row['registration_type'];
+								$_SESSION['corperate_email']=$row['corperate_email'];
+								$_SESSION['type']='ict_vendor_landing.php';
 								header("location:ict_vendor_landing.php?action=yes");
 							}
 							// session_start();
