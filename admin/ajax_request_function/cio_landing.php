@@ -432,7 +432,7 @@ $(document).ready(function(){
 				<div id="tab2"  style="height: auto;width: auto;" class="content three_tabs fl">
 						<?php
 						function send_email() {
-							require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
+							require '../classes/PHPMailer-master/PHPMailerAutoload.php';
  // Matthew.Harper@day7.co
 				$mail = new PHPMailer;
 				 
@@ -481,10 +481,10 @@ $(document).ready(function(){
 										</div>
 										<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
 											<h1 style=" float:left; width:90%;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
-												Thanks for survey, 
+												Thanks for Registering, you have been accepted as an '.$registration_type.' Member!
 											</h1>
 											<p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
-												survey description
+												Let&acute;s get started straight away, here are your login details to access the exclusive CIO CHOICE '.$registration_type.' AREA:
 											</p>
 										</div>
 										<div style="width:98.5%; float:left; background:#20201f; margin-left:10px; ">
@@ -566,13 +566,8 @@ $(document).ready(function(){
 				   echo 'Mailer Error: ' . $mail->ErrorInfo;
 				   exit;
 				}
-				// else {
-				// echo"Email Send Successfull";
-				// }
+				echo"Email Send Successfull";
 						}
-						if (isset($_GET['send'])) {
-    send_email();
-  }
 						?>
 
                     <div class="online_voting_main fl">
@@ -580,7 +575,7 @@ $(document).ready(function(){
 														<div id="surveyMonkeyInfo"><div><script src="https://www.surveymonkey.com/jsEmbed.aspx?sm=R7gdr4H4ovq9Y_2bo2OYufQw_3d_3d"> </script></div>Create your free online surveys with <a href="https://www.surveymonkey.com">SurveyMonkey</a> , the world's leading questionnaire tool.</div>
 														-->
 														<div class="online_survey fl">
-                                                        	<div class="send_btn fl"><a href="cio_landing.php?send=true"  ><img src="images/send_survey.png" width="263" height="263"></a></div>
+                                                        	<div class="send_btn fl"><a href="" onclick="send_email()" ><img src="images/send_survey.png" width="263" height="263"></a></div>
                                                             <div class="online_survey_text fl">
                                                             	<h1>CIO CHOICE <span>ONLINE SURVEY</span></h1>
                                                                 <p>To request the survey, or if you would like to be re-sent a reminder </p>

@@ -140,7 +140,7 @@ $total_pages = ceil($total_results / $per_page);//total pages we going to have
 //-------------if page is setcheck------------------//
 if (isset($_GET['page'])) {
     $show_page = $_GET['page'];             //it will telles the current page
-    if ($show_page > 0 && $show_page <= $total_pages) {
+    if ($show_page > 1 && $show_page <= $total_pages) {
         $start = ($show_page - 1) * $per_page;
         $end = $start + $per_page;
     } else {
@@ -285,6 +285,12 @@ if ($page <= 0)
 					theme:"dark-thick"
 				});
 				$("#content_7").mCustomScrollbar({
+					scrollButtons:{
+						enable:true
+					},
+					theme:"dark-thick"
+				});
+				$("#content_8").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},

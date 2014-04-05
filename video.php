@@ -32,7 +32,7 @@ function validateForm(formName)
                 
 <style type="text/css">
 .video_1 div iframe {
-width:455px!important;
+width:435px!important;
 height: 200px!important;
 }
 </style>
@@ -69,7 +69,126 @@ height: 200px!important;
 													<br />
                                                   </div>
                                                   <div class="video_main fl"> 
+												   <?php
+	
+                $i=0;
+                $no=0;
+                $hal = $_GET['hal'];
+                if(!isset($_GET['hal']))
+                {
+                    $page = 1;
+                }
+                else
+                {
+                    $page = $_GET['hal'];
+                }
+
+                $max_show = 2;// this is the option that how many items do you want to show each page
+
+                $from     = (($page * $max_show) - $max_show);
+                $query_banner = mysql_query("SELECT * FROM gallery where type = 'video' ORDER BY gallery_id DESC LIMIT $from,$max_show") or die(mysql_error());
+                    while($row=mysql_fetch_array($query_banner))
+                    { 
+						$gallery_id = $row['gallery_id'];
+                        $no++;
+                        if(($no%2)==0)
+                            $color = '#f2f2f2'; 
+                        else
+                            $color = '#f9f9f9';
+            ?>
+                    	<div class="red_carpet fl">
+                                                   	  <h1><?php echo $row['title']; ?></h1>
+                                                     
+												
+												   <div class="facebook_scroll owl-carousel" style="clear: both;overflow: hidden;" >
+                                                           <?php 
+														$gallery_id = $row['gallery_id'];;
+													   $result2 = mysql_query("select * from gallery_videos where gallery_id = '$gallery_id'") or die (mysql_error());
+												  while ($row2 = mysql_fetch_array($result2))  
+												{ ?>
+                                                       
+                                                        <div class="video_1 fl">
+                                                       		<div style="float:left;"><?php 
+															
+															echo str_replace("<i>"," ",$row2['video_path']); ?></div>
+															 <div style="clear:both;"></div>
+                                                            <h2><?php echo $row2['video_title']; ?></h2>
+                                                            <h3>Posted: <span><?php echo $row2['video_date']; ?></span></h3>
+                                                            <p><?php echo $row2['video_description']; ?></p>
+                                                        </div>
+												<?php } ?>		
+                                                            <?php
+                                                              // $query1 = mysql_query("select * from event_fb_images where event_id='".$id."' LIMIT 1000");
+                                                              // while($res1 = mysql_fetch_array($query1))
+                                                              // {
+                                                                  // $fb_image = $res1['event_fb_pic'];
+                                                                   // if (!empty($fb_image)) {
+                                                                ?>
+                                                           
+                                                              
+                                                                
+                                                             
+                                                                
+
+
+                                                             <?php   
+                                                               
+                                                                // }
+                                                              // }
+                                                            ?>
+                                                     
+                                                           
+                                                              </div>
+                                                        
+                                                     
+                                                    </div>
+            <?php 
+                }
+            ?>      
+  
+    <!-- end of table_content 
+  	<div class="pagination fl" style="margin-left:385px;">
+                                                        	<a href="#" class="prev"></a>
+                                                            <a href="#">1</a>
+                                                            <a href="#">2</a>
+                                                            <a href="#">3</a><a href="#" class="next"></a>
+                                                            
+                                                            
+                                                        </div>
+	-->
+        <div id="pagination">
+            <?php
+                $total_results = mysql_result(mysql_query("SELECT COUNT(*) as Num FROM gallery where type = 'video' "),0); 
+
+                $total_pages = ceil($total_results / $max_show); 
+
+                echo "<center>"; 
+                // echo '<div class="pagination fl" style="margin-left:385px;">'; 
+
+                if($hal > 1){ 
+                    $prev = ($page - 1); 
+                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$prev>Previous </a> "; 
+                } 
+
+                for($i = 1; $i <= $total_pages; $i++){ 
+                    if(($hal) == $i){ 
+                        echo "<b>$i</b> ";  
+                    } else { 
+                        echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$i>$i</a> "; 
+                } 
+                }
+        // Build Next Link 
+                if($hal < $total_pages){ 
+                    $next = ($page + 1); 
+                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$next>Next</a>"; 
+                } 
+                echo "</center>"; 
+                // echo "</div>"; 
+        ?>
+    </div><!-- end of pagination -->
+												  
 												  <?php 
+												  /*
 												  $result = mysql_query("select * from gallery where type = 'video'") or die (mysql_error());
 												  while ($row = mysql_fetch_array($result))  
 												{ 
@@ -139,7 +258,7 @@ height: 200px!important;
                                                             
                                                             
                                                         </div>
-                                                    
+                                                    */?>
                                                   </div>
                                                 </div>
                                                 <div style="clear:both;"></div>

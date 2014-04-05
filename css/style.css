@@ -2594,7 +2594,9 @@ line-height:35px;
 }
 .input_lable{
 color:black;
-font-weight:bold;
+font-weight:normal;
+font-size:17px;
+color:#20201F;
 padding:5px 0px;
 }
 .input_field{
@@ -2686,7 +2688,7 @@ margin-right:17px;
 	color:#616161;
 	font-weight:bold;
 	text-align:center;
-	font-family:'Lato';
+	font-family:'Source Sans Pro';
 	text-decoration:none;
 	background:#eaeaea;
 	border:none;

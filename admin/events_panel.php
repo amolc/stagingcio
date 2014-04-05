@@ -15,7 +15,7 @@
 			
 															$current_date = date("m/d/Y", $today_date);
 															
-																$event_query = mysql_query("select * from events where event_held_date < '$current_date'"); 
+																$event_query = mysql_query("select * from events where event_held_date < $current_date"); 
 																while($event_res = mysql_fetch_array($event_query))
 																{
 																	$event_name = $event_res['event_name'];
@@ -64,7 +64,7 @@
 																	 <div id="content_7" class="content three_tabs fl">
 															<?php
 															
-																$event_query = mysql_query("select * from events where event_held_date > '$current_date'");
+																$event_query = mysql_query("select * from events where event_held_date > $current_date");
 																while($event_res = mysql_fetch_array($event_query))
 																{
 																	$event_name = $event_res['event_name'];

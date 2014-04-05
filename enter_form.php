@@ -108,7 +108,7 @@ $(document).ready(function()
 													$to = $email;
 													$subject = "ICT Partners - Submission Form";
 													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
-													$message = '<div style=" height:100%; padding:25px; background:#eaeaea;">
+													$message = '<div style=" height:100%; padding:25px;">
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
@@ -204,28 +204,11 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													
 													mail($to,$subject,$message,$headers);
 													
-													// echo'<script>window.location.replace("enter_form.php?add=ok");</script>';
-														session_start();
-													$_SESSION['enter_now_msg']='
-																				<div class="your_register">
-																					<h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
-																					<p>Please return your a scanned copy to <a href="#">registration@cio-choice.sg</a>.</p>
-																				</div><br /><br />';
+													echo'<script>window.location.replace("enter_form.php?add=ok");</script>';	
 												}
 												}
-																		session_start();
-						$inactive = 500;
-						if(isset($_SESSION['enter_now_msg']))
-						{ 
-							$enter_now_msg = $_SESSION['enter_now_msg'];	
-
-							$session_life = time() - $_SESSION['start'];
-							if($session_life > $inactive)
-							{
-							session_destroy();					
-							}
-												
-						}	
+																																
+											}	
 											?>
 
 

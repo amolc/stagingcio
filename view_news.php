@@ -36,6 +36,7 @@
                                                   <div class="overview_left fl">
                                                   	<div class="about fl">
                                                     	<h1>NEWS</h1>
+                                                        <h1 style="background: none;"><a style="font-size: 24px;font-weight: bold;" id="total_news" href="news.php">2014 &nbsp;( <?php echo $total;?> )</a></h1>
 														 <?php
 															
 															$result2 = mysql_query("SELECT * FROM news limit 7 ");

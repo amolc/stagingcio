@@ -100,14 +100,14 @@
 										$mail2->Password = '9cXWOqeaf';               // SMTP password
 										$mail2->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 										$mail2->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-										$mail2->setFrom('registration@cio-choice.sg', 'Cio choice');     //Set who the message is to be sent from
-										$mail2->addReplyTo('registration@cio-choice.sg', 'Cio choice');  //Set an alternative reply-to address
+										$mail2->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
+										$mail2->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
 										// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
 										$mail2->addAddress($admin);               // Name is optional
 										$mail2->WordWrap = 500;       
 										$mail2->isHTML(true);                                  // Set email format to HTML
 										$mail2->Subject = 'Thank you for joining us!';
-										$mail2->Body    = '<div style=" height:1000px; padding:25px; background:#eaeaea;">
+										$mail2->Body    = '<div style=" height:100%; padding:25px;">
 																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
@@ -126,7 +126,7 @@
 																				</h1>
 																	  <p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 																		Accept your CIO CHOICE Singapore registration request. <a href="'.$web_url.'/admin/admin_pending_register.php">Accept</a>
-																		Please accept a new CIO registration request for cio-choice.sg
+																		Please accept a new '.$registration_type.' registration request for cio-choice.sg
 																	  </p>
 																	  
 																	  <p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">1. Your Full Name</p>
@@ -147,7 +147,7 @@
 																	<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
 																	</div>
 																	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
-																	<div style="width:80%; float:left; height:80px;">
+																	<div style="width:60%; float:left; height:80px;">
 																			<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
 																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
 																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
@@ -229,15 +229,15 @@
 										$mail4->Password = '9cXWOqeaf';               // SMTP password
 										$mail4->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 										$mail4->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-										$mail4->setFrom('registration@cio-choice.sg', 'Cio choice');     //Set who the message is to be sent from
-										$mail4->addReplyTo('registration@cio-choice.sg', 'Cio choice');  //Set an alternative reply-to address
+										$mail4->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
+										$mail4->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
 										// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
 										$mail4->addAddress($admin);               // Name is optional
 										$mail4->WordWrap = 500;                                 // Set word wrap to 50 characters
 										$mail4->isHTML(true);                                  // Set email format to HTML
 										 
 										$mail4->Subject = 'Registration Email';
-											$mail4->Body    = '<div style=" height:100%; padding:25px; background:#eaeaea">
+											$mail4->Body    = '<div style=" height:100%; padding:25px;">
 																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
@@ -256,8 +256,8 @@
 																				</h1>
 																	  <p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 																			Accept your CIO CHOICE Singapore registration request. <a href="'.$web_url.'/admin/admin_pending_register.php">Accept</a>
-																		Please accept a new ICT Vendor  registration request for cio-choice.sg
-																	  </p>  
+																		Please accept a new '.$registration_type.' registration request for cio-choice.sg
+																	  </p>
 																	  
 																	  <p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">1. Your Full Name</p>
 																				
@@ -277,7 +277,7 @@
 																	<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
 																	</div>
 																	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
-																	<div style="width:80%; float:left; height:80px;">
+																	<div style="width:60%; float:left; height:80px;">
 																			<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
 																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
 																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>

@@ -27,7 +27,7 @@ while($header__res = mysql_fetch_array($header__query))
 				<p style="margin-top:15px; font-weight: 300"><img src="images/phone.png" width="21" height="19">Telephone: <span class="tel_bold">+65 9668 2895</span></p>
 			</div>
 			<div class="ict_vendor fr">
-				<a href="/enter.php">ICT VENDOR? ENTER NOW</a>
+				<a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab5" target="_self">ICT VENDOR? ENTER NOW</a>
 			</div>
 	  </div>
   </div>

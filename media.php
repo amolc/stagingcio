@@ -94,18 +94,7 @@ padding-right: 5px;
 															       <div><a href="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" rel="prettyPhoto[pp_gal]" title="">
                                                                     <img style="width: 218px;height: 145px;" src="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" alt="" width="131" height="auto"/></a></div>
 																
-															       <div><a href="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" rel="prettyPhoto[pp_gal]" title="">
-                                                                    <img style="width: 218px;height: 145px;" src="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" alt="" width="131" height="auto"/></a></div>
-																
-															       <div><a href="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" rel="prettyPhoto[pp_gal]" title="">
-                                                                    <img style="width: 218px;height: 145px;" src="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" alt="" width="131" height="auto"/></a></div>
-																
-															       <div><a href="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" rel="prettyPhoto[pp_gal]" title="">
-                                                                    <img style="width: 218px;height: 145px;" src="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" alt="" width="131" height="auto"/></a></div>
-																
-															       <div><a href="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" rel="prettyPhoto[pp_gal]" title="">
-                                                                    <img style="width: 218px;height: 145px;" src="admin/upload/gallery/images/<?php echo $row2['stuff'] ; ?>" alt="" width="131" height="auto"/></a></div>
-																
+															    
 															
 															<?php } ?>
                                                            </div>
@@ -138,7 +127,7 @@ padding-right: 5px;
 
                 if($hal > 1){ 
                     $prev = ($page - 1); 
-                    echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$prev>? Previous </a> "; 
+                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$prev>Previous </a> "; 
                 } 
 
                 for($i = 1; $i <= $total_pages; $i++){ 
@@ -151,7 +140,7 @@ padding-right: 5px;
         // Build Next Link 
                 if($hal < $total_pages){ 
                     $next = ($page + 1); 
-                    echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$next>Next ?</a>"; 
+                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$next>Next</a>"; 
                 } 
                 echo "</center>"; 
                 // echo "</div>"; 

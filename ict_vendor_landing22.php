@@ -85,6 +85,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['ict']))
 	
 }, 2000); // <-- time in milliseconds
 			
+			$('.tt').click(function(){
+				window.location.href = "http://staging.cio-choice.sg/ict_vendor_landing.php?action=yes#tab4";
+				
+			});
 		});
 	</script>
 <script type="text/javascript">
@@ -1657,11 +1661,11 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													<br />
                                                     <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea>
 													</div>
-                                                </div>
+                                                </div> 
                                                     <h2 class="form_heading">4. Build your application</h2>
                                                     
-                                                    <div class="field fl" style="width:800px;">
-													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <u>Terms and Condtions</u> related to CIO CHOICE registration</label>
+                                                    <div class="field fl" style="width:800px;"> 
+													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab4" target="_blank" class="">Terms and Condtions</a> related to CIO CHOICE registration</label>
 													</div>
                                                     <div class="field fl" style="width:800px;">
 													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <u>Participation Fees</u></label>

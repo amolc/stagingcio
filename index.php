@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html>
 
     <head>
@@ -411,6 +411,12 @@ include('footer.php');
 					theme:"dark-thick"
 				});
 				$("#content_7").mCustomScrollbar({
+					scrollButtons:{
+						enable:true
+					},
+					theme:"dark-thick"
+				});
+				$("#content_8").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},

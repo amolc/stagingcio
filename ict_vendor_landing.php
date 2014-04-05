@@ -1,13 +1,31 @@
 <?php
 session_start();
-// include('../include/database/db.php'); 
+   include('sql_config/database/cio_db.php');
 if (isset($_SESSION['username']) && isset($_SESSION['ict']))
 {
+    $email = $_SESSION['username'];
     $name = $_SESSION['user_name'];
+	
 	if (isset($_SESSION['corperate_email'])) {
 		
 		$corperate_email = $_SESSION['corperate_email'];
-	}
+		$disnone="";
+	$login_type_linkedin="";
+		 $login_type_result = mysql_query("SELECT login_type FROM registration WHERE corperate_email ='$corperate_email'");
+                                    while ($login_type_row = mysql_fetch_array($login_type_result))
+                                    {
+                                        $login_type_linkedin = $login_type_row['login_type'];
+                                       
+									}
+									if($login_type_linkedin == 'Linkedin')
+									{
+										$disnone = 'none';
+									}
+									else {
+									$disnone = 'block';
+									}
+	
+}
     $type = $_SESSION['cio'];
 } else
 {
@@ -313,7 +331,7 @@ function validateForm(formName)
 
     <body>
         <?php
-        include('sql_config/database/cio_db.php');
+     
         include('top_header.php');
         ?>
 
@@ -343,7 +361,7 @@ function validateForm(formName)
                         <a href="logout.php"><img src="images/logout.jpg" width="17" height="25">logout</a>
                     </div>-->
 					
-					<div style="width:115px;" class="logout fr">
+					<div style="width:115px;display:<?php echo $disnone; ?>;" class="logout fr">
                      <!--   <a href="change_password_ict.php">changePassword</a>-->
 						<a class="logincontainer"><img src="images/change_pass_icon.png" width="22" height="25">Password</a>
 						  
@@ -425,7 +443,7 @@ function validateForm(formName)
                                     <div class="text">
                                         <h1> <?php echo $row['title'] ?></h1>
                                     </div>
-                                    <img src="admin/<?php echo $row['path'] ?>" alt="" border="0" />
+                                    <a href="enter.php"><img src="admin/<?php echo $row['path'] ?>" alt="" border="0" /></a>
                                 </div>
                                     <?php endwhile;?>   
 
@@ -1082,19 +1100,31 @@ function validateForm(formName)
                         
                         <div class="article fl">
                         	<h1>Participation Fee</h1>
-                            <h2>5.1 Registration Fee</h2>
-                            <p>You agree to pay the Registration Fee amount specified on the Registration Form or such other ordering document as otherwise agreed between You and the Organiser for participation of your Product in the Programme. The total fees payable is sum of the Registration Fee multiplied by the number of Products submitted for participation in the Programme.</p>
+							<h2>A. Company Category.</h2>
+                            <ul>
+                            	<li>To qualify as a Large Enterprise, the company needs to have > 100 employees or an annual turnover of > US$ 15 Million in Singapore.</li>
+                                <li>Small & Medium Enterprises being companies with less than 100 employees or annual turnover of not more than US$15 Million in Singapore.</li>
+                                
+                            </ul>
 
-<p>Unless otherwise provided in the Registration Form, all payments are due within thirty (30) days from date of invoice. In the event that you fail to make the payment within the stipulated time, your entry may be withdrawn solely at the discretion of the organiser but the liability to pay once entered continues irrespective of the discretion exercised by the organiser. Should your Registration Fee remain outstanding at the time of the official announcement of results, your product may not be declared the Recognised product, even if so voted and the next high scoring product may be selected for Recognition at the sole discretion of the Organiser. </p>
+
+							<h2>B. Participation Fee.</h2>
+                            <ul>
+                            	<li>Registration Fee: US$1,000 for each category of product, service and/or solution submitted.</li>
+                                <li>License Fee (per category), applicable ONLY when the specific category of product, service and/or solution registered is conferred CIO CHOICE 2014.</li>
+                                <li>US$12,000 for Large Enterprise (Large).</li>
+                                <li>US$8,000 for Small & Medium Enterprise (SME).</li>
+                                <li>All fees are exclusive of local taxes.</li>
+                                <li>Payment Terms: Net 30 days from Invoice date.</li>
+                               
+                            </ul>
                             
-                            <h2>5.2 License Fee</h2>							
-                            <p>You agree to pay the License Fee amount specified on the Registration Form or such other ordering document as otherwise agreed between You and the Organiser in respect of each Product submitted by You being selected for Recognition by the Programme in consideration to the grant of the License under Article 4.1. The total fees payable is sum of the License Fee multiplied by the number of your Products recognised by the Programme.</p>
-
-<p>Unless otherwise provided in the Registration Form, all payments are due within thirty (30) days from date of invoice.You will not be allowed to make use of the Trade Mark prior to receipt of such payments. Failure to make such payments may at the discretion of the Organiser, result in all Your Products being
-disqualified from the Programme and, upon the Organiser giving You written notice, this agreement will being terminated immediately. Your liability to make any payment due will remain.</p>
-
-<p>The License Fee becomes payable upon your Product being selected for Recognition by the Programme and has no bearing whatsoever to whether you choose to use the Trade Marks or not during the License Period and whether You continue to market/sell the recognised Product during the year or part thereof.</p>
-
+							<p><strong style="font-size:18px;">C.</strong> Please submit your online entry form on the “Enter Now” tab</p>
+                            <p><strong style="font-size:18px;">D.</strong> The registration form will be automatically emailed to you to be stamped, signed and authorised by a representative of your company</p>
+    						<p>Please return your scanned copy to registration@cio-choice.sg and send the cheque/ pay order/ demand draft to:</p>
+   							<p>CORE SERVICES (ASIA) PTE LTD<br>
+   100 Cecil Street, #10-01 The Globe<br>
+   Singapore 069532 </p>
                             
                             
                         </div>
@@ -1381,7 +1411,8 @@ $(document).ready(function()
 													$to = $corperate_email;
 													$subject = "ICT Partners - Submission Form";
 													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
-													$message = '<div style=" height:100%; padding:25px; background:#eaeaea;">
+													$message = '
+													<div style=" height:100%; padding:25px;">
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
@@ -1408,7 +1439,7 @@ $(document).ready(function()
 										<div style="width:100%; float:left; padding:20px 0px; text-align:center; color:#20201f;">
 											<h1 style=" float:left; width:90%; font-family:Lato; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
 												Thank you for your submission<br>
-												to CIO CHOICE
+												to Cio choice
 											</h1>
 											<p style=" float:left; width:90%; display:block; font-family:Lato; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 												1. Please <a href="'.$web_url.'/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'" style="text-decoration:underline; font-weight:bold; color:#20201f;">download your CIO CHOICE pdf entry form</a> and proceed to <strong>stamp, sign</strong> and <strong>authorize it by a representative</strong> of your company.</p>
@@ -1472,7 +1503,8 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$corperate_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 									
 									<div style="clear:both;"></div>
-							</div>'; 
+							</div>
+							'; 
 													$from = "registration@cio-choice.sg";
 													
 													mail($to,$subject,$message,$headers);
@@ -1623,7 +1655,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													  </select>
                                                       </span>
                                                       <span class="input_lable fl" style="width:800px; margin:11px 0px 0px 15px; padding:0px;">Select the  Number of CIO CHOICE categories you would like to participate in.</span>
-                                                      <span class="input_lable fl"  style="width:800px; font-weight:normal; padding:0px; margin-left:15px;">( Each category entry form must be completed, details of the ICT categories is found on the <u><b>categories</b></u>  tab)</span>
+                                                      <span class="input_lable fl"  style="width:800px; font-weight:normal; padding:0px; margin-left:15px;">( Each category entry form must be completed, details of the ICT categories is found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
 													</div>
                                                 <div class="category"></div>    
                                                 <div class="category1">
@@ -1633,7 +1665,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                     
                                                     <div class="field fl">
 													<span class="input_lable fl">ICT Category & Code: </span>
-                                                    <span class="input_lable fl"  style="width:320px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <u><b>categories</b></u>  tab)</span>
+                                                    <span class="input_lable fl"  style="width:370px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
 													<br />
 													<input type="text" name="category_code[]" id="category_code" class="fl input_field" required/>
 													</div>
@@ -1661,10 +1693,10 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                     <h2 class="form_heading">4. Build your application</h2>
                                                     
                                                     <div class="field fl" style="width:800px;">
-													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <u>Terms and Condtions</u> related to CIO CHOICE registration</label>
+													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab4" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">Terms &amp; Conditions</a> related to CIO CHOICE registration</label>
 													</div>
                                                     <div class="field fl" style="width:800px;">
-													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <u>Participation Fees</u></label>
+													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab3" target="_self" style="text-decoration:underline; color:#20201F; font-weight:bold;">Participation Fees</a></label>
 													</div>
                                                     <div >
                                                         <input class="enter_form_send" type="submit" value="" name="Submit">

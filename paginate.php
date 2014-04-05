@@ -18,7 +18,8 @@ function paginate($reload, $page, $tpages) {
         // $out.= "<span class='prev>" . $prevlabel . "</span>\n";  
     // }
     if ($page == 1) {
-        $out.= "<span class='prev>" . $prevlabel . "</span>\n";  
+        // $out.= "<span class='prev>" . $prevlabel . "</span>\n";  
+		 $out.= "<a class='prev'  href=\"" . $reload . "\">" . $prevlabel . "</a>";
     } elseif ($page == 2) {
         $out.= "<a class='prev'  href=\"" . $reload . "\">" . $prevlabel . "</a>";
     } else {

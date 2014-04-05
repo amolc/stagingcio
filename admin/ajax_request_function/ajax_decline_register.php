@@ -10,14 +10,7 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
 		{ 
 			$registration_email = $row['registration_email'];
 			$registration_name = $row['registration_name'];
-			if($row['registration_type'] == 'ICTVendor ') 
-			{
-				$registration_type = 'ICT Vendor ';
-			}
-			else 
-			{
-				$registration_type = $row['registration_type'];
-			}
+			$registration_type = $row['registration_type'];
 			
 		}
 	if($sql)
@@ -35,8 +28,8 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
 				$mail->Password = '9cXWOqeaf';               // SMTP password
 				$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 				$mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-				$mail->setFrom('registration@cio-choice.sg', 'Cio choice');     //Set who the message is to be sent from
-				$mail->addReplyTo('registration@cio-choice.sg', 'Cio choice');   //Set an alternative reply-to address
+				$mail->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
+				$mail->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');   //Set an alternative reply-to address
 				// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
 				$mail->addAddress($registration_email);               // Name is optional
 				// $mail->addCC('cc@example.com'); 
@@ -47,7 +40,7 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
 				$mail->isHTML(true);                                  // Set email format to HTML
 				 
 				$mail->Subject = 'Your Membership To Cio-Choice is Declined';
-				$mail->Body    = '<div style=" height:100%; padding:25px; background:#eaeaea">
+				$mail->Body    = '<div style=" height:100%; padding:25px;">
     	<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
     		<div style=" float:left; width:100%; height:225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
             	<div style=" width:210px;height: 225px; margin:0 auto;">
@@ -74,7 +67,7 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
             <div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
             </div>
        	  	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
-            <div style="width:80%; float:left; height:80px;">
+            <div style="width:60%; float:left; height:80px;">
                 	<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
                     <span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
 				  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
