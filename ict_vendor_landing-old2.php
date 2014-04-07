@@ -101,7 +101,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['ict']))
 			setTimeout(function() {
     $('.your_register').remove();
 	
-}, 30000); // <-- time in milliseconds
+}, 2000); // <-- time in milliseconds
 			
 		});
 	</script>
@@ -443,10 +443,7 @@ function validateForm(formName)
                                     <div class="text">
                                         <h1> <?php echo $row['title'] ?></h1>
                                     </div>
-                                    <div class="link_url">
-                                    <a href="ict_vendor_landing.php?action=yes#tab5"><img src="admin/<?php echo $row['path'] ?>" alt="" border="0" /></a>
-                                    </div>
-                                
+                                    <a href="enter.php"><img src="admin/<?php echo $row['path'] ?>" alt="" border="0" /></a>
                                 </div>
                                     <?php endwhile;?>   
 
@@ -890,28 +887,28 @@ function validateForm(formName)
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Client virtualization </strong>- provides a way for users to maintain their individual desktops on a single,<br>
                         central server.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Application virtualization </strong>- refers to running an application on a thin client; a terminal or a network<br>
                           workstation with few resident programs and accessing most programs residing on a connected<br>
                         server.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Server virtualization </strong>- involves partitioning a physical server into a number of small, virtual servers<br>
                         with the help of virtualization software.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Network virtualization </strong>- refers to the management and monitoring of an entire computer network as<br>
                         a single administrative entity from a single software-based administrator's console</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Storage virtualization </strong>- grouping the physical storage from multiple network storage devices so that<br>
                         it looks like a single storage device.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">G5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">H5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -923,27 +920,27 @@ function validateForm(formName)
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Infrastructure as a Service (IaaS)</strong> - is a service model that delivers computer infrastructure on an<br>
                           outsourced basis to support enterprise operations. Typically, IaaS provides hardware, storage,<br>
                         servers and data center space or network components</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Platform as a Service (PaaS)</strong> - is a computing platform that is delivered as an integrated solution,<br>
                         solution stack or service</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Software as a Service (SaaS)</strong> - is a model for the distribution of software where customers access<br>
                         software over the Internet.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Cloud App</strong> - is an application that operates in the cloud. Cloud apps are considered to be a blend of<br>
                           standard Web applications and conventional desktop applications. Cloud apps incorporate the<br>
                         advantages of both Web and desktop apps without absorbing many of their drawbacks.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Cloud Solutions Provider</strong></p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">H5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">I5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -953,31 +950,31 @@ function validateForm(formName)
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Server</strong> - is a computer, a device or a program that is dedicated to managing network resources e.g.<br>
                         print servers, file servers, network servers and database servers.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Active Network Infrastructure</strong> - refers to the hardware and software resources of an entire network<br>
                           that enable network connectivity, communication, operations and management of an enterprise<br>
                         network. eg. Routers, switches, LAN cards, wireless routers, cables, etc.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Passive Network Infrastructure </strong>- refers to a computer network in which each node works on a<br>
                           predefined function or process. Passive networks don't execute any specialized code or instruction<br>
                         at any node and don't change their behavior dynamically.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Storage Area Network (SAN) </strong>- is a secure high-speed data transfer network that provides access<br>
                           to consolidated block-level storage. SAN devices appear to servers as attached drives, eliminating<br>
                         traditional network bottlenecks.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Uninterruptible power supply (UPS)</strong> - provides nearly instantaneous power when the main utility<br>
                           power source fails, allowing either time for power to return or for the user to shut down the system or<br>
                         equipment normally.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">I5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">J5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -990,26 +987,26 @@ function validateForm(formName)
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Green Datacenter</strong> - an enterprise class computing facility that is entirely built, managed and<br>
                           operated on green computing principles using less energy and space, and its design and operation<br>
                           are environmentally friendly.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Dynamic Smart Cooling </strong>- a technology used to monitor power and cooling in data centers.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Container </strong>- a self-contained module that includes a series of rack-mounted servers,<br>
                           along with its own lighting, air conditioning, dehumidification and uninterruptible power supply (UPS).</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Infrastructure Management (DCIM)</strong> - provisioning, governance and overall<br>
                           management of data center assets and encompasses IT resources like hardware, software,<br>
                           networks and facilities, including power, cooling, lighting and overall physical infrastructure.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J4</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Solutions Provider</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">J5</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">K5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -1029,15 +1026,15 @@ function validateForm(formName)
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Business Continuity Planning</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Disaster Recovery</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Governance Risk Compliance (GRC)</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L3</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -1048,18 +1045,18 @@ function validateForm(formName)
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Real Estate Investment Management</strong> - ensures your entire investment accounting, performance<br>
                           measurement, and investor reporting cycle is automated, reducing costs and increasing operational<br>
                         efficiencies.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Real Estate Project Lifecycle Management </strong>- for capital planning, project delivery, cost control, and facilities<br>
                           and real estate management to provide governance across all project phases, from planning and building to<br>
                         operations and maintenance.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Learning Management Systems (LMS) </strong>- software used by organisations or educational institutions to<br>
                         manage, track and deliver training programs.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M3</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -1068,23 +1065,23 @@ function validateForm(formName)
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>System Integration Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">N1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Business Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">N2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">N3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Risk Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M4</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">N4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Staffing Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">M5</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">N5</p></td>
                       </tr>
                     </table>
                     </div>
@@ -1511,16 +1508,15 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													$from = "registration@cio-choice.sg";
 													
 													mail($to,$subject,$message,$headers);
-													if(mail){
-														echo'<script>window.location.replace("ict_vendor_landing.php?action=yes&email=ok#tab5");</script>';
+													
+												//echo'<script>window.location.replace("ict_vendor_landing.php#tab5?add=ok");</script>';
                                                 session_start();
                                                  $_SESSION['enter_now_msg']='
                                                         <div class="your_register">
                                                          <h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
                                                          <p>Please return your a scanned copy to <a href="#">registration@cio-choice.sg</a>.</p>
-                                                        </div><br /><br />';
-														}
-                                                    }
+                                                        </div><br /><br />';	
+                                                                                    }
                                                     // }
 																																
 											}	
@@ -1540,9 +1536,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                 <div class="get_in_touch" style="margin-top:0px;">
 											
 												  <?php
-												  
-
-											if(isset($_REQUEST['add']) )
+											if(isset($_REQUEST['add']))
 											{
 											echo '<div class="your_register">
                                                     	<h1>Your Registration form will be <span>emailed to you to be stamped</span>, <span>signed</span> and <span>authorized</span> by a representative of the company. </h1>
@@ -1705,9 +1699,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab3" target="_self" style="text-decoration:underline; color:#20201F; font-weight:bold;">Participation Fees</a></label>
 													</div>
                                                     <div >
-                                                    <a href="#">
                                                         <input class="enter_form_send" type="submit" value="" name="Submit">
-                                                    </a>
                                                     </div>
 											</form>
                                                     
@@ -1871,15 +1863,6 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 				});
 			});
 		})(jQuery);
-		
-		$(document).ready(function() {
-			
-			// Animate the scroll to top
-			$('.enter_form_send').delay(500).click(function(event) {
-				$('html, body').animate({scrollTop: 0}, 300);
-			})
-		});
-
 	</script>
 
 

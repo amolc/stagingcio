@@ -6,3 +6,6 @@ vi database/cio_db.php
 exit
 pwd
 exit
+ls -l
+pwd
+exit
