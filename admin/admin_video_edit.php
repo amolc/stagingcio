@@ -3,6 +3,14 @@ include('../sql_config/database/cio_db.php');
  $id = $_REQUEST['id'];
  $res = mysql_query("select * from videos  where video_id = '$id'")or die (mysql_error());
  $row = mysql_fetch_array($res);
+
+ if(empty($row)){
+ 	header('Location: admin_all_video.php?empty=ok');
+ }
+ $sql_videos_type = mysql_query("SELECT * FROM videos_type WHERE video_id = '$id' ");
+
+ 
+
 /**
 *smagic39@gmail.com
 **/
@@ -78,6 +86,8 @@ return $data;
 	<link rel="stylesheet" href="include/resource/css/custom.css"  id="style-resource-6">
 
 	<script src="include/resource/js/jquery-1.10.2.min.js"></script>
+	<link rel="stylesheet" href="../video-js.css" >
+	<script src="../video.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -182,7 +192,22 @@ return $data;
 				    <div class="form-group">
 						<label class="col-sm-3 control-label">Video Upload</label>
 						<div class="col-sm-5">
-							<label for="video_mp4">Webm</label>
+							<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="300" height="200"
+							data-setup="{}">
+								<?php 
+								while( $row_tmp =  mysql_fetch_array($sql_videos_type)):
+
+								$video = $row_tmp['path'];
+								$ext = explode('.', $row_tmp['path']);
+								if($ext[1] =='ogv'){$type  = "video/ogg"; }
+								if($ext[1] =='mp4'){$type  = "video/mp4"; }
+								if($ext[1] =='webm'){$type  = "video/webm"; }
+								?>
+							<source src="<?php echo $video; ?>" type='<?php echo $type; ?>' />
+								<?php   endwhile;    ?>
+							</video>
+							<br/>
+						    <label for="video_webm">Webm</label>
 						    <input type="file" id="video_webm" name="video_webm"  accept="video/webm">
 						    <label for="video_mp4">Mp4</label>
 						    <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4">

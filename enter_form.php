@@ -108,13 +108,16 @@ $(document).ready(function()
 													$to = $email;
 													$subject = "ICT Partners - Submission Form";
 													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
-													$message = '<div style=" height:100%; padding:25px;">
+													$message = '
+													<html>
+													<body style="padding:0px; margin:0px;">
+													<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
+
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
 												<a href="#" style="height:245px;">
-													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
-												</a>
+													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 												<div style="clear:both;"></div>
 											</div>
 										</div>
@@ -137,7 +140,7 @@ $(document).ready(function()
 												Thank you for your submission<br>
 												to CIO CHOICE
 											</h1>
-											<p style=" float:left; width:90%; display:block; font-family:Lato; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
+											<p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 												1. Please <strong>download your CIO CHOICE pdf entry form</strong> and proceed to <strong>stamp, sign</strong> and <strong>authorize it by a representative</strong> of your company.</p>
 												
 												<div style="float:left; margin:20px 20px 10px 35px;">
@@ -147,9 +150,9 @@ $(document).ready(function()
 												</a>
                         </div>
                         
-                        <p style=" float:left; width:90%; display:block; font-family:Lato; text-align: left; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">2.  Scan and return your completed form to <a href="#" style="color:#312f2f; font-weight:bold;">registration@cio-choice.sg</a><br>
+                        <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; text-align: left; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">2.  Scan and return your completed form to <a href="#" style="color:#312f2f; font-weight:bold;">registration@cio-choice.sg</a><br>
 <br>
-Once we receive your completed form, we&acute;ll be in touch to confirm your details and let you know you are successfully registered for your selected CIO CHOICE Categories.<br>
+Once we receive your completed form, we&acute;ll be in touch to confirm your details and let you know you are successfully registered for your selected CIO CHOICE Categories.<br>
 <br>
 <strong>The CIO CHOICE team</strong></p>
 												
@@ -164,8 +167,8 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 										<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
 										<div style="width:60%; float:left; height:80px;">
 												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161">Need help?</span>
-											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161;">Send us your question</a>
+												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 										  </div>
 										<div style="width:170px; float:right; margin-top:22px; margin-right:1%;">
 											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -179,13 +182,13 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 											<div style="float:left; margin:0px; width:96%;">
 											  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
 																						
-												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
+												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
 																						
-												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
+												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
 																						
-												<li style="	float:left; list-style-type: none; margin:0px;"><a href="#" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
+												<li style="	float:left; list-style-type: none; margin:0px;"><a href="#" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
 											  </ul>
-											  <p style=" float:left; font-family:Lato; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright &copy; 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+											  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright &copy; 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
 										  </div>
 										</div>
 										  
@@ -195,11 +198,11 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 										
 									</div>
 									
-									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family:Lato; font-weight:400px;">
+									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family: Arial, Helvetica, sans-serif; font-weight:400px;">
 									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 									
 									<div style="clear:both;"></div>
-							</div>'; 
+							</div></body></html>'; 
 													$from = "contactus@cio-choice.sg";
 													
 													mail($to,$subject,$message,$headers);

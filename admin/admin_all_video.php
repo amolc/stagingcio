@@ -148,6 +148,9 @@ echo '<h2 style="color:green">Updated</h2>';
 if(isset($_REQUEST['add'])){
 echo '<h2 style="color:green">Videos Added </h2>'; 
 }
+if(isset($_REQUEST['empty'])){
+echo '<h2 style="color:red">Empty Videos </h2>'; 
+}
  ?>
 <br />
 

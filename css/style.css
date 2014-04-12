@@ -965,7 +965,7 @@ color: #E73535;
 }
 .choice_overview h1 {
 	width:100% !important;
-	margin:0px 0px 0px 20px;
+	margin:0px 0px 0px 0px;
 	color:#202020;
 	font-size:24px;
 	font-weight:bold;
@@ -1402,6 +1402,7 @@ height: 125px!important;
 	color:#616161;
 	font-weight:bold;
 	text-align:center;
+	text-transform: uppercase;
 	font-family:'Lato'
 	text-decoration:none;
 	background:#eaeaea;
@@ -1792,7 +1793,7 @@ input[type=radio]:checked + label:before {
 	background:#fafafa;
 	border:none;
 	padding:13px 5px;
-	margin-left: 20px;
+	margin-left: 10px;
 	margin-right:33px;
 	width:338px;
 	font-size:18px;
@@ -2211,7 +2212,7 @@ input[type=radio]:checked + label:before {
 
 .news_detail {
 	width:264px;
-	margin:15px 15px 0px 15px;
+	margin:15px 0px 0px 0px;
 	padding:0px 0px 15px 0px;
 	border-bottom: #20201f solid 1px;
 }
@@ -2570,7 +2571,8 @@ input[type=radio]:checked + label:before {
 }
 .video_1 p {
 	float:left;
-	width:368px;
+	width:910px;
+	font-size: 13px;
     color: #20201f;
     display: block;
 	text-align:left;
@@ -2603,6 +2605,7 @@ padding:5px 0px;
 width: 430px;
 height: 30px;
 border:solid #ebebeb 1px;
+font-size: 20px;
 
 }
 .field{
@@ -2718,7 +2721,7 @@ background: #FFF!important;}
 
 
 
-#container {
+/*#container {
 	width:918px;
 	position: relative;
 	margin: 0 auto;
@@ -2868,7 +2871,7 @@ background: #FFF!important;}
 	margin-right: 5px;
 	float: left;				
 }
-
+*/
 
 
 
@@ -3079,7 +3082,18 @@ border-bottom: 12px solid #000;
 }
 .send_btn {
 	margin:0px;
+	height:263px;
 	width:263px;
+}
+.send_btn a {
+	float:left;
+	width:263px;
+	height:263px;
+	display:block;
+	background:url(../images/send_survey.png) no-repeat;
+}
+.send_btn a:hover {
+	background:url(../images/send_survey_hover.png) no-repeat;
 }
 .online_survey_text {
 	width:630px;
@@ -3110,7 +3124,7 @@ border-bottom: 12px solid #000;
     float: left;
     font-family: 'Source Sans Pro';
     font-size: 30px;
-    font-weight: normal;
+    font-weight: bold;
     height: 45px;
     line-height: 45px;
     text-align: left;
@@ -3118,7 +3132,6 @@ border-bottom: 12px solid #000;
 }
 .online_survey_text h2 span {
 	font-size:30px;
-	font-weight:normal;
 	color:#e73535;
 	font-family: 'Source Sans Pro';
 	text-decoration:underline;
@@ -3175,5 +3188,12 @@ border-bottom: 12px solid #000;
 	color:#20201f;
 }
 .link_url{
-	text-align:center;
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+
+.stButton .twitter {
+    width:1px !important;
 }

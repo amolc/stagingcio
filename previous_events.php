@@ -66,14 +66,16 @@
                                                       
                                                       <?php 
 													  //echo "qasim";
+													  $today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
+													  $current_date = date("Y-m-d", $today_date);
 
                                                         $query = "SELECT
                                                         *
                                                         FROM
-                                                        `events`
+                                                        `events` where event_held_date < '$current_date'
                                                         
                                                         ";
-                                                        
+                                                       
                                                       	 //INNER JOIN event_videos ON `events`.event_id = event_videos.event_id
                                                        
                                                         $q1 = mysql_query($query); 

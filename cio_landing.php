@@ -1,4 +1,4 @@
-<?php
+<?php
 session_start();
    include('sql_config/database/cio_db.php');
 if (isset($_SESSION['username']) && isset($_SESSION['cio']))
@@ -303,6 +303,7 @@ $(document).ready(function(){
                 <h1>Hi</h1>
                 <h2><?php echo $name; ?><strong style="color:#20201f;">,</strong> </h2>
                 <h3>Welcome to CIO CHOICE <span>SINGAPORE</span></h3>
+				
             </div>
         </div>
         <div id="cio_area">
@@ -341,6 +342,15 @@ $(document).ready(function(){
             <div style="clear:both;"></div>
         </div>
         <div id="advisory_wrapper">
+		<?php
+			  if(isset($_REQUEST['send']))
+											{
+											echo '<div style="text-align: center;width: 760px;margin-left: 287px;color:#585858;margin-top: 20px;font-weight: normal;font-size: 18px;">Thank you for your interest in the survey. It will be mailed to you in the next 12-24 hours. </div>';											}
+											if(isset($_REQUEST['error']))
+											{
+											echo '<h1 style="color:red;margin-left: 550px;margin-top: 20px;">Survey Not Sent</h1>';
+											}
+			  ?>
             <div class="get_in_touch mrgn_top">
                 <div id="tab-container">  
 			  <ul class='etabs' style="width:100%;">
@@ -417,11 +427,9 @@ $(document).ready(function(){
                         </div> 
                     </div>
                     <div class="message_board fr">
-                        <h2><img src="images/message_icon.jpg" width="29" height="32">Message Board</h2>
+                        <h2><img src="images/message_icon.jpg" width="29" height="32">Message Board</h2> 
                         <span><img src="images/double_dot1.jpg" width="24" height="18"></span>
-                        <p>We have an <a href="upcoming_events.php" style="text-decoration:underline; color:#fff;">up and coming event</a> planned for the 30th February: THE CIO CHOICE Red Carpet Night 2014! To get the latest information, please get in touch and we’ll keep you posted.<br>
-                        <br>
-                        We hope to see you there.<br>
+                        <p><?php echo $row['message'];?>
                         <br>
                         <strong>The CIO CHOICE team</strong><img style="float:right; margin:9px 280px 0px 0px;" src="images/double_dot2.jpg" width="24" height="18"></p>
                     </div>
@@ -430,168 +438,24 @@ $(document).ready(function(){
 				</div><!--tab1 close--> 
 															  
 				<div id="tab2"  style="height: auto;width: auto;" class="content three_tabs fl">
-						<?php
-						function send_email() {
-							require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
- // Matthew.Harper@day7.co
-				$mail = new PHPMailer;
-				 
-				$mail->isSMTP();                                      // Set mailer to use SMTP
-				$mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
-				$mail->SMTPAuth = true;                               // Enable SMTP authentication
-				$mail->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-				$mail->Password = '9cXWOqeaf';               // SMTP password
-				$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-				$mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-				$mail->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
-				$mail->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');   //Set an alternative reply-to address
-				// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-				$mail->addAddress($corperate_email);               // Name is optional 
-				// $mail->addCC('cc@example.com');
-				// $mail->addBCC('bcc@example.com');
-				$mail->WordWrap = 500;                                 // Set word wrap to 50 characters
-				// $mail->addAttachment('/usr/labnol/file.doc');         // Add attachments
-				// $mail->addAttachment('/images/image.jpg', 'new.jpg'); // Optional name
-				$mail->isHTML(true);                                  // Set email format to HTML
-				 
-				$mail->Subject = 'Survey';
-				$mail->Body    = '<div style=" height:100%; padding:25px;">
-									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
-										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
-											<div style=" width:210px;height: 225px; margin:0 auto;">
-												<a href="#" style="height:245px;">
-													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
-												</a>
-												<div style="clear:both;"></div>
-											</div>
-										</div>
-										<div style="width:100%; height:65px; float:left; background:#20201f;">
-											<div style=" width:115px;text-align:center; float:left;">
-												<a href="'.$web_url.'/index.php" style=" text-decoration:none; padding:0px 27px; text-align:center; float:left; line-height:65px; font-family: Lato; color:#FFF; font-size:17.5px; font-weight:bold; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px; background:url('.$web_url.'/images/border.jpg) no-repeat right">
-													home
-												</a>
-											</div>
-											
-											<div style="float:right; margin:15px 20px 0px 0px;">
-												<a href="'.$web_url.'/auth.php" style="width:117px; line-height:35px; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px; text-decoration:none; border-radius:15px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">
-													<img src="'.$web_url.'/images/login_icon_1.png" width="18" height="24" style="margin: 6px 10px 0 13px; float:left;">
-													Login
-												</a>
-											</div>
-										</div>
-										<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
-											<h1 style=" float:left; width:90%;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
-												Thanks for survey, 
-											</h1>
-											<p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
-												survey description
-											</p>
-										</div>
-										<div style="width:98.5%; float:left; background:#20201f; margin-left:10px; ">
-											<div style=" float:left; width:256px; text-decoration:none; line-height:55px; font-family: Lato; color:#FFF; font-size:14px; font-weight:400; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px;">
-												<img style="float:left; margin:10px 10px 0px 15px;" src="'.$web_url.'/images/cio_area_icon.jpg" width="41" height="34">
-												YOUR ACCOUNT dETails
-											</div> 
-												
-											<div style="float:right; margin:10px 20px 15px 0px;">
-												<a href="'.$web_url.'/auth.php?email='.$registration_email.'" style="width:117px; line-height:35px; float:left; text-shadow:0px 2px #4b0e0e; color:#FFF;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px; text-decoration:none; border-radius:15px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">
-												<img src="'.$web_url.'/images/login_icon_1.png" width="18" height="24" style="margin: 6px 10px 0 13px; float:left;">
-													Login
-												</a>
-											</div> 
-										</div>
-										<div style="float:left; border-left:#CCC solid 1px; border-right:#CCC solid 1px; border-bottom:#CCC solid 1px; width:96.9%; padding:0px 10px 10px 10px; margin-left:10px">
-											<div style=" float:left; width:100%; border-bottom:#EAEAEA solid 1px; text-decoration:none; line-height:65px; font-family: Lato; color:#20201f; font-size:18px; font-weight:bold; letter-spacing:1px; margin:0px;">
-												<br />
-												<a href="'.$web_url.'/auth.php?email='.$registration_email.'" target="_blank">
-													<img src="'.$web_url.'/images/linkedin_btn.png" width="410" height="70">
-												</a> 
-											</div>
-											
-											
-											
-									  </div>
-										<div style="float:left; width:100%;">
-										<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 10px;"></div>
-										<div style="float:left; margin:18px 0px 0px 0px;"><img src="'.$web_url.'/images/star_rating.jpg" width="82" height="11"></div>
-										<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
-										</div>
-										<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
-										<div style="width:60%; float:left; height:80px;">
-												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
-											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
-										  </div>
-										<div style="width:170px; float:right; margin-top:22px;">
-											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
-											<a href="https://twitter.com/CIOCHOICE_SG" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/twitter.png"></a>
-											<a href="https://plus.google.com/+CiochoiceSg1/posts" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/google_plus.png"></a>
-											<a href="https://www.facebook.com/ciochoice.sg" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/facebook.png"></a>
-											<a href="http://www.youtube.com/user/CIOCHOICEsingapore" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/play.png"></a>
-										</div>
-										
-										<div style="float:left; width:100%; border-top: #EAEAEA solid 1px;">
-											<div style="float:left; margin:0px; width:96%;">
-											  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
-																						
-												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
-																						
-												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="#" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
-																						
-												<li style="	float:left; list-style-type: none; margin:0px;"><a href="#" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
-											  </ul>
-											  <p style=" float:left; font-family:Source Sans Pro; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
-										  </div>
-										</div>
-										  
-									  </div>
-									  
-										
-										
-									</div>
-									
-									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-weight:400px;">
-									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
-									
-									<div style="clear:both;"></div> 
-							</div>';
-				$mail->AltBody = 'hi raza how r u?';
-				 
-				//Read an HTML message body from an external file, convert referenced images to embedded,
-				//convert HTML into a basic plain-text alternative body
-				// $mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
-				 
-				if(!$mail->send()) {
-				   echo 'Message could not be sent.';
-				   echo 'Mailer Error: ' . $mail->ErrorInfo;
-				   exit;
-				}
-				// else {
-				// echo"Email Send Successfull";
-				// }
-						}
-						if (isset($_GET['send'])) {
-    send_email();
-  }
-						?>
-
+						
                     <div class="online_voting_main fl">
 														<!--
 														<div id="surveyMonkeyInfo"><div><script src="https://www.surveymonkey.com/jsEmbed.aspx?sm=R7gdr4H4ovq9Y_2bo2OYufQw_3d_3d"> </script></div>Create your free online surveys with <a href="https://www.surveymonkey.com">SurveyMonkey</a> , the world's leading questionnaire tool.</div>
 														-->
 														<div class="online_survey fl">
-                                                        	<div class="send_btn fl"><a href="cio_landing.php?send=true"  ><img src="images/send_survey.png" width="263" height="263"></a></div>
+                                                        	<div class="send_btn fl"><a href="send_survey.php"></a></div>
                                                             <div class="online_survey_text fl">
                                                             	<h1>CIO CHOICE <span>ONLINE SURVEY</span></h1>
                                                                 <p>To request the survey, or if you would like to be re-sent a reminder </p>
-                                                             <a href=""> <h2>HIT THE &acute;<span>SEND ME THE SURVEY</span>&acute; BUTTON</a></h2>
+                                                              <h2>HIT THE &acute;<a href="send_survey.php"><span>SEND ME THE SURVEY</span></a>&acute; BUTTON</h2>
                                                               <p>and we’ll have it delivered to your registered email address<br><br>
-                                                                <strong>Registered Email Address: <a href="#" style="color:red;"><?php echo $corperate_email;?></a></strong></p>
+                                                                <strong>Registered Email Address: <a href="#" style="color:#e73535;"><?php echo $corperate_email;?></a></strong></p>
                                                           </div>
                                                         </div>
                                                         <div class="having_problems fl">
                                                         	<h3>Having Problems with your Survey?</h3>
-                                                            <p>Please feel free to get in touch by emailing <a href="#" style=" color:#616161; font-weight:bold; text-decoration:underline;">survey@cio-choice.sg</a></p>
+                                                            <p>Please feel free to get in touch by emailing <a href="mailto:survey@cio-choice.sg" style=" color:#616161; font-weight:bold; text-decoration:underline;">survey@cio-choice.sg</a></p>
                                                         </div>
 
 												 </div>
@@ -663,7 +527,7 @@ $(document).ready(function(){
 
                 _total = $("#carousel").rcarousel("getTotalPages");
 
-                for (i = 0; i < _total; i++) {
+                for (i = 1; i < _total; i++) {
                     _link = $("<a href='#'></a>");
 
                     $(_link)
@@ -673,6 +537,7 @@ $(document).ready(function(){
                                 event.preventDefault();
                             }
                             )
+
                             .addClass("bullet off")
                             .appendTo("#pages");
                 }

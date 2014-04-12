@@ -4,11 +4,11 @@
 **/
 
 function checkVideoType($fileName,$path){
- $allowedExts = array("mp4", 'webm', 'ogv');
+ $allowedExts = array("mp4", 'webm', 'ogv ', 'jpeg', 'jpg', 'png', 'gif'); 
 $extension = pathinfo($fileName['name'], PATHINFO_EXTENSION);
 $message = '';
 
-if ((($fileName["type"] == "video/mp4") || ($fileName["type"] == "video/webm") || ($fileName["type"] == "video/ogg")  && in_array($extension, $allowedExts)))
+if ((($fileName["type"] == "video/mp4") || ($fileName["type"] == "video/webm") || ($fileName["type"] == "video/ogg") || ($fileName["type"] == "image/jpeg") || ($fileName["type"] == "image/jpg") || ($fileName["type"] == "image/png") || ($fileName["type"] == "image/gif")  && in_array($extension, $allowedExts)))
 {
 
     if ($fileName["error"] > 0)
@@ -133,6 +133,7 @@ return $data;
 				$path1 = checkVideoType($_FILES['video_webm'],'tmp/');
 				$path2 = checkVideoType($_FILES['video_mp4'],'tmp/');
 				$path3 = checkVideoType($_FILES['video_ogv'],'tmp/');
+				$path4 = checkVideoType($_FILES['img_video'],'tmp/');
 
 						$video_name = mysql_real_escape_string($_POST['video_name']);
 						$today_current_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
@@ -147,17 +148,30 @@ return $data;
 						if($query)
 						{
 							
-						    $sql_type1   = "insert into videos_type(path,video_id) values ('".$path1['path']."','$last_id')";       	
-						    $query_type[] = mysql_query($sql_type1);
-						    $sql_type2   = "insert into videos_type(path,video_id) values ('".$path2['path']."','$last_id')";
-						    $query_type[] = mysql_query($sql_type2);
-						    $sql_type3   = "insert into videos_type(path,video_id) values ('".$path3['path']."','$last_id')";
-						    $query_type[] = mysql_query($sql_type3);
+						    if(isset($_FILES['video_webm']) && $_FILES['video_webm']["name"]){
+						    	$sql_type1   = "insert into videos_type(path,types,video_id) values ('".$path1['path']."','video','$last_id')";       	
+						    	$query_type[] = mysql_query($sql_type1);
+						    }
+						     if(isset($_FILES['video_mp4']) && $_FILES['video_mp4']["name"]){
+						    	$sql_type2   = "insert into videos_type(path,types,video_id) values ('".$path2['path']."','video','$last_id')";
+						    	$query_type[] = mysql_query($sql_type2);
+						    }
+
+						     if(isset($_FILES['video_ogv']) && $_FILES['video_ogv']["name"]){
+						    $sql_type3   = "insert into videos_type(path,types,video_id) values ('".$path3['path']."','video','$last_id')";
+						    $query_type[] = mysql_query($sql_type3); 
+						   }
+
+						    if(isset($_FILES['img_video']) && $_FILES['img_video']["name"]){
+								$sql_type4   = "insert into image_type(path,video_id) values ('".$path4['path']."','$last_id')";
+						   	    $query_type[] = mysql_query($sql_type4);
+						    }
+
 							$status_query = true; 
 
 							
 						}
-						header('Location: admin_all_video.php?add=ok');
+						echo ('<script type="text/javascript">document.location.href= "admin_all_video.php?add=ok"</script>');
 						
 				  }
 				
@@ -165,7 +179,7 @@ return $data;
 
 				?>
 
-
+				
 				<form role="form" action="<?php $_SERVER["PHP_SELF"];?>" method="post"  enctype="multipart/form-data" class="form-horizontal form-groups-bordered">
 
 					<div class="form-group">
@@ -186,7 +200,9 @@ return $data;
 						    <input type="file" id="video_mp4" name="video_mp4" accept="video/mp4">
 						    <label for="video_mp4">Ogv</label>
 						    <input type="file" id="video_ogv" name="video_ogv" accept="video/ogg">
-						</div>
+						    <label for="img_video">Image Upload</label>
+						    <input type="file" id="img_video" name="img_video">
+						</div> 
 					</div>
 			
 					<div class="form-group">

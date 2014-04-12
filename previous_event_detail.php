@@ -63,7 +63,7 @@
                                                   
                                                   <div class="overview_right fr">
                                                     <div class="events fl">
-                                                      <h1>Previous Events</h1>
+                                                      
                                                       
                                                       <?php 
 
@@ -88,9 +88,10 @@
                                                         
 
                                                       ?>
+															<h1><?php echo $event_name; ?></h1>
 
                                                         	<div class="event_title fl">
-                                                            <h1><?php echo $event_name; ?><br>
+                                                            <h1>
                                                               <?php echo $event_held_date; ?><br>
                                                             </h1>
                                                             <span class="fr map_span"><!--<img src="images/map.jpg" alt="" >--><?php echo $event_map; ?></span>

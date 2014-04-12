@@ -6,9 +6,17 @@
 <title>Cio Choice</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/twitterfeed.js"></script>
 <link href="css/twitter-styles.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.easytabs.min.js" type="text/javascript"></script>
+    
+	<script type="text/javascript">
+    $(document).ready( function() {
+	//alert('raza');
+      $('#tab-container').easytabs();
+    });
+    </script> 
 </head>
 
 <body>
@@ -18,6 +26,14 @@
 													include('sql_config/database/cio_db.php'); 
 													include('top_header.php');
 													include('header.php');
+													
+														// $result = mysql_query("SELECT * FROM news");
+												$total_news = mysql_query("select count(1) FROM news");
+												$total_row = mysql_fetch_array($total_news);
+
+												$total = $total_row[0];
+												// echo "Total rows: " . $total;
+													
 													$id = $_REQUEST['id'];
 													$result = mysql_query("SELECT * FROM news WHERE news_id=$id");
 													$row = mysql_fetch_array($result);	
@@ -115,7 +131,6 @@
 
 
     <!-- Google CDN jQuery with fallback to local -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){

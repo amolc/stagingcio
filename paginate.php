@@ -32,9 +32,9 @@ function paginate($reload, $page, $tpages) {
         if ($i == $page) {
             $out.= "<a href='' class=\"active\">" . $i . "</a>";
         } elseif ($i == 1) {
-            $out.= "<a  href=\"" . $reload . "\">" . $i . "</a>";
+            $out.= "<a  href=\"" . $reload .$page. "\">" . $i . "</a>";
         } else {
-            $out.= "<a  href=\"" . $reload . "&amp;page=" . $i . "\">" . $i . "</a>";
+            $out.= "<a  href=\"" . $reload .$page. "&amp;page=" . $i . "\">" . $i . "</a>";
         }
     }
     
@@ -43,7 +43,7 @@ function paginate($reload, $page, $tpages) {
     }
     // next
     if ($page < $tpages) {
-        $out.= "<a  class='next' href=\"" . $reload . "&amp;page=" . ($page + 1) . "\">" . $nextlabel . "</a>";
+        $out.= "<a  class='next' href=\"" . $reload . "&amp;page=" . ($page + 2) . "\">" . $nextlabel . "</a>";
     } else {
         $out.= "<span  class='next' style='font-size:11px'>" . $nextlabel . "</span>\n";
     }

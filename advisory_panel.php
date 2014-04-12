@@ -72,7 +72,7 @@
 														<a href="#" class="active">2014</a>
 														<a style="display:none;" href="advisory_panel_13.php">2013</a>
 													</div>
-                                                  <div id="content_7" class="advisory_panel">
+                                                  <div id="content_8" class="advisory_panel">
 												  <?php
 															$year ="2014";
 															$advisory_query = mysql_query("select * from advisory_panel  where advisory_years = '".$year."' ORDER BY advisory_name asc");
@@ -129,12 +129,28 @@
 					scrollButtons:{
 						enable:true
 					},
+					advanced:{
+        updateOnContentResize:true
+    },
+					
 					theme:"dark-thick"
 				});
 				$("#content_7").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},
+					advanced:{
+        updateOnContentResize:true
+    },
+					theme:"dark-thick"
+				});
+				$("#content_8").mCustomScrollbar({
+					scrollButtons:{
+						enable:true
+					},
+					advanced:{
+        updateOnContentResize:true
+    },
 					theme:"dark-thick"
 				});
 			});

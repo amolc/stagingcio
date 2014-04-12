@@ -66,11 +66,13 @@
                                                       
                                                       <?php 
 													  //echo "qasim";
+													  $today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
+													  $current_date = date("Y/m/d", $today_date);
 
                                                         $query = "SELECT
                                                         *
                                                         FROM
-                                                        `events`
+                                                        `events` where event_held_date >= '$current_date'
                                                         
                                                         ";
                                                         
@@ -125,11 +127,6 @@
                                                                   
                                                                     <div><a href="admin/user_data/<?php echo $fb_image ; ?>" rel="prettyPhoto[pp_gal]" title="">
                                                                     <img src="admin/user_data/<?php echo $fb_image ; ?>" alt="" width="131" height="auto"/></a></div>
-                                                                
-                                                                
-                                                             
-                                                                
-
 
                                                              <?php   
                                                                

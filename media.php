@@ -123,27 +123,27 @@ padding-right: 5px;
                 $total_pages = ceil($total_results / $max_show); 
 
                 echo "<center>"; 
-                // echo '<div class="pagination fl" style="margin-left:385px;">'; 
+                echo '<div class="pagination fl" style="margin-left:385px;">'; 
 
                 if($hal > 1){ 
                     $prev = ($page - 1); 
-                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$prev>Previous </a> "; 
+                    echo "<a class='prev' href=$_SERVER[PHP_SELF]?hal=$prev></a> "; 
                 } 
 
                 for($i = 1; $i <= $total_pages; $i++){ 
                     if(($hal) == $i){ 
-                        echo "<b>$i</b> ";  
+                        echo "<a>$i</a> ";  
                     } else { 
-                        echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$i>$i</a> "; 
+                        echo "<a href=$_SERVER[PHP_SELF]?hal=$i>$i</a> "; 
                 } 
                 }
         // Build Next Link 
                 if($hal < $total_pages){ 
                     $next = ($page + 1); 
-                    // echo "<a style='color:red' href=$_SERVER[PHP_SELF]?hal=$next>Next</a>"; 
+                    echo "<a class='next' href=$_SERVER[PHP_SELF]?hal=$next></a>"; 
                 } 
                 echo "</center>"; 
-                // echo "</div>"; 
+                echo "</div>"; 
         ?>
     </div><!-- end of pagination -->
 										<?php 

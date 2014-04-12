@@ -71,6 +71,10 @@
 				</li>
 				
 				<li>
+					<a href="massage_board.php"><span> Massage Board</span></a>
+				</li>
+				
+				<li>
 					<a href="admin_add_social_link.php"><span>Add Social Link</span></a>
 
 				</li>				
@@ -173,6 +177,9 @@
 		<li>
 			<a href="#"><i class="entypo-cog"></i><span>Setting</span></a>
 			<ul>
+            	<li>
+					<a href="file_manager2.php"><span>File Manager </span></a>
+				</li>
 				<li>
 					<a href="admin_change_logo.php"><span>Change Logo </span></a>
 				</li>

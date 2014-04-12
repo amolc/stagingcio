@@ -11,7 +11,12 @@
 			$registration_name = $row['registration_name'];
 			$registration_password = $row['registration_password'];
 			$registration_type = $row['registration_type'];
+			if($registration_type="ICTVendor"){
+				$registration_type="ICT Vendor";
+			}
+			
 			$login_type = $row['login_type'];
+			
 			
 		}
 		if($sql) 
@@ -41,13 +46,15 @@
 				$mail->isHTML(true);                                  // Set email format to HTML
 				 
 				$mail->Subject = 'Congratulations! Your membership is approved';
-				$mail->Body    = '<div style=" height:100%; padding:25px;">
+				$mail->Body    = '
+				<html>
+				<body style="padding:0px; margin:0px;">
+				<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
 												<a href="#" style="height:245px;">
-													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
-												</a>
+													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 												<div style="clear:both;"></div>
 											</div>
 										</div>
@@ -67,16 +74,16 @@
 										</div>
 										<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
 											<h1 style=" float:left; width:90%;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
-												Thanks for Registering, you have been accepted as an '.$registration_type.' Member!
+												Your Registration has been accepted, welcome to CIO CHOICE Singapore
 											</h1>
 											<p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 												Let&acute;s get started straight away, here are your login details to access the exclusive CIO CHOICE '.$registration_type.' AREA:
 											</p>
 										</div>
 										<div style="width:98.5%; float:left; background:#20201f; margin-left:10px; ">
-											<div style=" float:left; width:256px; text-decoration:none; line-height:55px; font-family: Lato; color:#FFF; font-size:14px; font-weight:400; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px;">
+											<div style=" float:left; width:270px; text-decoration:none; line-height:55px; font-family: Arial, Helvetica, sans-serif; color:#FFF; font-size:14px; font-weight:400; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px;">
 												<img style="float:left; margin:10px 10px 0px 15px;" src="'.$web_url.'/images/cio_area_icon.jpg" width="41" height="34">
-												YOUR ACCOUNT dETails
+												YOUR ACCOUNT DETAILS
 											</div> 
 												
 											<div style="float:right; margin:10px 20px 15px 0px;">
@@ -105,8 +112,8 @@
 										<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
 										<div style="width:60%; float:left; height:80px;">
 												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
-											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
+												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 										  </div>
 										<div style="width:170px; float:right; margin-top:22px;">
 											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -140,7 +147,7 @@
 									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 									
 									<div style="clear:both;"></div> 
-							</div>';
+							</div></body></html>';
 				$mail->AltBody = 'hi raza how r u?';
 				 
 				//Read an HTML message body from an external file, convert referenced images to embedded,
@@ -179,13 +186,15 @@
 				$mail->isHTML(true);                                  // Set email format to HTML
 				  
 				$mail->Subject = 'Congratulations! Your membership is approved';
-				$mail->Body    = '<div style=" height:100%; padding:25px;">
+				$mail->Body    = '
+				<html>
+				<body style="padding:0px; margin:0px;">
+				<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
 												<a href="#" style="height:245px;min-height: 245px;">
-													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
-												</a>
+													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 												<div style="clear:both;"></div>
 											</div>
 										</div>
@@ -205,16 +214,16 @@
 										</div>
 										<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
 											<h1 style=" float:left; width:90%;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-size:26px; font-weight:bold; margin:0% 5%; padding:0px;">
-												Thanks for Registering, you have been accepted as an '.$registration_type.' Member!
+												Your Registration has been accepted, welcome to CIO CHOICE Singapore
 											</h1>
 											<p style=" float:left; width:90%; display:block;  font:Lato; font-family:Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 												Let&acute;s get started straight away, here are your login details to access the exclusive CIO CHOICE '.$registration_type.' AREA:
 											</p>
 										</div>
 										<div style="width:98.5%; float:left; background:#20201f; margin-left:10px; ">
-											<div style=" float:left; width:255px; text-decoration:none; line-height:55px; font-family: Lato; color:#FFF; font-size:14px; font-weight:400; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px;">
+											<div style=" float:left; width:270px; text-decoration:none; line-height:55px; font-family: Lato, Arial, Helvetica, sans-serif; color:#FFF; font-size:14px; font-weight:400; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px;">
 												<img style="float:left; margin:10px 10px 0px 15px;" src="'.$web_url.'/images/cio_area_icon.jpg" width="41" height="34">
-												YOUR ACCOUNT dETails
+												YOUR ACCOUNT DETAILS
 											</div>
 												
 											<div style="float:right; margin:10px 20px 15px 0px;">
@@ -225,17 +234,17 @@
 											</div>
 										</div>
 										<div style="float:left; border-left:#CCC solid 1px; border-right:#CCC solid 1px; border-bottom:#CCC solid 1px; width:96.9%; padding:0px 10px 10px 10px; margin-left:10px">
-											<div style=" float:left; width:100%; border-bottom:#EAEAEA solid 1px; text-decoration:none; line-height:65px; font-family: Lato; color:#20201f; font-size:18px; font-weight:bold; letter-spacing:1px; margin:0px;">
+											<div style=" float:left; width:100%; border-bottom:#EAEAEA solid 1px; text-decoration:none; line-height:65px; font-family: Arial, Helvetica, sans-serif; color:#20201f; font-size:18px; font-weight:bold; letter-spacing:1px; margin:0px;">
 												Email:
-												<span style="text-decoration:none; color:#20201f; font-weight:400 !important; font-family: Source Sans Pro!important;">
+												<span style="text-decoration:none; color:#20201f; font-weight:400 !important; font-family: Arial, Helvetica, sans-serif;">
 													'.$registration_email.'
 												</span>
 											</div>
 											
 											
-											<div style=" float:left; width:100%; text-decoration:none; line-height:75px; font-family: Lato; color:#20201f; font-size:18px; font-weight:bold; letter-spacing:1px; margin:0px;">
+											<div style=" float:left; width:100%; text-decoration:none; line-height:75px; font-family: Arial, Helvetica, sans-serif; color:#20201f; font-size:18px; font-weight:bold; letter-spacing:1px; margin:0px;">
 												Password: 
-												<span style="text-decoration:none; color:#20201f; font-weight:400 !important; font-family: Source Sans Pro!important;">
+												<span style="text-decoration:none; color:#20201f; font-weight:400 !important; font-family: Lato, Arial, Helvetica, sans-serif;">
 													'.$registration_password.'
 												</span>
 											</div>
@@ -251,7 +260,7 @@
 										<div style="width:60%; float:left; height:80px;">
 												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
 												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase;  font:Lato; font-family:Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
-											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase;  font:Lato; font-family:Arial, Helvetica, sans-serif; color:#616161;">Send us your question</a>
+											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase;  font:Lato; font-family:Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 										  </div>
 										<div style="width:170px; float:right; margin-top:22px;">
 											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -285,8 +294,8 @@
 									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 									
 									<div style="clear:both;"></div>
-							</div>'; 
-				$mail->AltBody = 'hi raza how r u?';
+							</div></body></html>'; 
+				$mail->AltBody = 'Test';
 				 
 				//Read an HTML message body from an external file, convert referenced images to embedded,
 				//convert HTML into a basic plain-text alternative body

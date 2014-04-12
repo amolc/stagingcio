@@ -161,7 +161,7 @@
                                                         	<div class="login_box fl">
                                                             	<h1>Login using your<br>Username & Password</h1>
                                                               <label> Username</label>
-                                                                <input name="username" type="email" required>
+                                                                <input style="font-size: 20px;" name="username" type="email" required>
                                                               <label>Password</label> 
                                                                 <input name="password" type="password" required>
 																	<a style="color: #FFFFFF; float: left; margin-left: 86px;text-decoration: underline;    width: 222px;" href="forgot_password.php">Forgot your password ?</a>

@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html>
 
     <head>
@@ -12,20 +12,9 @@
         <!--[if lt IE 9]>
         <link href="css/movingboxes-ie.css" rel="stylesheet" media="screen" />
         <![endif]-->
-
-        <!-- Required script -->
-        <!-- <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>-->
         <script type="text/javascript" src="js/jquery.js"></script> 
-        <!--<link rel="stylesheet" href="slider_style.css">
-        
-        <script type="text/javascript" src="js/jcarousellite.js"></script>-->
         <script src="http://jwpsrv.com/library/c+e6yqaJEeO1oCIACmOLpg.js"></script>
 
-
-<!--<script type="text/javascript" async="" src="js/ga.js"></script>-->
-<!--<script src="js/jquery.min.js"></script>-->
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/mytweets.js"></script>-->
         <link href="css/razamalik.css" type="text/css" rel="stylesheet">
         <script type="text/javascript" src="js/jquery.sky.carousel-1.0.2.min.js"></script>
         <script type="text/javascript" src="js/twitterfeed.js"></script>
@@ -37,8 +26,8 @@
         <link href="video-js.css" rel="stylesheet" type="text/css">
         <!-- video.js must be in the <head> for older IEs to work. -->
         <script src="video.js"></script>
-		 <style type="text/css">
-          #container {
+<style type="text/css">
+#container {
  width:737px;
  position: relative;
  margin: 0 auto;
@@ -190,7 +179,7 @@
 }
 
 .video {
-    border: 1px solid #A70707;
+    
     box-shadow: 0 5px 5px #231F20;
     height: 415px;
     left: 110px;
@@ -200,15 +189,12 @@
     width: 737px;
     z-index: 1;
 }
-        </style>
-        
+</style>   
         <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
         <script>
             videojs.options.flash.swf = "video-js.swf";
         </script>
-
         <!-- added for the video player -->
-
 
         <script type="text/javascript">
             $(function() {
@@ -252,50 +238,60 @@
         <?php
         include('sql_config/database/cio_db.php');
         include('top_header.php');
-
         include('header.php');
         ?>
 
         <div id="black_wrapper">
             <div class="black_container">
                 <?php include('navigation.php'); ?>
-
-               
 			  <div class="video fl">
-
                	 <!--carousel start-->
                         <div id="container"> 
                             <div id="carousel">
-                  			   <?php
-                    $video_query = mysql_query("SELECT * FROM videos ");
-                    while ($video_res = mysql_fetch_array($video_query))
-                    {
+							   <?php 
+								$video_query = mysql_query("SELECT * FROM videos order by video_id ASC");
+								$list_count  = mysql_num_rows($video_query);	
+								
+								while ($video_res = mysql_fetch_array($video_query))
+								{
+									$count ++;
+									$sql_tmp = mysql_query("SELECT * FROM videos_type WHERE video_id = '".$video_res['video_id']."'");
+									if(mysql_num_rows($sql_tmp) > 0){
+									
+									?>
+								
+									<div>
+										<video style="cursor: pointer;" id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="737" height="415"
+										poster="admin/upload/Intro_frame_01.jpg"
+										> 
+											<?php 
+											while( $row_tmp =  mysql_fetch_array($sql_tmp)):
 
-                        $sql_tmp = mysql_query("SELECT * FROM videos_type WHERE video_id = '".$video_res['video_id']."' ");
-                        
+											$video = $row_tmp['path'];
+											$ext = explode('.', $row_tmp['path']);
+											if($ext[1] =='ogv'){$type  = "video/ogv"; }
+											if($ext[1] =='mp4'){$type  = "video/mp4"; }
+											if($ext[1] =='webm'){$type  = "video/webm"; }
+											
+											?>
+										<source src="admin/<?php echo $video; ?>" type='<?php echo $type; ?>' />							
+											<?php   endwhile;    ?>
+										</video>
+										
+									</div>
+									<?php }?>	
 
-                        // echo $video;
-                        ?>
-
-                        <!--<div id="myElement">Loading the player...</div>-->
-                        <div>
-							<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="737" height="415"
-							poster="admin/upload/Intro_frame_01.jpg"
-							data-setup="{}">
-								<?php 
-								while( $row_tmp =  mysql_fetch_array($sql_tmp)):
-
-								$video = $row_tmp['path'];
-								$ext = explode('.', $row_tmp['path']);
-								if($ext[1] =='ogv'){$type  = "video/ogg"; }
-								if($ext[1] =='mp4'){$type  = "video/mp4"; }
-								if($ext[1] =='webm'){$type  = "video/webm"; }
-								?>
-							<source src="admin/<?php echo $video; ?>" type='<?php echo $type; ?>' />
-								<?php   endwhile;    ?>
-							</video>
-                        </div>
-                    <?php } ?>
+									<?php $sql_img_type = mysql_query("SELECT * FROM image_type WHERE video_id = '".$video_res['video_id']."'"); 
+									 if(mysql_num_rows($sql_img_type) > 0) {
+										 while($row_tmp =  mysql_fetch_array($sql_img_type)){?>
+										 		<div>
+												<a href="registration.php">
+													<img style="height: 415px;width: 737px;" src="admin/<?php  echo $row_tmp['path'] ?>" alt="" />
+												</a>
+												</div>
+									<?php   } 
+								    	 }
+								} ?>
 
                             </div>
                             <div id="pages"></div>
@@ -307,10 +303,8 @@
             <!-- VIDEO GALLERY -->
         </div>
     </div>
-    <!--<div style="padding-top:50px;height: 560px;" id="advisory_wrapper">-->
+   
     <div style="padding-top:75px;height: 630px;" id="advisory_wrapper">
-
-
         <div class="sixteen columns">
             <div class="project">
                 <div class="sky-carousel sc-no-select" style="visibility: visible;">
@@ -335,10 +329,6 @@
 
                                     // truncate string
                                     $stringCut = substr($advisory_description, 0, 300);
-
-                                    // make sure it ends in a word so assassinate doesn't become ass...
-                                    // $string = substr($stringCut, 0, strrpos($stringCut, ' ')); 
-
                                     $advisory_description = substr($stringCut, 0, strrpos($stringCut, ' ')) . '<a style="font-weight:bold;" href="advisory_detail.php?id=' . $advisory_res['advisory_id'] . '"> Read more</a>';
                                 }
                                 ?>
@@ -375,7 +365,6 @@
 
     </div>
 </div>
-<!--<img src="timthumb.php?src=/admin/advisory_panel_img/Alice-Abigail-Tan.jpg&h=150&w=150&zc=1" alt="some text" />-->
 <div style="display:none;" id="advisory_wrapper">
     <div class="our_advisory_panel">
         <h1>Our Advisory Panel</h1>
@@ -387,19 +376,13 @@
     </div>
     <div style="clear:both"></div>
 </div>
-<?php include('events_panel.php'); ?>
-
-
 <?php
-include('quick_contact.php');
-include('footer.php');
-?>                                   
+	include('events_panel.php'); 
+	include('quick_contact.php');
+	include('footer.php');
+?>                                
 
-
-
-<!-- Google CDN jQuery with fallback to local 
-<script type="text/javascript" src="js/jquery.min.js"></script>-->
-
+<!-- Google CDN jQuery with fallback to local-->
 <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){
@@ -408,18 +391,32 @@ include('footer.php');
 					scrollButtons:{
 						enable:true
 					},
+			advanced:{
+     		   updateOnContentResize:true
+    			},
+
 					theme:"dark-thick"
 				});
 				$("#content_7").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},
+
+			advanced:{
+     		   updateOnContentResize:true
+    			},
+
 					theme:"dark-thick"
 				});
 				$("#content_8").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},
+			advanced:{
+     		   updateOnContentResize:true
+    			},
+
+
 					theme:"dark-thick"
 				});
 			});
@@ -427,16 +424,16 @@ include('footer.php');
 	</script>
   <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
  <script type="text/javascript" src="js/jquery.ui.rcarousel.js"></script>
-  
-
-        <script type="text/javascript">
+    <script type="text/javascript">
         jQuery(function($) {
+
             function generatePages() {
                 var _total, i, _link;
 
                 _total = $("#carousel").rcarousel("getTotalPages");
 
                 for (i = 0; i < _total; i++) {
+                	count ++;
                     _link = $("<a href='#'></a>");
 
                     $(_link)
@@ -457,6 +454,7 @@ include('footer.php');
                         .css( "background-image", "url(images/page-on.png)");
 
             }
+       
 
             function pageLoaded(event, data) {
                 $("a.on", "#pages")
@@ -484,6 +482,7 @@ include('footer.php');
                     }
             );
 
+
             $( "#ui-carousel-next")
                     .add("#ui-carousel-prev")
                     .add( ".bullet")
@@ -495,8 +494,16 @@ include('footer.php');
                                 $(this).css( "opacity", 1.0);
                             }
                     );
+
+                
+            	var count = 0;
+        	    count = <?php echo $list_count?>;
+
+                    if(count == 1){
+                    	$('#pages .off').remove();
+                    }
         });
-        </script>
+    </script>
 
 </body>
 </html>

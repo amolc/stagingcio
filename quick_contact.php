@@ -42,7 +42,12 @@
                                             	
                                                 <div class="become_partner fr">
                                                 	<a href="/contact_us.php" class="partner">BECOME A PARTNER</a>
-                                                    <a href="/enter.php" class="ict">ICT VENDOR? ENTER NOW</a>
+                                                        <?php if($_SESSION['username']){ ?>
+                                                          <a href="http://staging.cio-choice.sg/<?php echo $_SESSION['type']?>#tab5" target="_self" class="ict" >ICT VENDOR? ENTER NOW</a>
+                                                   <?php }else{ ?>
+                                                   <a href="http://staging.cio-choice.sg/enter.php" target="_self" class="ict" >ICT VENDOR? ENTER NOW</a>
+                                                   <?php } ?>
+                                
                                                 </div>
                                                 </div>
                                             </div>

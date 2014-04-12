@@ -11,17 +11,25 @@
 															  </ul>
 															    <div id="content_6" class="content three_tabs fl">
 															<?php
+															//include('sql_config/database/cio_db.php'); 
 															$today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
-			
-															$current_date = date("m/d/Y", $today_date);
-															
-																$event_query = mysql_query("select * from events where event_held_date < '$current_date'"); 
-																while($event_res = mysql_fetch_array($event_query))
+													  $current_date = date("Y-m-d", $today_date);
+													  //echo $current_date;exit;
+
+                                                        $query = "SELECT
+                                                        *
+                                                        FROM
+                                                        `events` where event_held_date < '$current_date'
+                                                        
+                                                        ";
+														$event_query2 = mysql_query($query);
+														//SELECT * FROM `events` where event_held_date < '2014-04-07'
+																while($event_res2 = mysql_fetch_array($event_query2))
 																{
-																	$event_name = $event_res['event_name'];
-																	$event_image = $event_res['event_image'];
-																	$event_held_date = $event_res['event_held_date'];
-																	$event_description = $event_res['event_description'];
+																	$event_name = $event_res2['event_name'];
+																	$event_image = $event_res2['event_image'];
+																	$event_held_date = $event_res2['event_held_date'];
+																	$event_description = $event_res2['event_description'];
 																														
 																  if (strlen($event_description) > 110) {
 
@@ -39,13 +47,13 @@
 																
 															?>
 																	<div class="singapore_night fl">
-																		<a href="previous_event_detail.php?id=<?php echo $event_res['event_id'];?>"><img src="admin/upload/<?php echo $event_image; ?>" width="356" height="128" class="respimg"></a>
-																		<h4><a class="event_title" href="previous_event_detail.php?id=<?php echo $event_res['event_id'];?>"><?php echo $event_name; ?></a></h4>
+																		<a href="previous_event_detail.php?id=<?php echo $event_res2['event_id'];?>"><img src="admin/upload/<?php echo $event_image; ?>" width="356" height="128" class="respimg"></a>
+																		<h4><a class="event_title" href="previous_event_detail.php?id=<?php echo $event_res2['event_id'];?>"><?php echo $event_name; ?></a></h4>
 																		<span>Held <?php echo $event_held_date; ?></span>
 																		<p>
 																			<?php echo $event_description; ?>
 																		</p>
-																		<a class="event_ancher" href="previous_event_detail.php?id=<?php echo $event_res['event_id'];?>">read more</a>
+																		<a class="event_ancher" href="previous_event_detail.php?id=<?php echo $event_res2['event_id'];?>">read more</a>
 																	</div>
                                                             <?php
 																}	

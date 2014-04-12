@@ -44,7 +44,7 @@
                                                   </div>
                                                   
                                                	  <div class="overview_right fr">
-                                               	    <div class="choice_overview fl">
+                                               	    <div class="choice_overview fl" style="width:658px;">
                                                         	<!--<h1>Testimonials</h1>
                                                             <div class="testimonials fl">
                                                             	<span><img src="images/essar_logo.jpg" width="120" height="120"></span>
@@ -72,13 +72,13 @@
                                                                 <p>It�s a pleasure to be associated with CIO CHOICE, a novel step ahead wherein the CIO community through a pan India survey to choose their preferred solution/vendor of �choice�. This platform enhances both vendor understanding of CIO requirements and CIOs knowing industry choices thereby changing relationship from customer Vendor to a partnership.</p>
                                                             </div>-->
 															
-															<h1> Careers </h1>
-															<br/> <br/>
+															<h1 style="width:610px !important;"> Careers </h1>
 															<p style="text-align:left;">We are a young & very vibrant organization that believes in employee empowerment & equal opportunity at work. We are always in lookout for enthusiastic professionals who are keen to take up end to end job responsibility and believe in the merit of performance. </p>
 														
 															<p style="text-align:left;">If you think you can positively contribute in the growth of the organization we will be looking forward to hear from you.</p>
 															
-															<p style="text-align:left;">Kindly mail your resume and presentation on your contribution ideas to <a style="color:red; " href="mailto:contactus@cio-choice.sg">contactus@cio-choice.sg </a>.</p>
+                                                            <p style="text-align:left; margin-bottom:200px;">Kindly mail your resume and presentation on your contribution ideas to				
+<a style="color:red;" href="mailto:contactus@cio-choice.sg">contactus@cio-choice.sg </a>.</p>
 															
                                                            
                                                         </div>

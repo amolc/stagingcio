@@ -2,6 +2,23 @@
 <?php
 
  include('../sql_config/database/cio_db.php'); 
+require_once("include/facebook/facebook.php");
+   $config = array(
+	    'appId' => '1456796401221243',
+	    'secret' => '293e21d6ec9cf719ba67c993f2329960',
+	    "scope" => "read_stream,publish_stream,user_photos",
+	    'fileUpload' => true,
+	    'allowSignedRequest' => false // optional but should be set to false for non-canvas apps
+  );
+
+  $facebook = new Facebook($config);
+  $user_id = $facebook->getUser();
+if($user_id) {
+	    $login_url = null;
+}else{
+	 $login_url =  $facebook->getLoginUrl();
+}
+
  $id = $_REQUEST['id'];
  $res = mysql_query("select * from events where event_id = '$id'")or die (mysql_error());
  $row = mysql_fetch_array($res);
@@ -11,17 +28,17 @@
 
 ?>
  <?php
-                                                              $query2 = mysql_query("select * from event_videos where event_id='".$id."' LIMIT 2");
-                                                              while($res2 = mysql_fetch_array($query2))
-                                                              { 
+		$query2 = mysql_query("select * from event_videos where event_id='".$id."' LIMIT 2");
+		while($res2 = mysql_fetch_array($query2))
+		{ 
 
-                                                                $event_video_code = $res2['event_video_code'];
-                                                                // if (!empty($event_video_code)) {
-                                                                  // echo '<span class="video_span" style="margin-right:4px; width:285px;height:161px; float:left;">'.$event_video_code.'</span>';
-                                                                // }
-                                                                
-                                                              }
-                                                            ?>
+		$event_video_code = $res2['event_video_code'];
+		// if (!empty($event_video_code)) {
+		// echo '<span class="video_span" style="margin-right:4px; width:285px;height:161px; float:left;">'.$event_video_code.'</span>';
+		// }
+		
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +57,10 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"  id="style-resource-4">
 	<link rel="stylesheet" href="include/resource/css/neon.css"  id="style-resource-5">
 	<link rel="stylesheet" href="include/resource/css/custom.css"  id="style-resource-6">
-
+	<link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css?v=2.1.5" media="screen" />
+	<link rel="stylesheet" type="text/css" href="source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<link rel="stylesheet" type="text/css" href="source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	
 	<script src="include/resource/js/jquery-1.10.2.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -288,12 +308,18 @@
 		
 					</div>
 					<div class="form-group">
-							<label for="field-ta" class="col-sm-3 control-label">FaceBook Images</label>
+					<!-- 		<label for="field-ta" class="col-sm-3 control-label">FaceBook Images</label>
 					
 							<div class="form-group" style="width: 362px;margin-left: 253px;">
 								<input type="file" name="files[]" multiple/>
-							</div>
-		
+							</div> -->
+							<div class="col-sm-offset-3 col-sm-5">
+							<?php if($user_id) {?>
+							<a href="admin_export_facebook.php?id=<?php echo $id; ?>" class="btn btn-default fancybox fancybox.iframe" >Export</a>
+							<?php }else{ ?>
+							<a href="<?php echo $login_url; ?>" class="btn btn-default" >Export</a>
+							<?php }?>
+						   </div>
 					</div>
 					<div style="display:none;" class="form-group">
 							<label for="field-ta" class="col-sm-3 control-label">Twitter Hash Tag</label>
@@ -320,7 +346,7 @@
 		
 					</div>
 
-
+		
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-5">
 							<!--<button type="submit" class="btn btn-default">Submit</button>-->
@@ -469,8 +495,15 @@
 	<script src="include/resource/js/neon-chat.js" id="script-resource-8"></script>
 	<script src="include/resource/js/neon-custom.js" id="script-resource-9"></script>
 	<script src="include/resource/js/neon-demo.js" id="script-resource-10"></script>
-	<script type="text/javascript"> 
+		<script type="text/javascript" src="source/jquery.fancybox.js?v=2.1.5"></script>
 
+	<script type="text/javascript" src="source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<script type="text/javascript" src="source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	<script type="text/javascript" src="source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+	<script type="text/javascript"> 
+				$(document).ready(function() {
+					$('.fancybox').fancybox();
+				});
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-28991003-3']);
 		_gaq.push(['_setDomainName', 'laborator.co']);

@@ -1,9 +1,11 @@
 <?php
 //connect to db
- $con = mysql_connect('localhost','cio-choice', 'welcome2day7');
- $db  = mysql_select_db('cio-choice_27march');
+ //$con = mysql_connect('localhost','cio-choice', 'welcome2day7');
+// $db  = mysql_select_db('cio-choice_27march');
  // $db  = mysql_select_db('cio-choice');
- $web_url ="http://staging.cio-choice.sg";
+// $web_url ="http://staging.cio-choice.sg";
+   include('../../sql_config/database/cio_db.php');
+
  
  if(isset($_REQUEST['vendor_id'])){
  $pid = $_REQUEST['vendor_id'];
@@ -23,8 +25,10 @@
  $company_telephone = $row['company_telephone'];
  $country = $row['country'];
  $company_size = $row['company_size'];
-  $city = $row['city'];
-   $state = $row['state'];
+ $city = $row['city'];
+ $state = $row['state'];
+ $total_products = $row['total_products'];
+ $tag = '<=';
  
  $vendor_id = $row['partner_id'];
  
@@ -111,15 +115,25 @@ $pdf->AddPage();
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
 // create some HTML content
-$html = '<div style="width:650">
+$html = '<div style="width:650px;">
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE Singapore 2014 <br>
-          Registration Form</h1></td>
+        <td height="116" align="left" valign="top" style=" border-bottom:#000000 solid 1px;">
+        <table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="533" height="116" align="left" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; display:block; float:left; margin:0px 0px 0px 120px; font-size:24px; text-align:center; width:400px;">CIO CHOICE Singapore 2014 <br />
+      Registration Form</h1></td>
+    <td width="117" height="116" align="right" valign="top"><span style="float:right; width:117px; display:block; margin:0px; height:116px;"><img width="117" height="116" src="'.$web_url.'/images/Landing_logo.jpg"></span></td>
+  </tr>
+</table></td>
       </tr>
       <tr>
+        <td align="left" valign="middle" height="20">&nbsp;</td>
+      </tr>
+	  <tr>
         <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">1) CONTACT INFORMATION</h2></td>
       </tr>
       <tr>
@@ -187,8 +201,9 @@ $html = '<div style="width:650">
         <td align="left" valign="top" style="margin:15px; font-family: Arial, Helvetica, sans-serif;">Telephone No</td>
         <td align="left" valign="top" style="margin:15px; font-family: Arial, Helvetica, sans-serif;">'.$company_telephone.'</td>
       </tr>
+	  	  
       <tr>
-        <td align="left" valign="top" style="margin:15px; font-family: Arial, Helvetica, sans-serif;">Company Category *</td>
+        <td align="left" valign="top" style="margin:15px; font-family: Arial, Helvetica, sans-serif;">Local Sales Revenue</td>
         <td align="left" valign="top" style="margin:15px; font-family: Arial, Helvetica, sans-serif;">
         <label for="checkbox" style="margin-right:10px;">Less than USD $15 million</label>
         </td>
@@ -200,7 +215,7 @@ $html = '<div style="width:650">
     <td align="left" valign="top">&nbsp;</td>
   </tr>
   <tr>
-    <td align="left" valign="top">This is to confirm our participation in CIO CHOICE 2014, and our registration into _______
+    <td align="left" valign="top">This is to confirm our participation in CIO CHOICE 2014, and our registration into <strong>'.$total_products.'</strong>
 category/ categories. Details of product/ service/ solution are provided in the ensuing sections.</td>
   </tr>
   <tr>
@@ -213,8 +228,7 @@ category/ categories. Details of product/ service/ solution are provided in the 
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
+
 ';
 
 // output the HTML content
@@ -228,11 +242,17 @@ $html1 .= '<div style="width:650">
   <tr>
     <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE Singapore 2014 <br>
-          Registration Form</h1></td>
+        <td height="116" align="left" valign="top" style=" border-bottom:#000000 solid 1px;">
+        <table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="533" height="116" align="left" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; display:block; float:left; margin:0px 0px 0px 120px; font-size:24px; text-align:center; width:400px;">CIO CHOICE Singapore 2014 <br />
+      Registration Form</h1></td>
+    <td width="117" height="116" align="right" valign="top"><span style="float:right; width:117px; display:block; margin:0px; height:116px;"><img width="117" height="116" src="'.$web_url.'/images/Landing_logo.jpg"></span></td>
+  </tr>
+</table></td>
       </tr>
       <tr>
-        <td align="left" valign="middle" height="60"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">3) PRODUCT/ SERVICE/ SOLUTION DETAILS (To be completed for each category registered)</h2></td>
+        <td align="left" valign="middle" height="60"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;"> <br />3) PRODUCT/ SERVICE/ SOLUTION DETAILS (To be completed for each category registered) <br /></h2></td>
       </tr>
       <tr>
         <td align="left" valign="top">
@@ -272,7 +292,7 @@ Solution Name</td>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
-<div>&nbsp;</div>
+
 ';
 //$pdf->writeHTML($html, true, false, true, false, '');
 }
@@ -286,28 +306,21 @@ $html = ' <div style="width:650">
   <tr>
     <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE Singapore 2014 <br>
-          Registration Form</h1></td>
+        <td height="116" align="left" valign="top" style=" border-bottom:#000000 solid 1px;">
+        <table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="533" height="116" align="left" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; display:block; float:left; margin:0px 0px 0px 120px; font-size:24px; text-align:center; width:400px;">CIO CHOICE Singapore 2014 <br />
+      Registration Form</h1></td>
+    <td width="117" height="116" align="right" valign="top"><span style="float:right; width:117px; display:block; margin:0px; height:116px;"><img width="117" height="116" src="'.$web_url.'/images/Landing_logo.jpg"></span></td>
+  </tr>
+</table></td>
       </tr>
       <tr>
-        <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">4) IMPORTANT NOTES:</h2></td>
+        <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;"> <br />4) IMPORTANT NOTES: <br /></h2></td>
       </tr>
-	  <tr>
-        <td height="30" align="left" valign="middle">a. Company Category.</td>
-      </tr>
+	  
 	   <tr>
-        <td align="left" valign="top">
-		<ul>
-      <li>To qualify as a Large Enterprise, the company needs to have &gt; 100 employees or an<br>
-        annual turnover of &gt; US$ 15 Million in Singapore.</li>
-      <li>Small &amp; Medium Enterprises being companies with less than 100 employees or annual<br>
-        turnover of not more than US$15 Million in Singapore.<br />
-</li>
-    </ul>
-	</td>
-      </tr>
-	   <tr>
-        <td height="30" align="left" valign="middle">b. Participation Fee.</td>
+        <td height="30" align="left" valign="middle">a. Participation Fee.</td>
       </tr>
 	   <tr>
         <td align="left" valign="top">
@@ -316,19 +329,19 @@ $html = ' <div style="width:650">
 submitted.</li>
       <li>License Fee (per category), applicable ONLY when the specific category of product,
 service and/or solution registered is conferred CIO CHOICE 2014.</li>
-	<li>US$12,000 for Large Enterprise (Large).</li>
-	<li>US$8,000 for Small & Medium Enterprise (SME).</li>
+	<li>US $12,000 for company with local sales revenue > USD 15M</li>
+	<li>US $8,000 for company with local sales revenue >= USD 15M</li>
 	<li>All fees are exclusive of local taxes.</li>
 	<li>Payment Terms: Net 30 days from Invoice date.<br /></li>
     </ul>
 	</td>
       </tr>
 	  <tr>
-        <td height="30" align="left" valign="middle">c. Please submit a scanned copy of the completed & duly signed Registration Form via email
+        <td height="30" align="left" valign="middle">b. Please submit a scanned copy of the completed & duly signed Registration Form via email
 to registration@cio-choice.sg<br /></td>
       </tr>
 	  <tr>
-        <td height="30" align="left" valign="middle">d. Please send the cheque/ pay order/ demand draft to:</td>
+        <td height="30" align="left" valign="middle">c. Please send the cheque/ pay order/ demand draft to:</td>
       </tr>
 	   <tr>
         <td align="left" valign="top">
@@ -372,10 +385,16 @@ $html = '
   <tr>
     <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE 2014 Terms & Conditions (“Terms”)</h1></td>
+        <td height="116" align="left" valign="top" style=" border-bottom:#000000 solid 1px;">
+        <table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="533" height="116" align="left" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; display:block; float:left; margin:0px 0px 0px 120px; font-size:24px; text-align:center; width:400px;">CIO CHOICE 2014 Terms & Conditions (“Terms”)</h1></td>
+    <td width="117" height="116" align="right" valign="top"><span style="float:right; width:117px; display:block; margin:0px; height:116px;"><img width="117" height="116" src="'.$web_url.'/images/Landing_logo.jpg"></span></td>
+  </tr>
+</table></td>
       </tr>
       <tr>
-        <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">Article 1</h2></td>
+        <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;"> <br /> Article 1 <br /></h2></td>
       </tr>
 	  <tr>
         <td height="30" align="left" valign="middle" style="font-weight:bold;">1.1 Articles &amp; Definitions</td>
@@ -419,26 +438,26 @@ participation to the Programme. This date (subject to any changes that the Organ
 and notify to You) will be published by the Organiser on its official website address at www.cio-choice.sg</li>
           <li>“Official Announcement Date” will be the date on which the Recognised status is announced in the recognition event
 ceremony. This date (subject to any changes that the Organiser may in its absolute discretion make and notify to You) will
-be published by the Organiser on its official website address at www.cio-choice.sg <br /></li>
+be published by the Organiser on its official website address at www.cio-choice.sg 
+</li>
         </ul>
 	</td>
       </tr>
+	  
 	  <tr>
-	    <td height="30" align="left" valign="middle" style="font-weight:bold;">1.2 Agreement</td>
+	    <td height="30" align="left" valign="middle" style="font-weight:bold;"> <br />1.2 Agreement <br /></td>
 	    </tr>
 	  <tr>
 	    <td align="left" valign="top">
 		<ul>
 	      <li style="list-style-type:none;">The Signatory, by signing a copy of these Terms (either in his own capacity or on behalf of a person upon whose behalf he is
 	        authorized to act), will create an Agreement between You and the Organiser which will come into force on the date the Terms
-	        are signed and which will continue until it is terminated in accordance with Articles 5.2 or 5.3. <br />
-<br />
-<br />
-<br />
-<br />
+	        are signed and which will continue until it is terminated in accordance with Articles 5.2 or 5.3. 
 	        </li>
 	      </ul></td>
 	    </tr>
+	  
+	  
     </table>
 	</td>
   </tr>
@@ -458,11 +477,9 @@ $pdf->lastPage();
 $html = ' 
 <div style="width:650px; margin:0 auto;">
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE 2014 Terms & Conditions (“Terms”)</h1></td>
-      </tr>
+    
+	  
+	  
 	  <tr>
 	    <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">Article 2</h2></td>
 	    </tr>
@@ -524,11 +541,7 @@ $pdf->AddPage();
 $html = '
 <div style="width:650px; margin:0 auto;">
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE 2014 Terms & Conditions (“Terms”)</h1></td>
-      </tr>
+  
 	  <tr>
 	    <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">Article 3</h2></td>
 	    </tr>
@@ -588,11 +601,7 @@ $pdf->AddPage();
 $html = '
 <div style="width:650px; margin:0 auto;">
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td align="center" valign="middle"><h1 style=" font-family: Arial, Helvetica, sans-serif; font-size:24px; text-align:center; width:100%;border-bottom:#000000 solid 1px; margin-bottom:20px;">CIO CHOICE 2014 Terms & Conditions (“Terms”)</h1></td>
-      </tr>
+  
 	  <tr>
 	    <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">Article 4</h2></td>
 	    </tr>
@@ -688,7 +697,7 @@ The License Fee becomes payable upon your Product being selected for Recognition
 
 
 		 <tr>
-	     <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;">Article 6</h2>
+	     <td align="left" valign="middle" height="40"><h2 style=" font-family: Arial, Helvetica, sans-serif; font-size:18px; width:100%;"> <br /><br />Article 6 <br /></h2>
 </td>
 	     </tr>
 		 
@@ -759,7 +768,7 @@ and that all necessary action to authorise their execution has been taken.<br />
 	     <td align="left" valign="top">
 		 	<table width="350" border="0" cellspacing="0" cellpadding="0">
 	       <tr>
-	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;">Add Here</td>
+	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;"></td>
 	         </tr>
 	       <tr>
 	         <td height="25" align="left" valign="bottom">Place, Date Company Name</td>
@@ -768,7 +777,7 @@ and that all necessary action to authorise their execution has been taken.<br />
 	         <td height="70" align="left" valign="top">&nbsp;</td>
 	         </tr>
 	       <tr>
-	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;">Add Here</td>
+	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;"></td>
 	         </tr>
 	       <tr>
 	         <td height="25" align="left" valign="bottom">Signature</td>
@@ -777,7 +786,7 @@ and that all necessary action to authorise their execution has been taken.<br />
 	         <td height="70" align="left" valign="top">&nbsp;</td>
 	         </tr>
 	       <tr>
-	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;">Add Here</td>
+	         <td height="30" align="left" valign="top" style="border-bottom:#000 solid 1px;"></td>
 	         </tr>
 	       <tr>
 	         <td height="25" align="left" valign="bottom">Name (BLOCK CAPITALS), Title, Company Seal<br />

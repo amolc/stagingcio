@@ -112,6 +112,9 @@
 			
 				$event_name = mysql_real_escape_string($_POST['event_name']);
 				$event_held_date = mysql_real_escape_string($_POST['event_held_date']);
+				$temp_date = explode("/",$event_held_date);
+				
+				$event_held_date = $temp_date[2]."/".$temp_date[0]."/".$temp_date[1];
 				$event_image = $_FILES["file"]["name"];
 				$event_description = mysql_real_escape_string($_POST['event_description']);
 				$facebook = mysql_real_escape_string($_POST['fb']);
@@ -151,6 +154,10 @@
 				  
 			    $event_name = mysql_real_escape_string($_POST['event_name']);
 				$event_held_date = mysql_real_escape_string($_POST['event_held_date']);
+				$temp_date = explode("/",$event_held_date);
+				
+				$event_held_date = $temp_date[2]."/".$temp_date[0]."/".$temp_date[1];
+				//print_r($event_held_date);exit;
 				$event_image = $_FILES["file"]["name"];
 				$event_description = mysql_real_escape_string($_POST['event_description']);
 				$facebook = mysql_real_escape_string($_POST['fb']);
@@ -245,7 +252,7 @@
 						<label for="field-1" class="col-sm-3 control-label">Event Date</label>
 
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="field-1" name="event_held_date"  placeholder=" " required>
+							<input type="text" class="form-control" id="field-1" name="event_held_date"  placeholder="mm/dd/yy" required>
 						</div>
 					</div>
 					<div class="form-group">

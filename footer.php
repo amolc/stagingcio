@@ -18,6 +18,6 @@
                                                     </div>
 
                                             	<div class="footer_logo">
-                                                	<a href="/"><img src="admin/upload/logo.jpg" width="85" height="95"></a>
+                                                	<a href="index.php"><img src="admin/upload/logo.jpg" width="85" height="95"></a>
                                                 </div>
                                             </div>

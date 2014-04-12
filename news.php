@@ -14,7 +14,7 @@
 	<script type="text/javascript">
     $(document).ready( function() {
 	//alert('raza');
-      $('#tab-container').easytabs();
+      $('#tab-container').easytabs(); 
     });
     </script> 
 	<style type="text/css">

@@ -1,3 +1,47 @@
+<?php
+ include('../sql_config/database/cio_db.php'); 
+
+			if($_POST['upload_button'] == "Submit")
+			{
+										
+				$title = mysql_real_escape_string($_POST['title']);				
+				$date = mysql_real_escape_string($_POST['date']);
+				$type = 'image';
+								
+					$sql   = "insert into gallery(title,date,type)values('$title','$date','$type')";
+					
+					$query = mysql_query($sql) or die (mysql_error());
+					$gallery_id = mysql_insert_id();
+						foreach($_FILES['files']['name'] as $key => $value  ){
+							if(!empty($value)){
+							$file_name = $value ;
+							$file_size =  $_FILES['files']['size'][$key];
+							$file_tmp = $_FILES['files']['tmp_name'][$key];
+							$file_type=  $_FILES['files']['type'][$key]; 
+							$error = 	$_FILES['files']['error'][$key];
+							$fb_query="INSERT into gallery_stuff (gallery_id,stuff) VALUES('$gallery_id','$file_name')";
+							$desired_dir="upload/gallery/images";
+
+								if(is_dir("$desired_dir/".$file_name)==false){
+									move_uploaded_file($file_tmp,"$desired_dir/".$file_name);
+								}else{									// rename the file if another one exist
+									$new_dir="$desired_dir/".uniqid().$file_name;
+									 rename($file_tmp,$new_dir) ;				
+								}
+							 mysql_query($fb_query) or die(mysql_error());
+							 }			
+						
+						}
+
+						echo'<script>window.location.replace("admin_img_gallery.php?add=ok");</script>';
+		
+				   
+			}
+			
+
+				?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,63 +117,7 @@
 			</div>
 
 			<div class="panel-body">
-		<?php
-
-				 include('../sql_config/database/cio_db.php'); 
-
-			if($_POST['upload_button'] == "Submit")
-			{
-										
-				$title = mysql_real_escape_string($_POST['title']);				
-				$date = mysql_real_escape_string($_POST['date']);
-				$type = 'image';
-								
-					$sql   = "insert into gallery(title,date,type)
-					values
-					('$title','$date','$type')";
-					
-					$query = mysql_query($sql) or die (mysql_error());
-					$gallery_id = mysql_insert_id();
-					
-					
-					$errors= array();
-						foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-							$file_name = $key.$_FILES['files']['name'][$key];
-							$file_size =$_FILES['files']['size'][$key];
-							$file_tmp =$_FILES['files']['tmp_name'][$key];
-							$file_type=$_FILES['files']['type'][$key];	
-							if($file_size > 20971527777){
-								$errors[]='File size must be less than 2 MB';
-							}		
-							$fb_query="INSERT into gallery_stuff (gallery_id,stuff) VALUES('$gallery_id','$file_name')";
-							$desired_dir="upload/gallery/images";
-							if(empty($errors)==true){ 
-								if(is_dir($desired_dir)==false){
-									mkdir("$desired_dir", 0700);		// Create directory if it does not exist
-								}
-								if(is_dir("$desired_dir/".$file_name)==false){
-									move_uploaded_file($file_tmp,"$desired_dir/".$file_name);
-								}else{									// rename the file if another one exist
-									$new_dir="$desired_dir/".$file_name.time();
-									 rename($file_tmp,$new_dir) ;				
-								}
-							 mysql_query($fb_query) or die(mysql_error());			
-							}else{
-									print_r($errors);
-							}
-						}
-						if(empty($error)){
-							echo'<script>window.location.replace("admin_img_gallery.php?add=ok");</script>';
-						}
-				   
-			}
-			
-			
-			
-
-				?>
-
-
+		
 				<form role="form" action="<?php $_SERVER["PHP_SELF"];?>" method="post"  enctype="multipart/form-data" class="form-horizontal form-groups-bordered">
 
 					<div class="form-group">
@@ -145,16 +133,19 @@
 						<label for="field-1" class="col-sm-3 control-label">Date</label>
 
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="field-1" name="date"  placeholder=" " required>
+							<input type="text" class="form-control datepicker" id="field-1" name="date"  placeholder=" " required>
 						</div>
 					</div>
 					
 					<div class="form-group">
-							<label for="field-ta" class="col-sm-3 control-label">Upload Images</label>
-					
-							<div class="form-group" style="width: 362px;margin-left: 253px;">
-								<input type="file" name="files[]" multiple/>
+								<label for="field-ta" class="col-sm-3 control-label">Upload Images</label>
+							<div class="form-group file_list_group" style="width: 362px;margin-left: 253px;">
+								<input type="file" name="files[]" class="file_list" />
 							</div>
+							<div class="form-group add_more" style="width: 362px;margin-left: 253px;">
+								<input type="button" name="add_more" value="Add more" id="add_more"/>
+							</div>
+		
 		
 					</div>
 									
@@ -297,7 +288,7 @@
 
 
 	<script src="include/resource/js/gsap/main-gsap.js" id="script-resource-1"></script>
-	<script src="include/resource/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js" id="script-resource-2"></script>
+
 	<script src="include/resource/js/bootstrap.min.js" id="script-resource-3"></script>
 	<script src="include/resource/js/joinable.js" id="script-resource-4"></script>
 	<script src="include/resource/js/resizeable.js" id="script-resource-5"></script>
@@ -321,6 +312,17 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 
+			$(function(){
+
+
+			var strVar="";
+			strVar += "<div class=\"form-group file_list_group\" style=\"width: 362px;margin-left: 253px;\">";
+			strVar += "    <input type=\"file\" name=\"files[]\" class=\"file_list\" \/>";
+			strVar += "<\/div>";
+			$('#add_more').click(function(e){
+					$('.add_more').before(strVar);
+			});
+		});
 	</script>
 
 </body>

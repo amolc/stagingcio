@@ -38,11 +38,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['ict']))
         <meta charset="utf-8">
         <title>Cio Choice</title>
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
         <link href="css/rcarousel.css" rel="stylesheet" type="text/css">
+        <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
         <link href="css/tinycarousel.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/owl.theme.css">
         
         <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>-->
        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -322,6 +320,163 @@ function validateForm(formName)
         </script> 
         
 <style type="text/css">
+#container {
+	width:918px;
+	position: relative;
+	margin: 0 auto;
+	background:#e73535;
+}
+
+#carousel {
+	width:918px;
+	margin: 0 auto;
+}
+
+#ui-carousel-next, #ui-carousel-prev {
+	width: 60px;
+	height:60px;
+	background: url(images/arrow-left.png) #fff center center no-repeat;
+	display: block;
+	position: absolute;
+	top: 0;
+	z-index: 100;
+}
+
+#ui-carousel-next {
+	right: 0;
+	top:45%;
+	background-image: url(images/arrow-right.png);
+}
+
+#ui-carousel-prev {
+	left: 0;
+	top:45%;
+}
+
+#ui-carousel-next > span, #ui-carousel-prev > span {
+	display: none;
+}
+
+.slide {
+	margin: 0;
+	position: relative;
+}
+
+.slide  h1 {
+	font: 45px/1 'Source Sans Pro';	
+	color: #fff;
+	font-weight:bold;
+	margin:-30px 0px 0px 140px;
+	height:auto;
+	line-height:50px;
+	padding: 0;
+	width:630px;
+	text-transform:capitalize;
+}
+
+.slide  p {
+	font: 20px/1 'Source Sans Pro';	
+	color: #fff;
+	margin-top:15px;
+	padding: 0;
+}
+
+#slide01 > img {
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+#slide01 > .text {
+	position: absolute;
+	left:0px;
+	top: 115px;
+}
+
+#slide02 > img {
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+#slide02 > .text {
+	position: absolute;
+	left:0px;
+	top:115px;
+}
+
+#slide03 > img {
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+#slide03 > .text {
+	position: absolute;
+	left:0px;
+	top:115px;
+}
+
+#slide04 > img {
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+#slide04 > .text {
+	position: absolute;
+	left:0px;
+	top:115px;
+}
+
+#slide05 > img {
+	position: absolute;
+	bottom:77px;
+	right:285px;
+}
+
+#slide05 > .text {
+	position: absolute;
+	left:0px;
+	top:115px;
+}
+
+#slide06 > img {
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+}
+
+#slide06 > .text {
+	position: absolute;
+	left:0px;
+	top:115px;
+}
+
+#pages {
+    bottom: 25px;
+    left: 400px;
+    margin: 0 auto;
+    position: absolute;
+    width: 150px;
+}
+
+.bullet {
+	background: url(images/page-off.png) center center no-repeat;
+	display: block;
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	margin-right: 5px;
+	float: left;				
+}
+
+</style>
+
+<style type="text/css">
+
+        
+<style type="text/css">
 .logout a:hover {
     color: #ADADAD!important;
 	
@@ -444,7 +599,7 @@ function validateForm(formName)
                                         <h1> <?php echo $row['title'] ?></h1>
                                     </div>
                                     <div class="link_url">
-                                    <a href="ict_vendor_landing.php?action=yes#tab5"><img src="admin/<?php echo $row['path'] ?>" alt="" border="0" /></a>
+                                    <a href="ict_vendor_landing.php?#tab5" target="_self"><img src="admin/<?php echo $row['path'] ?>" alt="" border="0" /></a>
                                     </div>
                                 
                                 </div>
@@ -493,14 +648,16 @@ function validateForm(formName)
                             <a class="next" href="#"></a>
                         </div> 
                     </div>
+<?php 
+$res = mysql_query("select * from message_board") or die();
 
+$row = mysql_fetch_array($res);
+
+?>
                     <div class="message_board fr">
                         <h2><img src="images/message_icon.jpg" width="29" height="32">Message Board</h2> 
                         <span><img src="images/double_dot1.jpg" width="24" height="18"></span>
-                        <p>We have an <a href="upcoming_events.php" style="text-decoration:underline; color:#fff;">up and coming event</a> planned for the 30th February: THE CIO CHOICE Red Carpet Night 2014! To get the latest information, please get in touch and we’ll keep you posted.<br>
-                        <br>
-                        We hope to see you there.<br>
-
+                        <p><?php echo $row['message'];?>
                         <br>
                         <strong>The CIO CHOICE team</strong><img style="float:right; margin:9px 280px 0px 0px;" src="images/double_dot2.jpg" width="24" height="18"></p>
                     </div>
@@ -510,13 +667,13 @@ function validateForm(formName)
 															  
 				<div id="tab2"  style="height: auto;width: auto;" class="content three_tabs fl">
 						
-                    <div id="content_7" class="advisory_panel" style="height:500px;">
+                    <div id="content_6" class="advisory_panel" style="height:500px;">
                     <table width="890" border="0" align="center" cellpadding="0" cellspacing="0">
                       <tr>
                         <td><table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                           <tr>                        
                           <tr>
-                            <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;">Enterprise Business Management - is a term used to describe a 
+                            <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;">Enterprise Business Management - is a term used to describe a 
                               system or software that a enterprise
                               would use in solving business problems. Some of the more common types of enterprise applications include the following: automated billing systems, payment processing, CRM, ERP, HCM, etc. </p></td>
                           </tr>
@@ -524,426 +681,426 @@ function validateForm(formName)
                             <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Enterprise Resource Planning (ERP) </b>- is an information system that incorporates enterprise-wide 
                               
                               internal and external information systems into a single unified solution. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A1 </p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A1 </p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">Customer Relationship Management (CRM) - widely used by companies and organisations
+                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Customer Relationship Management (CRM) </b>- widely used by companies and organisations
                               
                               (including related integrated information systems and technology, often in the form of software) to 
                               
                               record and manage their overall data and interactions with current, past and potential customers. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A2</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A2</p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">Supply Chain Management (SCM) - is the management and oversight of a product from its origin
+                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Supply Chain Management (SCM) </b>- is the management and oversight of a product from its origin
                               
                               until it is consumed. SCM involves the flow of materials, finances and information. This includes 
                               
                               product design, planning, execution, monitoring and control. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A3</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A3</p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">Human Capital Management (HCM) - refers to applications that are intended to help an
+                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Human Capital Management (HCM) </b>- refers to applications that are intended to help an
                               
                               organisation manage and maintain its workforce. HCM is considered to be enterprise class software
                               
                               that can scale up and automate processes like payroll, performance reviews, recruiting and training. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A4</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A4</p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">Warehouse Management System (WMS) - automates and manages the processes of an
+                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Warehouse Management System (WMS) </b>- automates and manages the processes of an
                               
                               organisation’s warehouse. WMS provides a centralised software interface for processing, managing 
                               
                               and monitoring a warehouse's operational processes. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">A5</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">A5</p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">Product Lifecycle Management (PLM) - allows companies to manage the entire lifecycle of a product
+                            <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>Product Lifecycle Management (PLM) </b>- allows companies to manage the entire lifecycle of a product
                               
                               efficiently and cost-effectively, from ideation, design and manufacture, through service and disposal. 
                               
                               Computer-aided design (CAD), computer-aided manufacturing (CAM), computer-aided engineering (CAE), 
                               
                               product data management (PDM) and digital manufacturing converge through PLM. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A6</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A6</p></td>
                           </tr>
                           <tr>
-                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;">e-commerce Platform - that enable online sales for business-to-business (B2B) and business-to-consumer
+                            <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><b>e-commerce Platform </b>- that enable online sales for business-to-business (B2B) and business-to-consumer
                               
                               (B2C) commerce. An e-commerce platform not only facilitates a transaction over the Web, but also supports 
                               
                               the creation and continuing development of an online relationship. </p></td>
-                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">A7</p></td>
+                            <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">A7</p></td>
                           </tr>
                         </table>
                           <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                             <tr>
                             <tr>
-                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Infrastructure Management</strong> - is a term used to describe a system or software that is used to <br>
-                                manage composite hardware, software, network resources and services required for the existence, operation <br>
-                                and management of an enterprise IT environment. It allows an organisation to deliver IT solutions and <br>
-                                services to its employees, partners and/or customers and is usually internal to an organisation and deployed <br>
+                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Infrastructure Management</strong> - is a term used to describe a system or software that is used to 
+                                manage composite hardware, software, network resources and services required for the existence, operation 
+                                and management of an enterprise IT environment. It allows an organisation to deliver IT solutions and 
+                                services to its employees, partners and/or customers and is usually internal to an organisation and deployed 
                                 within owned facilities.</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Application Lifecycle Management (ALM) </strong>- manage the modern, agile, application lifecycle stages</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B1 </p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B1 </p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Application Integration (EAI)</strong> - Use of middleware technologies like Enterprise Service<br>
                                 Bus (ESB), Service-Oriented Architecture (SOA) to enable the integration of software applications</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B2</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B2</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Content Management (ECM) </strong>- encompasses multiple management types, including<br>
                                 Web content management, document management, digital asset management and work flow<br>
                                 management.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B3</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B3</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Business Process Management (BPM) </strong>- focuses on continuous process improvement. The goal is<br>
                                 to achieve higher customer satisfaction, product quality, delivery and time to market speed.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B4</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B4</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Portfolio Management</strong> - takes into account all the current and planned IT resources and<br>
                                 provides a framework for analysing, planning and executing IT portfolio's throughout the<br>
                                 organisation. IT portfolio management exists to create, provide and measure business value of IT.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">B5</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">B5</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Load &amp; Functional Testing Management</strong> - Application performance &amp; functional testing processes<br>
                                 &amp; management</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B6</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B6</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Service Virtualization </strong>- Develop &amp; Test applications faster with virtualized services</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B7</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B7</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Database Management Systems (DBMS) </strong>- is a software package designed to define, manipulate,<br>
                                 retrieve and manage data in a database.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B8</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B8</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Storage Management </strong>- is a highly available external file system &amp; storage management system for<br>
                                 SAN, NAS systems</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B9</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B9</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>System Management</strong> - covers a wide range of functionality from centralised monitoring of servers,<br>
                                 networks, storage to incident management to automated provisioning and capacity management</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B10</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B10</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Client Management </strong>- caters to end users' demands in terms of mobility and flexibility when<br>
                                 accessing their desktops, applications and other data across multiple devices and platforms.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B11</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B11</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Workload Management </strong>- allows scheduling, monitoring and managing of all the IT<br>
                                 jobs across the enterprise.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B12</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B12</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Service Desk System </strong>- is a primary IT service management function that provides a<br>
                                 single point of contact (SPOC) between users and IT employees or a business and customers. It is<br>
                                 implemented by organisations that follow the ITIL practices.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B13</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B13</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Application Performance Management (APM)</strong> - tracks &amp; manages how quickly transactions are<br>
                                 accomplished or details are sent to end-users using a particular application. APM is commonly used<br>
                                 for Web applications built on Microsoft .NET and JEE platforms.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B14</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B14</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Asset Management (ITAM)</strong> - focuses on automating the process of system, software &amp; network<br>
                                 resources auditing, inventory tracking, and asset reporting.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B15</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B15</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Web Conference System </strong>- allows the users to meet, share and collaborate with colleagues across the<br>
                                 organisation.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B16</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B16</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Backup &amp; Recovery Management </strong>- refers to setup of backing up data in case of a loss<br>
                                 and setting up systems that allow that data recovery due to data loss. Backing up data requires<br>
                                 copying and archiving computer data, so that it is accessible in case of data deletion or corruption.<br>
                                 Data from an earlier time may only be recovered if it has been backed up.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B17</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B17</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Managed Infrastructure Services Provider</strong></p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B18</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B18</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Infrastructure Solutions Provider</strong></p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">B19</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">B19</p></td>
                             </tr>
                         </table>
                           <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                             <tr>
-                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Security</strong><br>
+                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Security</strong><br>
                                 <br>
-                                <strong>Identity &amp; Access Management (IAM) </strong>- verifies user access requests and either grants or denies<br>
-                                permission to protected company materials. Standards and applications of IAM include the maintenance of<br>
+                                <strong>Identity &amp; Access Management (IAM) </strong>- verifies user access requests and either grants or denies
+                                permission to protected company materials. Standards and applications of IAM include the maintenance of
                                 user life cycles, various application accesses and singular logons.<br>
+                               
+                                <strong>Security Operations Management </strong>- enables enterprises to seamlessly orchestrate people, process &amp;
+                                technology to effectively detect &amp; respond to security incidents.
                                 <br>
-                                <strong>Security Operations Management </strong>- enables enterprises to seamlessly orchestrate people, process &amp;<br>
-                                technology to effectively detect &amp; respond to security incidents.<br>
-                                <br>
-                                <strong>Network security </strong>- refers to the policies and procedures implemented to avoid and keep track of<br>
+                                <strong>Network security </strong>- refers to the policies and procedures implemented to avoid and keep track of
                                 unauthorized access, exploitation, modification, or denial of the network and network resources.</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Identity Management (IDM) </strong>- is the creation, management and maintenance of an end-user's<br>
                                 objects and attributes in relation to accessing resources available in one or more systems.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C1 </p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C1 </p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Access management (AM)</strong> - is the process of identifying, tracking, controlling and managing<br>
                                 authorized or specified users' access to a system, application or any IT instance.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C2</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C2</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Single Sign-on (SSO)</strong> - is an authentication process that allows a user to access multiple<br>
                                 applications with one set of login credentials.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C3</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C3</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Two-factor authentication (2FA)</strong> - is a security mechanism that requires two types of credentials for<br>
                                 authentication and is designed to provide an additional layer of validation, minimizing security<br>
                                 breaches.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C4</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C4</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Security Incident &amp; Event Management Solution (SIEM)</strong> - is the process of identifying,<br>
                                 monitoring, recording and analyzing security events or incidents within a real-time IT environment. It<br>
                                 provides a comprehensive and centralized view of the security scenario of an IT infrastructure.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">C5</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">C5</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Advance Persistent Threat (APT) protection </strong>- to detect &amp; protect from a cyber attack launched to<br>
                                 carry out a sustained assault against a target. An APT is advanced in the sense that it employs<br>
                                 stealth and multiple attack methods to compromise the target, which is often a high-value corporate<br>
                                 or government resource. The attack is difficult to detect, remove, and attribute.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C6</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C6</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Public Key Infrastructure (PKI) Management </strong>- allows organizations with many SSL Certificates<br>
                                 to manage their certificates—including issuing new certificates and reissuing, replacing, and revoking existing<br>
                                 certificates on demand.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C7</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C7</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Endpoint Protection </strong>- aims to protect a corporate network by focusing on network devices<br>
                                 (endpoints) by monitoring their status, activities, software, authorization and authentication -<br>
                                 antivirus, anti spyware, firewall, Intrusion Detection System (IDS), Intrusion Prevention System (IPS)</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C8</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C8</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Unified Threat Management (UTM)</strong> - is a piece of hardware or hosted service which contains a Next<br>
                                 Generation Firewall and security tools such as anti-virus, anti-spam, a network intrusion prevention system<br>
                                 and content filtering, among other possible defenses.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C9</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C9</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Data Loss Prevention (DLP) </strong>- refers to the identification and monitoring of sensitive data to ensure<br>
                                 that it's only accessed by authorized users and that there are safeguards against data leaks.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C10</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C10</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Network Access Control (NAC)</strong>, come with the ability to enforce access through the LAN, wireless LAN and<br>
                                 remote access. They can block network access, quarantine the endpoint system and redirect to a download<br>
                                 portal or provide full access to the network.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C11</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C11</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Distributed denial-of-service (DDoS) protection </strong>- to detect &amp; protect a type of computer attack<br>
                                 that uses a number of hosts to overwhelm a server, causing a website to experience a complete<br>
                                 system crash.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C12</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C12</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Application Security Testing (AST)</strong> - is a software that quickly assesses and scores the security risk of any<br>
                                 application including static application testing, dynamic application testing and providing a detailed<br>
                                 tamperproof report back to the security and development teams.</p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C13</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C13</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Managed Security Services Provider (MSSP)</strong></p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C14</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C14</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Security Solutions Provider</strong></p></td>
-                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">C15</p></td>
+                              <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">C15</p></td>
                             </tr>
                         </table>
                           <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                             <tr>
-                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Mobility </strong>- A collective set of tools, technologies, processes and policies used to manage and<br>
+                              <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Mobility </strong>- A collective set of tools, technologies, processes and policies used to manage and
                               maintain the use of mobile devices within an organization.</p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Mobile device management (MDM) </strong>- refers to the control of one or more mobile devices through<br>
                               various types of access control and monitoring technologies.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">D1 </p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">D1 </p></td>
                             </tr>
                             <tr>
                               <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Mobile Application Development Platform </strong>- aids the development of native mobile, tablet and desktop apps<br>
                               via web programming languages such as HTML, PHP, JavaScript, Ruby and Python.</p></td>
-                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">D2</p></td>
+                              <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">D2</p></td>
                             </tr>
                         </table></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Business Intelligence &amp; Analytics</strong><br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Business Intelligence &amp; Analytics</strong><br>
                           <br>
-                          <strong>Business Intelligence and Analytics -</strong> is an aggregation of several capabilities, with the functionality to aggregate,<br>
+                          <strong>Business Intelligence and Analytics -</strong> is an aggregation of several capabilities, with the functionality to aggregate,
                           manage, organize, analyze, access, and deliver structured and unstructured data.<br>
-                          <br>
-                          <strong>Data Warehousing</strong> A platform that organizes time-based data coming from multiple sources according to<br>
+                          
+                          <strong>Data Warehousing</strong> A platform that organizes time-based data coming from multiple sources according to
                           subjects meaningful to the business and driven by the need to inform decision makers.<br>
-                          <strong><br>
-                            Performance Management &amp; Analytic apps</strong> - Commercial application software that structures and<br>
-                          automates a group of tasks pertaining to the review and optimization of business operations or the<br>
+                          <strong>
+                            Performance Management &amp; Analytic apps</strong> - Commercial application software that structures and
+                          automates a group of tasks pertaining to the review and optimization of business operations or the
                           discovery and development of new business.</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>BI Information Delivery Platform</strong> - Key capabilities under this platform comprise of Reporting,<br>
                           Dashboards, Ad-hoc report/query, Mobile BI</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>BI Analysis Platform </strong>- key capabilities under this category comprise of Interactive visualization, Search-based<br>
                           data discovery, Geospatial and location intelligence, OLAP, Embedded Advanced analytics</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Bi Integration Platform</strong> - key capabilities under this category comprise of BI Infrastructure &amp; administration,<br>
                           Metadata management, business user data mashup &amp; modelling, collaboration, support for big data sources</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Data warehouse generation </strong>- are software used in the design, cleansing, transformation, loading, and<br>
                           administration of the data warehouse.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Data warehouse management</strong> - are database management software used to manage data in the data<br>
                           warehouse.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">E5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">E5</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Performance Management (EPM)</strong> - involves evaluating and managing performance for<br>
                           an enterprise to reach performance goals, enhance efficiency or maximise business processes.</p></td>
-                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E6</p></td>
+                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E6</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Customer Relationship Analytic Apps </strong>- involves analysing data (data mining) to better understand<br>
                           customers and customer use of produced products or services.</p></td>
-                        <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E7</p></td>
+                        <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E7</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Supply Chain Analytic Apps </strong>- are used to identify trends, perform comparisons and highlight<br>
                           opportunities in supply chain functions. The technology helps decision-makers in supply chain areas<br>
                           such as sourcing, inventory management, manufacturing, quality, sales and logistics.</p></td>
-                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E8</p></td>
+                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E8</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Sales Performance Analytics</strong> - encompasses operational and analytical functions to automate and integrate<br>
                           processes for planning, designing, allocating and managing sales compensation, sales processes, territories,<br>
                           quotas and behavioural/training plans.</p></td>
-                        <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E9</p></td>
+                        <td align="center" valign="middle" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E9</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Integrated Performance Management Analytics</strong> - encompasses operational and analytical functions to<br>
                           automate and integrate processes for planning, designing and allocating and managing resources across the<br>
                           financial, operational and supply/demand functions in the organisation.</p></td>
-                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">E10</p></td>
+                        <td align="center" valign="middle" height="40" bgcolor="#FFFFFF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">E10</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Big Data </strong>- Data that is unstructured or time sensitive or simply very large requires a different processing<br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Big Data </strong>- Data that is unstructured or time sensitive or simply very large requires a different processing
                         approach called <strong>big data</strong>, which uses massive parallelism on readily-available hardware.</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Big Data Hardware / Appliance</strong></p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">F1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">F1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Big Data Software -</strong> Discovery, Analytics, Visualisation, Organisation &amp; Management,</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">F2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">F2</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Virtualization</strong> - Refers to the creation of a virtual resource such as a server, desktop, operating system,<br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Virtualization</strong> - Refers to the creation of a virtual resource such as a server, desktop, operating system,
                         file, storage or network.</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Client virtualization </strong>- provides a way for users to maintain their individual desktops on a single,<br>
                         central server.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">G1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Application virtualization </strong>- refers to running an application on a thin client; a terminal or a network<br>
                           workstation with few resident programs and accessing most programs residing on a connected<br>
                         server.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">G2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Server virtualization </strong>- involves partitioning a physical server into a number of small, virtual servers<br>
                         with the help of virtualization software.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">G3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Network virtualization </strong>- refers to the management and monitoring of an entire computer network as<br>
                         a single administrative entity from a single software-based administrator's console</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">G4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">G4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Storage virtualization </strong>- grouping the physical storage from multiple network storage devices so that<br>
                         it looks like a single storage device.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">G5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">G5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Cloud </strong>- the the use of various services, such as software development platforms, servers, storage, and<br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Cloud </strong>- the the use of various services, such as software development platforms, servers, storage, and
                         software, over the Internet, often referred to as the &quot;cloud.&quot;</p></td>
                       </tr>
                       <tr>
-                        <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Infrastructure as a Service (IaaS)</strong> - is a service model that delivers computer infrastructure on an<br>
+                        <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:16px; width:94%; padding:20px;"><strong>Infrastructure as a Service (IaaS)</strong> - is a service model that delivers computer infrastructure on an<br>
                           outsourced basis to support enterprise operations. Typically, IaaS provides hardware, storage,<br>
                         servers and data center space or network components</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">H1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Platform as a Service (PaaS)</strong> - is a computing platform that is delivered as an integrated solution,<br>
                         solution stack or service</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">H2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Software as a Service (SaaS)</strong> - is a model for the distribution of software where customers access<br>
                         software over the Internet.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">H3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Cloud App</strong> - is an application that operates in the cloud. Cloud apps are considered to be a blend of<br>
                           standard Web applications and conventional desktop applications. Cloud apps incorporate the<br>
                         advantages of both Web and desktop apps without absorbing many of their drawbacks.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">H4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">H4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Cloud Solutions Provider</strong></p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">H5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">H5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
@@ -953,138 +1110,138 @@ function validateForm(formName)
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Server</strong> - is a computer, a device or a program that is dedicated to managing network resources e.g.<br>
                         print servers, file servers, network servers and database servers.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I1 </p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">I1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Active Network Infrastructure</strong> - refers to the hardware and software resources of an entire network<br>
                           that enable network connectivity, communication, operations and management of an enterprise<br>
                         network. eg. Routers, switches, LAN cards, wireless routers, cables, etc.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I2</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">I2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Passive Network Infrastructure </strong>- refers to a computer network in which each node works on a<br>
                           predefined function or process. Passive networks don't execute any specialized code or instruction<br>
                         at any node and don't change their behavior dynamically.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I3</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">I3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Storage Area Network (SAN) </strong>- is a secure high-speed data transfer network that provides access<br>
                           to consolidated block-level storage. SAN devices appear to servers as attached drives, eliminating<br>
                         traditional network bottlenecks.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">I4</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">I4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Uninterruptible power supply (UPS)</strong> - provides nearly instantaneous power when the main utility<br>
                           power source fails, allowing either time for power to return or for the user to shut down the system or<br>
                         equipment normally.</p></td>
-                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">I5</p></td>
+                        <td align="center" valign="middle" width="125" height="40" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">I5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Datacenter Infrastructure Technology</strong> - Encompasses IT resources like hardware, software, networks<br>
-                          and facilities, including power, cooling, lighting and overall physical infrastructure in an enterprise class<br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Datacenter Infrastructure Technology</strong> - Encompasses IT resources like hardware, software, networks
+                          and facilities, including power, cooling, lighting and overall physical infrastructure in an enterprise class
                           datacenter</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Green Datacenter</strong> - an enterprise class computing facility that is entirely built, managed and<br>
                           operated on green computing principles using less energy and space, and its design and operation<br>
                           are environmentally friendly.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">J1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Dynamic Smart Cooling </strong>- a technology used to monitor power and cooling in data centers.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">J2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Container </strong>- a self-contained module that includes a series of rack-mounted servers,<br>
                           along with its own lighting, air conditioning, dehumidification and uninterruptible power supply (UPS).</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">J3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Infrastructure Management (DCIM)</strong> - provisioning, governance and overall<br>
                           management of data center assets and encompasses IT resources like hardware, software,<br>
                           networks and facilities, including power, cooling, lighting and overall physical infrastructure.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">J4</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">J4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Datacenter Solutions Provider</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">J5</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">J5</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Risk Management</strong><br>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Enterprise Risk Management</strong><br>
                           <br>
                           <strong>Business Continuity &amp; Disaster Recovery Planning</strong><br>
-                          A Business Continuity Plan (BCP) is a plan to help ensure that business processes can continue during a<br>
-                          time of emergency or disaster.<br>
-                          A Disaster Recovery Plan (DRP) is a business plan that describes how work can be resumed quickly and<br>
+                          A Business Continuity Plan (BCP) is a plan to help ensure that business processes can continue during a
+                          time of emergency or disaster.
+                          A Disaster Recovery Plan (DRP) is a business plan that describes how work can be resumed quickly and
                           effectively after a disaster.<br>
-                          <br>
-                          <strong>Governance, Risk and Compliance </strong>- provides a cross-disciplinary IT solutions view of the enabling<br>
-                          technologies and services that allow companies to address the following objectives: information integrity and<br>
-                          confidentiality, process integrity and application availability, information retention and disposition, and<br>
+                       
+                          <strong>Governance, Risk and Compliance </strong>- provides a cross-disciplinary IT solutions view of the enabling
+                          technologies and services that allow companies to address the following objectives: information integrity and
+                          confidentiality, process integrity and application availability, information retention and disposition, and
                         enterprise risk management.</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Business Continuity Planning</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">K1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Disaster Recovery</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">K2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Governance Risk Compliance (GRC)</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">K3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">K3</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Industry Solutions</strong></p></td>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Industry Solutions</strong></p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Real Estate Investment Management</strong> - ensures your entire investment accounting, performance<br>
                           measurement, and investor reporting cycle is automated, reducing costs and increasing operational<br>
                         efficiencies.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">L1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Real Estate Project Lifecycle Management </strong>- for capital planning, project delivery, cost control, and facilities<br>
                           and real estate management to provide governance across all project phases, from planning and building to<br>
                         operations and maintenance.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">L2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Learning Management Systems (LMS) </strong>- software used by organisations or educational institutions to<br>
                         manage, track and deliver training programs.</p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">L3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">L3</p></td>
                       </tr>
                     </table>
                     <table width="890" border="0" align="center" cellpadding="5" cellspacing="0">
                       <tr>
-                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:95%; padding:20px; color:#fff;"><strong>Professional Services</strong></p></td>
+                        <td align="left" valign="middle" height="40" colspan="2" bgcolor="#E73535"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:16px; width:95%; padding:20px; color:#fff;"><strong>Professional Services</strong></p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>System Integration Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M1 </p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">M1 </p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Business Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M2</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">M2</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M3</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">M3</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#ffffff" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>Enterprise Risk Advisory Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;">M4</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#ffffff"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%;font-weight: bold;">M4</p></td>
                       </tr>
                       <tr>
                         <td align="left" valign="middle" height="40" bgcolor="#EFEFEF" style="border-right: #ccc solid 1px;"><p style="float:left; font-family: Arial, Helvetica, sans-serif; display:block; font-size:14px; width:94%; padding:20px;"><strong>IT Staffing Services</strong></p></td>
-                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;">M5</p></td>
+                        <td align="center" valign="middle" width="125" bgcolor="#EFEFEF"><p style="float:left; font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center;font-weight: bold;">M5</p></td>
                       </tr>
                     </table>
                     </div>
@@ -1097,34 +1254,27 @@ function validateForm(formName)
 					$content_3 = ($row3 >0 ) ? $data3['content'] : '';
 					?>				  
 				<div id="tab3"  style="height: auto;width: auto;" class="content three_tabs fl">
-					<div id="content_6" class="advisory_panel" style="height:500px;">
+					<div id="content_7" class="advisory_panel" style="height:400px;">
 						
 						<?php  //$data3['content'] ;?>	
                         
                         <div class="article fl">
-                        	<h1>Participation Fee</h1>
-							<h2>A. Company Category.</h2>
+                        	<strong style="font-size:18px;">A. </strong>Participation Fee
+							<br />
                             <ul>
-                            	<li>To qualify as a Large Enterprise, the company needs to have > 100 employees or an annual turnover of > US$ 15 Million in Singapore.</li>
-                                <li>Small & Medium Enterprises being companies with less than 100 employees or annual turnover of not more than US$15 Million in Singapore.</li>
-                                
-                            </ul>
-
-
-							<h2>B. Participation Fee.</h2>
-                            <ul>
-                            	<li>Registration Fee: US$1,000 for each category of product, service and/or solution submitted.</li>
-                                <li>License Fee (per category), applicable ONLY when the specific category of product, service and/or solution registered is conferred CIO CHOICE 2014.</li>
-                                <li>US$12,000 for Large Enterprise (Large).</li>
-                                <li>US$8,000 for Small & Medium Enterprise (SME).</li>
+                            	<li>Registration Fee: <b><u>US$1,000</u></b> for each category of product, service and/or solution submitted.</li>
+                                <li>License Fee (per category), applicable <b><u>ONLY</u></b> when the specific category of product, service and/or solution registered is conferred CIO CHOICE 2014.</li>
+								<ul style="margin-left: 10px;">
+									<li style="background:none;"> - <b><u>US$12,000</u></b> for Company with Local sales revenue USD > 15M.</li>
+									<li style="background:none;"> - <b><u>US$8,000</u></b> for Company with Local sales revenue USD <= 15M.</li>
+								</ul>
                                 <li>All fees are exclusive of local taxes.</li>
                                 <li>Payment Terms: Net 30 days from Invoice date.</li>
                                
                             </ul>
                             
-							<p><strong style="font-size:18px;">C.</strong> Please submit your online entry form on the “Enter Now” tab</p>
-                            <p><strong style="font-size:18px;">D.</strong> The registration form will be automatically emailed to you to be stamped, signed and authorised by a representative of your company</p>
-    						<p>Please return your scanned copy to registration@cio-choice.sg and send the cheque/ pay order/ demand draft to:</p>
+							<p><strong style="font-size:18px;">B.</strong> Please submit a scanned copy of the completed & duly signed Registration Form via email to <a style="color:blue;" href="#">registration@cio-choice.sg</a></p>
+                            <p><strong style="font-size:18px;">C.</strong> Please send the cheque/ pay order/ demand draft to:</p>   					
    							<p>CORE SERVICES (ASIA) PTE LTD<br>
    100 Cecil Street, #10-01 The Globe<br>
    Singapore 069532 </p>
@@ -1343,7 +1493,7 @@ $(document).ready(function()
 					{
                        for (var i = 1; i <=value; i++) 
 					    {
-							$('.category').before('<div class="categroy_created"><h2 class="form_heading" style="color:#c5ac35;">Entry '+i+'</h2><div class="field fl"><span class="input_lable fl">ICT Category & Code: </span> <span class="input_lable fl"  style="width:320px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <u>categories</u>  tab)</span><br /><input type="text" name="category_code[]" id="category_code" class="fl input_field" required/></div> <div class="field fl"><span class="input_lable fl" style="width:438px; height:25px; display:block; padding:0px;">&nbsp;</span><span class="input_lable fl">Product/ Service/ Solution Name:</span><br /><input type="text" name="solution[]" id="solution" class="fl input_field" required/></div><div class="field fl"><span class="input_lable fl">Brand Name:</span><br /><input type="text" name="brand_name[]" id="country" class="fl input_field" required/></div><div class="field fl" style="width:910px; margin:0px;"><span class="input_lable fl">Product Description: </span><span class="input_lable fl"  style="width:910px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please do not make description longer than 100 words)</span><br /> <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea></div></div>');													
+							$('.category').before('<div class="categroy_created"><h2 class="form_heading" style="color:#c5ac35;">Entry '+i+'</h2><div class="field fl"><span class="input_lable fl">ICT Category & Code: </span> <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span><br /><input type="text" name="category_code[]" id="category_code" class="fl input_field" required/></div> <div class="field fl"><span class="input_lable fl" style="width:438px; height:25px; display:block; padding:0px;">&nbsp;</span><span class="input_lable fl">Product/ Service/ Solution Name:</span><br /><input type="text" name="solution[]" id="solution" class="fl input_field" required/></div><div class="field fl"><span class="input_lable fl">Brand Name:</span><br /><input type="text" name="brand_name[]" id="country" class="fl input_field" required/></div><div class="field fl" style="width:910px; margin:0px;"><span class="input_lable fl">Product Description: </span><span class="input_lable fl"  style="width:910px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please do not make description longer than 100 words)</span><br /> <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea></div></div>');													
 						}
                     }
             
@@ -1415,13 +1565,15 @@ $(document).ready(function()
 													$subject = "ICT Partners - Submission Form";
 													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
 													$message = '
-													<div style=" height:100%; padding:25px;">
+													<html>
+													<body style="padding:0px; margin:0px;">
+													<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
+													
 									<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 										<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 											<div style=" width:210px;height: 225px; margin:0 auto;">
 												<a href="#" style="height:245px;">
-													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222">
-												</a>
+													<img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 												<div style="clear:both;"></div>
 											</div>
 										</div>
@@ -1444,7 +1596,7 @@ $(document).ready(function()
 												Thank you for your submission<br>
 												to Cio choice
 											</h1>
-											<p style=" float:left; width:90%; display:block; font-family:Lato; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
+											<p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; text-align: left; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 												1. Please <a href="'.$web_url.'/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'" style="text-decoration:underline; font-weight:bold; color:#20201f;">download your CIO CHOICE pdf entry form</a> and proceed to <strong>stamp, sign</strong> and <strong>authorize it by a representative</strong> of your company.</p>
 												
 												<div style="float:left; margin:20px 20px 10px 35px;">
@@ -1454,7 +1606,7 @@ $(document).ready(function()
 												</a>
                         </div>
                         
-                        <p style=" float:left; width:90%; display:block; font-family:Lato; text-align: left; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">2.  Scan and return your completed form to <a href="#" style="color:#312f2f; font-weight:bold;">registration@cio-choice.sg</a><br>
+                        <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; text-align: left; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">2.  Scan and return your completed form to <a href="#" style="color:#312f2f; font-weight:bold;">registration@cio-choice.sg</a><br>
 <br>
 Once we receive your completed form, we&acute;ll be in touch to confirm your details and let you know you are successfully registered for your selected CIO CHOICE Categories.<br>
 <br>
@@ -1471,8 +1623,8 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 										<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
 										<div style="width:60%; float:left; height:80px;">
 												<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161">Need help?</span>
-											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Lato; color:#616161;">Send us your question</a>
+												<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+											  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 										  </div>
 										<div style="width:170px; float:right; margin-top:22px; margin-right:1%;">
 											<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -1486,13 +1638,13 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 											<div style="float:left; margin:0px; width:96%;">
 											  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
 																						
-												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/index.php" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
+												<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/index.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
 																						
-												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/login.php" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
+												<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/login.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
 																						
-												<li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family:Lato; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
+												<li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
 											  </ul>
-											  <p style=" float:left; font-family:Lato; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright &copy; 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+											  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright &copy; 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
 										  </div>
 										</div>
 										  
@@ -1502,12 +1654,11 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 										
 									</div>
 									
-									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family:Lato; font-weight:400px;">
+									<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family: Arial, Helvetica, sans-serif; font-weight:400px;">
 									This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$corperate_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 									
 									<div style="clear:both;"></div>
-							</div>
-							'; 
+							</div></body></html>'; 
 													$from = "registration@cio-choice.sg";
 													
 													mail($to,$subject,$message,$headers);
@@ -1638,10 +1789,12 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													</div>
 													
 													<div class="field fl">
-													<span class="input_lable fl" style="width:438px; display:block;">Company Revenue (Singapore):</span>
+													<span class="input_lable fl" style="width:438px; display:block;">Local Sales Revenue:</span>
 													<br />
-													<label for="">Less than $USD 15 Million</label><input type="radio" name="company_size" id="company_size" value="less" class=""/>
-													<label for="" style="margin-left:15px;">More than $USD 15 Million</label><input type="radio" name="company_size" id="company_size" value="more" class="" required/>
+													<label for="" style="float:left; margin-top:7px; font-size:17px; color:#20201F;">Less than $USD 15 Million</label>
+                                                    <input type="radio" name="company_size" id="company_size" value="less" class="" style="margin:10px 0px 0px 10px; float:left;"/>
+													<label for="" style="float:left; margin:7px 0px 0px 15px; font-size:17px; color:#20201F;">More than $USD 15 Million</label>
+                                                    <input type="radio" name="company_size" id="company_size" value="more" class="" style="margin:10px 0px 0px 10px; float:left;"/>
 													</div>
 													
 													<h2 style="width:435px" class="form_heading">3. Product / Service / Solution Detail </h2>
@@ -1671,7 +1824,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                     
                                                     <div class="field fl">
 													<span class="input_lable fl">ICT Category & Code: </span>
-                                                    <span class="input_lable fl"  style="width:370px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
+                                                    <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
 													<br />
 													<input type="text" name="category_code[]" id="category_code" class="fl input_field" required/>
 													</div>
@@ -1696,7 +1849,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                     <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea>
 													</div>
                                                 </div>
-                                                    <h2 class="form_heading">4. Build your application</h2>
+                                                   <!-- <h2 class="form_heading">4. Build your application</h2> -->
                                                     
                                                     <div class="field fl" style="width:800px;">
 													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab4" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">Terms &amp; Conditions</a> related to CIO CHOICE registration</label>
@@ -1774,11 +1927,8 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
     </script>-->
 
        <!-- <script type="text/javascript" src="js/jquery-1.7.1.js"></script>-->
-       <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
         <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="js/jquery.ui.rcarousel.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-
         <script type="text/javascript">
         jQuery(function($) {
             function generatePages() {
@@ -1786,7 +1936,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 
                 _total = $("#carousel").rcarousel("getTotalPages");
 
-                for (i = 0; i < _total; i++) {
+                for (i = 1; i < _total; i++) {
                     _link = $("<a href='#'></a>");
 
                     $(_link)
@@ -1827,7 +1977,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                         auto: {
                             enabled: true
                         },
-                        width: 918, 
+                        width: 918,
                         height: 358,
                         start: generatePages,
                         pageLoaded: pageLoaded
@@ -1848,6 +1998,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
         });
         </script>
         
+	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
 		(function($){
 			$(window).load(function(){
@@ -1855,23 +2006,37 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 					scrollButtons:{
 						enable:true
 					},
+				advanced:{
+     		   updateOnContentResize:true
+    			},
 					theme:"dark-thick"
 				});
+
 				$("#content_7").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},
+			advanced:{
+     		   updateOnContentResize:true
+    			},
+
 					theme:"dark-thick"
 				});
 				$("#content_8").mCustomScrollbar({
 					scrollButtons:{
 						enable:true
 					},
+				advanced:{
+     		   updateOnContentResize:true
+    			},
+
 					theme:"dark-thick"
 				});
 			});
 		})(jQuery);
-		
+	</script>
+
+	<script type="text/javascript">
 		$(document).ready(function() {
 			
 			// Animate the scroll to top

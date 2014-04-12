@@ -107,11 +107,14 @@
 										$mail2->WordWrap = 500;       
 										$mail2->isHTML(true);                                  // Set email format to HTML
 										$mail2->Subject = 'Thank you for joining us!';
-										$mail2->Body    = '<div style=" height:100%; padding:25px;">
+										$mail2->Body    = '
+											<html>
+											<body style="padding:0px; margin:0px;">
+											<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
 																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
-																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222"></a>
+																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 																		<div style="clear:both;"></div>
 																		</div>
 																	</div>
@@ -149,8 +152,8 @@
 																	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
 																	<div style="width:60%; float:left; height:80px;">
 																			<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
-																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
+																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 																	  </div>
 																	<div style="width:170px; float:right; margin-top:22px;">
 																		<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -186,7 +189,7 @@
 																This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 																
 																<div style="clear:both !important;"></div>
-														</div>'; 
+														</div></body></html>'; 
 																							$mail2->AltBody = 'hi raza how r u?';										 
 										if(!$mail2->send()) 
 										{
@@ -237,11 +240,14 @@
 										$mail4->isHTML(true);                                  // Set email format to HTML
 										 
 										$mail4->Subject = 'Registration Email';
-											$mail4->Body    = '<div style=" height:100%; padding:25px;">
-																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
+											$mail4->Body    = '
+											<html>
+											<body style="padding:0px; margin:0px;">
+											<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
+												<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
-																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="222"></a>
+																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 																		<div style="clear:both;"></div>
 																		</div>
 																	</div>
@@ -251,21 +257,21 @@
 																			</div>
 																  </div>
 																	<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
-																				<h1 style=" float:left; width:90%; font-family:Lato; font-size:26px; font-weight:bold; margin:0px 5%; padding:0px;">
+																				<h1 style=" float:left; width:90%; font-family: Arial, Helvetica, sans-serif; font-size:26px; font-weight:bold; margin:0px 5%; padding:0px;">
 																					Accept your CIO CHOICE Singapore registration request.
 																				</h1>
-																	  <p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
+																	  <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
 																			Accept your CIO CHOICE Singapore registration request. <a href="'.$web_url.'/admin/admin_pending_register.php">Accept</a>
 																		Please accept a new '.$registration_type.' registration request for cio-choice.sg
 																	  </p>
 																	  
-																	  <p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">1. Your Full Name</p>
+																	  <p style=" float:left; width:86%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">1. Your Full Name</p>
 																				
-																				<p style=" float:left; width:86%; display:block;  font-family:Source Sans Pro; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$registration_name.'</p>
+																				<p style=" float:left; width:86%; display:block;  font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$registration_name.'</p>
 																				
-																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">2. Company Email Address </p>
+																				<p style=" float:left; width:86%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">2. Company Email Address </p>
 																				
-																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$registration_email.'</p>
+																				<p style=" float:left; width:86%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$registration_email.'</p>
 																				
 																	  <div style="float:left; width:90%; margin:30px 5% 0px 5%;">
 																					<a href="#" style="width:100%; line-height:22px; padding:15px 0px; text-align:center; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF; font-family:Lato; font-weight:bold; font-size:16px; text-decoration:none; border-radius:5px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">return TO CIO CHOICE SINGAPORE</a>
@@ -279,8 +285,8 @@
 																	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
 																	<div style="width:60%; float:left; height:80px;">
 																			<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
-																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161">Need help?</span>
-																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family:Source Sans Pro; color:#616161;">Send us your question</a>
+																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
 																	  </div>
 																	<div style="width:170px; float:right; margin-top:22px;">
 																		<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
@@ -294,15 +300,15 @@
 																		<div style="float:left; margin:0px; width:96%;">
 																		  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
 																													
-																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/index.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
+																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/index.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
 																													
-																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/registration.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Register</a></li>
+																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/registration.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Register</a></li>
 																													
-																			<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/login.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
+																			<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/login.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
 																													
-																			<li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
+																			<li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
 																		  </ul>
-																		  <p style=" float:left; font-family:Source Sans Pro; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+																		  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
 																	  </div>
 																	</div>
 																	  
@@ -312,11 +318,11 @@
 																	
 																</div>
 																
-																<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family:Source Sans Pro; font-weight:400px;">
+																<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family: Arial, Helvetica, sans-serif; font-weight:400px;">
 																This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
 																
 																<div style="clear:both;"></div>
-														</div>'; 
+														</div></body></html>'; 
 										$mail4->AltBody = 'hi raza how r u?';												 
 										if(!$mail4->send())
 										{
