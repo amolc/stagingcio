@@ -451,9 +451,11 @@ $result2 = mysql_query("SELECT
 	<script src="include/resource/js/neon-api.js" id="script-resource-6"></script>
 	<script src="include/resource/js/jvectormap/jquery-jvectormap-1.2.2.min.js" id="script-resource-71"></script>
 	<script src="include/resource/js/jvectormap/jquery-jvectormap-europe-merc-en.js" id="script-resource-18"></script>
+	
 	<script src="include/resource/js/jquery.dataTables.min.js" id="script-resource-7"></script>  
 	<script src="include/resource/js/dataTables.bootstrap.js" id="script-resource-8"></script>
 	<script src="include/resource/js/select2/select2.min.js" id="script-resource-9"></script>
+	
 	<script src="include/resource/js/jquery.sparkline.min.js" id="script-resource-19"></script>
 	<script src="include/resource/js/rickshaw/vendor/d3.v3.js" id="script-resource-10"></script>
 	<script src="include/resource/js/rickshaw/rickshaw.min.js" id="script-resource-11"></script>

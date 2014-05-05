@@ -114,7 +114,13 @@ $row = mysql_fetch_array($res);
 				
 			</ol>
 
-			
+					<div>
+									<?php
+										if (isset($_REQUEST['add'])) {
+											echo"<h2>Add Successful</h2>";
+										}
+									?>
+								</div>
 			<br />
 
 <div class="row">
@@ -170,7 +176,7 @@ $row = mysql_fetch_array($res);
 			
 						<div class="form-group">
 							<label for="field-ta" class="col-sm-3 control-label">Message</label>
-					
+				
 							<div class="form-group" style="width: 572px;margin-left: 272px;">
 								<textarea style="width:600px;height:140px;" class="form-control wysihtml5 overview" name="message" id="tour_overview" required><?php echo $row['message'];?></textarea>
 							</div>

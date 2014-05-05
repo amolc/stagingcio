@@ -30,16 +30,17 @@ if (isset($_SESSION['username']) && isset($_SESSION['cio']))
 {
     header('Location: login.php');
 }
-				$admin_email = "andre.tan@day7.co";
+				// $admin_email = "andre.tan@day7.co";
+				$admin_email = "survey@cio-choice.sg";
 							require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
  // Matthew.Harper@day7.co
 				$mail = new PHPMailer;
 				 
 				$mail->isSMTP();                                      // Set mailer to use SMTP
-				$mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
+				$mail->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
 				$mail->SMTPAuth = true;                               // Enable SMTP authentication
-				$mail->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-				$mail->Password = '9cXWOqeaf';               // SMTP password
+				$mail->Username = 'dayseven';                   // SMTP username
+				$mail->Password = '123sendgrid';               // SMTP password            // SMTP password
 				$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 				$mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 				$mail->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from

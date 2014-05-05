@@ -1,24 +1,31 @@
 
 <?php
-
+session_start();
  include('../sql_config/database/cio_db.php'); 
 require_once("include/facebook/facebook.php");
    $config = array(
-	    'appId' => '1456796401221243',
-	    'secret' => '293e21d6ec9cf719ba67c993f2329960',
-	    "scope" => "read_stream,publish_stream,user_photos",
+	      'appId' => '462044317259506',//1456796401221243
+	    'secret' => 'b2a70ea1e698df9651069477f42233b6',//293e21d6ec9cf719ba67c993f2329960
+	    "scope" => "manage_page,user_photos,photos",
 	    'fileUpload' => true,
+	     'cookie' => true,
 	    'allowSignedRequest' => false // optional but should be set to false for non-canvas apps
   );
 
   $facebook = new Facebook($config);
   $user_id = $facebook->getUser();
+  $list_page = array();
+ $params = array(
+  'scope' => 'read_stream,friends_likes,manage_page,user_photos,photos',
+);
+
+
+
 if($user_id) {
 	    $login_url = null;
 }else{
-	 $login_url =  $facebook->getLoginUrl();
+	$login_url =  $facebook->getLoginUrl();	
 }
-
  $id = $_REQUEST['id'];
  $res = mysql_query("select * from events where event_id = '$id'")or die (mysql_error());
  $row = mysql_fetch_array($res);
@@ -313,9 +320,34 @@ if($user_id) {
 							<div class="form-group" style="width: 362px;margin-left: 253px;">
 								<input type="file" name="files[]" multiple/>
 							</div> -->
-							<div class="col-sm-offset-3 col-sm-5">
+							<span for="" class="col-sm-3 control-label">Facebook Export to Page</span>
+							<div class="col-sm-5">
 							<?php if($user_id) {?>
-							<a href="admin_export_facebook.php?id=<?php echo $id; ?>" class="btn btn-default fancybox fancybox.iframe" >Export</a>
+							<?php 
+
+								    $fb_page = $facebook->api('/me/accounts');
+								    $list_page = array();
+					                foreach ($fb_page as $key => $value) {
+					                    foreach ($value as $key) {
+					                        if (is_numeric($key['id'])) {
+					                            $list_page[$key['id']] = $key['name'];
+					                        }
+					                    }
+					                }
+							 ?>
+							<input type="hidden" name="export_href" id="export_href_hidden" value="admin_export_facebook.php?id=<?php echo $id; ?>">
+							<a href="admin_export_facebook.php?id=<?php echo $id; ?>" class="page-export-ref btn btn-default fancybox fancybox.iframe" >Export</a>
+							<select name="" id="page_export">
+								
+								<option value="me">me</option>
+								<?php 
+								if(!empty($list_page)){?>
+								<?php foreach ($list_page as $key => $value) {
+									echo '<option value="'.$key.'">'.$value.'</option>';
+								}}
+								 ?>								
+								
+							</select>
 							<?php }else{ ?>
 							<a href="<?php echo $login_url; ?>" class="btn btn-default" >Export</a>
 							<?php }?>
@@ -502,6 +534,13 @@ if($user_id) {
 	<script type="text/javascript" src="source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 	<script type="text/javascript"> 
 				$(document).ready(function() {
+					$('#page_export').change(function(){
+						export_href = $('#export_href_hidden').val();
+						id = $(this).val();
+						new_export_href = export_href+'&page_id='+id;
+						$('a.page-export-ref').attr('href',new_export_href);
+
+					});
 					$('.fancybox').fancybox();
 				});
 		var _gaq = _gaq || [];

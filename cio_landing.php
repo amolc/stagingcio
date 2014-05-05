@@ -1,4 +1,4 @@
-<?php
+<?php
 session_start();
    include('sql_config/database/cio_db.php');
 if (isset($_SESSION['username']) && isset($_SESSION['cio']))
@@ -426,10 +426,15 @@ $(document).ready(function(){
                             <a class="next" href="#"></a>
                         </div> 
                     </div>
+					<?php
+						$cio_res = mysql_query("select * from cio_message_board") or die();
+
+						$cio_row = mysql_fetch_array($cio_res);
+					?>
                     <div class="message_board fr">
                         <h2><img src="images/message_icon.jpg" width="29" height="32">Message Board</h2> 
                         <span><img src="images/double_dot1.jpg" width="24" height="18"></span>
-                        <p><?php echo $row['message'];?>
+                        <p><?php echo $cio_row['cio_message'];?>
                         <br>
                         <strong>The CIO CHOICE team</strong><img style="float:right; margin:9px 280px 0px 0px;" src="images/double_dot2.jpg" width="24" height="18"></p>
                     </div>

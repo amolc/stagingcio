@@ -1,8 +1,8 @@
 <?php
     session_start();
 		$email = $_GET['email'];
-        $config['base_url']             =   'http://staging.cio-choice.sg/auth.php?email='.$email.'';
-    $config['callback_url']         =   'http://staging.cio-choice.sg/demo.php?email='.$email.'';
+        $config['base_url']             =   'http://www.cio-choice.sg/auth.php?email='.$email.'';
+    $config['callback_url']         =   'http://www.cio-choice.sg/demo.php?email='.$email.'';
     // $config['callback_url']         =   'http://staging.cio-choice.sg/advisory_panel.php';
     $config['linkedin_access']      =   '75vpkjynmfidn6';
     $config['linkedin_secret']      =   'JOXmgMgfHkzoiefw';

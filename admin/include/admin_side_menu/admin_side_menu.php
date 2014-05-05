@@ -5,7 +5,7 @@
 		
 		<!-- logo -->
 		<div class="logo">
-			<a href="dashboard.php">
+			<a href="../index.php">
 				<h3 style="color:#fff;">ciochoice.sg</h3>
 			</a>
 		</div>
@@ -71,7 +71,13 @@
 				</li>
 				
 				<li>
-					<a href="massage_board.php"><span> Massage Board</span></a>
+					<a href="massage_board.php"><span>ICT Vendor Message Board</span></a>
+				</li>
+				<li>
+					<a href="cio_massage_board.php"><span>CIO Message Board</span></a>
+				</li>
+				<li>
+					<a href="admin_show_faq.php"><span>Faq</span></a>
 				</li>
 				
 				<li>
@@ -131,7 +137,7 @@
 
 		</li>
 		
-		<li>
+		<li style="display:none;">
 			<a href="#"><i class="entypo-window"></i><span>Landing Panel</span></a>
 			<ul>
 				<li>

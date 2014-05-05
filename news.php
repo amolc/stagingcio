@@ -26,6 +26,7 @@
 	<script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "66f4fd4a-f716-4744-b336-7d26381fd2d2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
 </head>
 
 <body>
@@ -61,7 +62,8 @@
 														<h1 style="background: none;"><a style="font-size: 24px;font-weight: bold;" id="total_news" href="news.php">2014 &nbsp;( <?php echo $total;?> )</a></h1>
                                                         <?php
 															
-															$result2 = mysql_query("SELECT * FROM news");
+															$result2 = mysql_query("SELECT * FROM `news` ORDER BY `news`.`news_id` DESC");
+
 															while($row2 = mysql_fetch_array($result2)){
 															$title = $row2['news_title'];
 																if (strlen($title) > 25) 
@@ -120,7 +122,7 @@ $per_page =4;
 // $Keyword = $_REQUEST['tags'];
 
 if($Keyword == "") {
-$result = mysql_query("SELECT * FROM news");
+$result = mysql_query("SELECT * FROM `news` ORDER BY `news`.`news_inserted_date` DESC");
 }
 else {
 // $result = mysql_query("SELECT * FROM news where news_tags LIKE '%Keyword%'");
@@ -182,11 +184,11 @@ if ($page <= 0)
 					
 					?>
 					
-					<div class="singapore_news_detail fl">
+					<div class="singapore_news_detail fl"> 
                                                         	<a href="view_news.php?id=<?php echo mysql_result($result, $i, 'news_id'); ?>" target="_blank" class="read">
 															<img src="admin/upload/news/<?php echo mysql_result($result, $i, 'news_img'); ?>" width="661">
 															</a>
-                                                            <h1 style="line-height: 24px!important;"><?php echo  mysql_result($result, $i, 'news_title'); ?></h1>
+                                                            <h1 style="line-height: 24px;height: auto;margin-top: 10px;margin-bottom: 10px;"><?php echo  mysql_result($result, $i, 'news_title'); ?></h1>
                                                             <h2>Posted: <span><?php echo mysql_result($result, $i, 'news_inserted_date'); ?></span></h2>
 																	<?php
 																$description = mysql_result($result, $i, 'news_description');

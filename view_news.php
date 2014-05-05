@@ -17,6 +17,10 @@
       $('#tab-container').easytabs();
     });
     </script> 
+		<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "66f4fd4a-f716-4744-b336-7d26381fd2d2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
 </head>
 
 <body>
@@ -75,35 +79,54 @@
                                                	  <div class="singapore_news_right fr">
                                                	    <div class="singapore_news fl">
                                                         	<h1>CIO CHOICE Singapore News</h1>
-                                                            	<div class="latest_news">
-                                                                  <a href="#" class="active">News</a>
-                                                                  <a href="#">Latest News</a>
+															 	<div  style="width: 40%;" class="latest_news">
+																	<a href="#" class="active">News</a>
+																	<span style="float:left;">></span>
+																	<a href="#">
+																		Latest News
+																	</a>
                                                                 </div>
                                                             
                                                         </div>
                                                         <div class="singapore_news_detail fl">
                                                         	<img src="admin/upload/news/<?php echo $row['news_img']; ?>" width="661">
-                                                            <h1 style="line-height: 24px!important;"><?php echo $row['news_title']; ?></h1>
+                                                            <h1 style="line-height: 24px;height: auto;margin-top: 10px;margin-bottom: 10px;"><?php echo $row['news_title']; ?></h1>
                                                             <h2>Posted: <span><?php echo $row['news_inserted_date']; ?></span></h2>
                                                             <p><?php echo $row['news_description']; ?></p>
-                                                            
+                                                            <?php 
+																// $result = mysql_query("SELECT * FROM `news` ORDER BY `news`.`news_inserted_date` DESC");
+																// $news_tags = mysql_result($result, 'news_tags');
+																$news_tags = $row['news_tags']; 
+															?>
                                                             	<div class="included_topics fl">
                                                                 	<span>INCLUDED TOPICS: </span>
-                                                                    <a href="#">Community ,</a>
-                                                                    <a href="#">CIO ,</a>
-                                                                    <a href="#">ICT Vendors</a>
+                                                                 	<?php
+																	$comma_separated = explode(",", $news_tags);
+																	foreach($comma_separated as $key2 ) {
+																		
+																		 echo '<a href="news.php?tags='.$key2.'">'.$key2.'</a>';
+																	}
+																	?>
                                                                     
                                                                 </div>
                                                                 <div class="included_topics fl mrgn_bottom">
                                                                  
-																	<div class="social_media fr" style="width:145px;">
-																		<span>
+																	
+																		<div class="social_media fr" style="width:145px;">
+																		<span class='st_sharethis'></span>
+																		<span class='st_facebook'></span>
+																		<span style="margin-top: -99px;" class='st_twitter'></span>
+																		<span class='st_linkedin'></span>
+																		<span class='st_pinterest'></span>
+																		<span class='st_email'></span>
+																		<!--<span>
 																			<a target="_blank" href="http://www.linkedin.com/company/cio-choice-singapore/" style="margin:0px 0px 0px 5px;"><img src="images/linkedin.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://twitter.com/CIOCHOICE_SG" style="margin:0px 0px 0px 5px;"><img src="images/twitter.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://plus.google.com/+CiochoiceSg1/posts" style="margin:0px 0px 0px 5px;"><img src="images/google_plus.png" width="30" height="31"></a>
 																			<a target="_blank" href="https://www.facebook.com/ciochoice.sg" style="margin:0px 0px 0px 5px;"><img src="images/facebook.png" width="30" height="31"></a>
-																		</span> 
+																		</span> -->
 																	</div>
+																	
                                                                     
                                                                 </div>
                                                             

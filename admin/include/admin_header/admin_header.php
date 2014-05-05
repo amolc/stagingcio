@@ -7,10 +7,10 @@
 		<ul class="user-info pull-left pull-none-xsm">
 		
 			<!-- Profile Info -->
-			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+			<li  style="display:none"  class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 				
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="include/resource/images/thumb-1.png" alt="" class="img-circle" />
+				<a  style="display:none"  href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<img style="display:none"  src="include/resource/images/thumb-1.png" alt="" class="img-circle" />
 					Admin
 				</a>
 				
@@ -58,7 +58,7 @@
 		
 		</ul>
 		
-		<ul class="user-info pull-left pull-right-xs pull-none-xsm">
+		<ul style="display:none" class="user-info pull-left pull-right-xs pull-none-xsm">
 			
 			<!-- Raw Notifications -->
 			<li class="notifications dropdown">
@@ -375,27 +375,16 @@
 		
 		<ul class="list-inline links-list pull-right">
 			<li>
-				<a href="#">Live Site</a>
+				<a href="../index.php">Live Site</a>
 			</li>
 			
 			<li class="sep"></li>
-			
-			<li>
-				<a href="#" data-toggle="chat" data-animate="1" data-collapse-sidebar="1">
-					<i class="entypo-chat"></i>
-					Chat
-					
-					<span class="badge badge-success chat-notifications-badge is-hidden">0</span>
-				</a>
-			</li>
-			
-			<li class="sep"></li>
-			
 			<li>
 				<a href="logout.php">
 					Log Out <i class="entypo-logout right"></i>
 				</a>
 			</li>
+		
 		</ul>
 		
 	</div>

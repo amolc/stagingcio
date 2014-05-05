@@ -22,10 +22,10 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
 				$mail = new PHPMailer;  
 				 
 				$mail->isSMTP();                                      // Set mailer to use SMTP
-				$mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
+				$mail->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
 				$mail->SMTPAuth = true;                               // Enable SMTP authentication
-				$mail->Username = 'ciochoice.sg@gmail.com';                   // SMTP username 
-				$mail->Password = '9cXWOqeaf';               // SMTP password
+				$mail->Username = 'dayseven';                   // SMTP username
+				$mail->Password = '123sendgrid';               // SMTP password
 				$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 				$mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 				$mail->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
@@ -47,7 +47,7 @@ $registration_id = mysql_real_escape_string($_POST['registration_id']);
     	<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
     		<div style=" float:left; width:100%; height:225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
             	<div style=" width:210px;height: 225px; margin:0 auto;">
-            	<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+            	<a href="'.$web_url.'/index.php" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
                 <div style="clear:both;"></div> 
                 </div> 
             </div>

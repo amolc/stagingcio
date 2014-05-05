@@ -9,3 +9,6 @@ exit
 ls -l
 pwd
 exit
+pwd
+vi email_function.php 
+exit

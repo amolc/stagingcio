@@ -61,6 +61,7 @@ function validateForm(formName)
                                                     <a href="faq.php">FAQs</a> 
 													<br />
 																				<?php
+																				error_reporting(0);
 
 						include('sql_config/database/cio_db.php'); 
 
@@ -72,8 +73,8 @@ function validateForm(formName)
 							$last_name = mysql_real_escape_string($_POST['last_name']);
 							$email = mysql_real_escape_string($_POST['email']);
 							$select = mysql_real_escape_string($_POST['select']);
-							$message = mysql_real_escape_string($_POST['message']);
-					
+							$message = $_POST['message'];
+							$message= nl2br($message);
 						
 							$today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 							$current_date = date("m/d/Y", $today_date);
@@ -83,39 +84,119 @@ function validateForm(formName)
 								$query = mysql_query($sql);
 								if($query)
 								{
-									echo "<span style='margin-left: 162px;font-size: 2em;'> successful</span>";
-																	
-													require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-										$mail4 = new PHPMailer;
+									echo "<span style='margin-left: 162px;font-size: 2em;'> Message Send Successful</span>";
+									
+												
+										require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
+										 $mail2 = new PHPMailer;
 																		 
-										$mail4->isSMTP();                                      // Set mailer to use SMTP
-										$mail4->Host = 'smtp.gmail.com';                       // Specify main and backup server
-										$mail4->SMTPAuth = true;                               // Enable SMTP authentication
-										$mail4->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-										$mail4->Password = '9cXWOqeaf';               // SMTP password
-										$mail4->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-										$mail4->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-										$mail4->setFrom('ciochoice.sg@gmail.com', 'Cio choice');     //Set who the message is to be sent from
-										$mail4->addReplyTo('ciochoice.sg@gmail.com', 'Cio choice');  //Set an alternative reply-to address
+										$mail2->isSMTP();                                      // Set mailer to use SMTP
+										$mail2->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
+										$mail2->SMTPAuth = true;                               // Enable SMTP authentication
+										$mail2->Username = 'dayseven';                   // SMTP username
+										$mail2->Password = '123sendgrid';               // SMTP password
+										$mail2->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+										$mail2->Port = 587;                                     //Set the SMTP port number - 587 for authenticated TLS
+										$mail2->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
+										$mail2->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
 										// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-										$mail4->addAddress('contactus@cio-choice.sg');               // Name is optional
-										$mail4->WordWrap = 500;                                 // Set word wrap to 50 characters
-										$mail4->isHTML(true);                                  // Set email format to HTML
-										 
-										$mail4->Subject = 'Registration Email';
-											$mail4->Body    = 'Dear Admin <br />
-																Name: '.$first_name.'<br />
-																Email: '.$email.' <br />
-																Message: '.$message.'
-																 
-																'; 
-										$mail4->AltBody = 'hi raza how r u?';												 
-										if(!$mail4->send())
+										$mail2->addAddress('registration@cio-choice.sg');               // Name is optional
+										$mail2->WordWrap = 500;       
+										$mail2->isHTML(true);                                  // Set email format to HTML
+										$mail2->Subject = 'Registration Email';
+										$mail2->Body    = '
+											<html>
+											<body style="padding:0px; margin:0px;">
+											<div style=" height:100%; float:left; padding:25px; background:#eaeaea;">
+																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
+																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
+																		<div style=" width:210px;height: 225px; margin:0 auto;">
+																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+																		<div style="clear:both;"></div>
+																		</div>
+																	</div>
+																	<div style="width:100%; height:65px; float:left; background:#20201f;">
+																			<div style=" width:115px;text-align:center; float:left;">
+																			<a href="'.$web_url.'/index.php" style=" text-decoration:none; padding:0px 27px; text-align:center; float:left; line-height:65px; font-family: Lato; color:#FFF; font-size:17.5px; font-weight:bold; text-transform:uppercase; text-shadow:0px 2px #000; letter-spacing:1px; background:url('.$web_url.'/images/border.jpg) no-repeat right">home</a>
+																			</div>
+																  </div>
+																	<div style="width:100%; float:left; padding:20px 0px; text-align:center;">
+																				<h1 style=" float:left; width:90%; font-family:Lato; font-size:26px; font-weight:bold; margin:0px 5%; padding:0px;">
+																					
+																				</h1>
+																	  <p style=" float:left; width:90%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">
+																			
+																	  </p>
+																	  
+																	  <p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">Name</p>
+																				
+																				<p style=" float:left; width:86%; display:block;  font-family:Source Sans Pro; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$first_name.'</p>
+																				
+																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">Email </p>
+																				
+																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$email.'</p>
+																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:15px 7% 0% 7%; padding:0px; font-size:18px; font-weight:bold;">Message </p>
+																				
+																				<p style=" float:left; width:86%; display:block; font-family:Source Sans Pro; line-height:20px; margin:5px 7% 0% 7%; padding:0px; font-size:15px; font-weight:400;">'.$message.'</p>
+																				
+																	  <div style="float:left; width:90%; margin:30px 5% 0px 5%;">
+																					<a href="#" style="width:100%; line-height:22px; padding:15px 0px; text-align:center; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF; font-family:Lato; font-weight:bold; font-size:16px; text-decoration:none; border-radius:5px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">return TO CIO CHOICE SINGAPORE</a>
+																				</div>
+																  </div> 
+																	<div style="float:left; width:100%;">
+																	<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 10px;"></div>
+																	<div style="float:left; margin:18px 0px 0px 0px;"><img src="'.$web_url.'/images/star_rating.jpg" width="82" height="11"></div>
+																	<div style="float:left; width:43%; background:#eaeaea; height:1px; margin:28px 0px 0px 0px;"></div>
+																	</div>
+																	<div style="float:left; width:98.8%; padding:0px; margin-left:10px">
+																	<div style="width:60%; float:left; height:80px;">
+																			<span style="float:left; margin:15px 12px 0px 0px; display:block;"><img src="'.$web_url.'/images/question.jpg" alt="" width="41" height="41"></span>
+																			<span style="float:left; width:50%; margin:15px 20px 0px 0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161">Need help?</span>
+																		  <a href="'.$web_url.'/contact_us.php" style="float:left; width:50%; margin:0px; display:block; text-transform:uppercase; font-family: Arial, Helvetica, sans-serif; color:#616161; font-weight:bold;">Send us your question</a>
+																	  </div>
+																	<div style="width:170px; float:right; margin-top:22px;">
+																		<a href="http://www.linkedin.com/company/cio-choice-singapore/" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/linkedin.png"></a>
+																		<a href="https://twitter.com/CIOCHOICE_SG" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/twitter.png"></a>
+																		<a href="https://plus.google.com/+CiochoiceSg1/posts" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/google_plus.png"></a>
+																		<a href="https://www.facebook.com/ciochoice.sg" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/facebook.png"></a>
+																		<a href="http://www.youtube.com/user/CIOCHOICEsingapore" target="_blank"><img width="30" height="31 " alt="" src="'.$web_url.'/images/play.png"></a>
+																	</div>
+																	
+																	<div style="float:left; width:100%; border-top: #EAEAEA solid 1px;">
+																		<div style="float:left; margin:0px; width:96%;">
+																		  <ul style="	float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
+																													
+																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/index.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px 0px 0px;">Home</a></li>
+																													
+																			<li style="	float:left; list-style-type: none; border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/registration.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Register</a></li>
+																													
+																			<li style="	float:left; list-style-type: none;  border-right:#504d4d solid 2px; margin:0px;"><a href="'.$web_url.'/login.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 10px;">Login</a></li>
+																													
+																			<li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family:Source Sans Pro; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
+																		  </ul>
+																		  <p style=" float:left; font-family:Source Sans Pro; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+																	  </div>
+																	</div>
+																	  
+																  </div>
+																  
+																	
+																	
+																</div>
+																
+																<div style="float:left; margin:0px; width:100%; font-size:12px; color:#616161; font-family:Source Sans Pro; font-weight:400px;">
+																This e-mail was sent to <a href="#" style="color:#616161; text-decoration:underline;">'.$registration_email.'</a> and contains information directly related to your CIO CHOICE account. This is a one-time email. You received this email because you signed up for a CIO CHOICE account. Please do not reply to this email. If you want to contact us, please contact us directly. </div>
+																
+																<div style="clear:both !important;"></div>
+														</div></body></html>'; 
+																							$mail2->AltBody = 'hi raza how r u?';										 
+										if(!$mail2->send()) 
 										{
 										   echo 'Message could not be sent.';
-										   echo 'Mailer Error: ' . $mail4->ErrorInfo;
+										   echo 'Mailer Error: ' . $mail2->ErrorInfo;
 										   exit;
 										}
+										
 									
 								}
 								else 

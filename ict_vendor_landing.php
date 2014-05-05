@@ -1493,7 +1493,7 @@ $(document).ready(function()
 					{
                        for (var i = 1; i <=value; i++) 
 					    {
-							$('.category').before('<div class="categroy_created"><h2 class="form_heading" style="color:#c5ac35;">Entry '+i+'</h2><div class="field fl"><span class="input_lable fl">ICT Category & Code: </span> <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span><br /><input type="text" name="category_code[]" id="category_code" class="fl input_field" required/></div> <div class="field fl"><span class="input_lable fl" style="width:438px; height:25px; display:block; padding:0px;">&nbsp;</span><span class="input_lable fl">Product/ Service/ Solution Name:</span><br /><input type="text" name="solution[]" id="solution" class="fl input_field" required/></div><div class="field fl"><span class="input_lable fl">Brand Name:</span><br /><input type="text" name="brand_name[]" id="country" class="fl input_field" required/></div><div class="field fl" style="width:910px; margin:0px;"><span class="input_lable fl">Product Description: </span><span class="input_lable fl"  style="width:910px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please do not make description longer than 100 words)</span><br /> <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea></div></div>');													
+							$('.category').before('<div class="categroy_created"><h2 class="form_heading" style="color:#c5ac35;">Entry '+i+'</h2><div class="field fl"><span class="input_lable fl">ICT Category & Code: </span> <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span><br /><input type="text" name="category_code[]" id="category_code" class="fl input_field" required/></div> <div class="field fl"><span class="input_lable fl" style="width:438px; height:25px; display:block; padding:0px;">&nbsp;</span><span class="input_lable fl">Product/ Service/ Solution Name:</span><br /><input type="text" name="solution[]" id="solution" class="fl input_field" required/></div><div class="field fl"><span class="input_lable fl">Brand Name:</span><br /><input type="text" name="brand_name[]" id="country" class="fl input_field" required/></div><div class="field fl" style="width:910px; margin:0px;"><span class="input_lable fl">Product Description: </span><span class="input_lable fl"  style="width:910px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please do not make description longer than 100 words)</span><br /> <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea></div></div>');													
 						}
                     }
             
@@ -1563,7 +1563,7 @@ $(document).ready(function()
 													// $to = $email;
 													$to = $corperate_email;
 													$subject = "ICT Partners - Submission Form";
-													// $message = '<a href="http://staging.cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
+													// $message = '<a href="http://cio-choice.sg/pdf/htmlTO_pdf/form.php?vendor_id='.$partner_id.'">Click here</a> to download PDF';
 													$message = '
 													<html>
 													<body style="padding:0px; margin:0px;">
@@ -1814,7 +1814,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													  </select>
                                                       </span>
                                                       <span class="input_lable fl" style="width:800px; margin:11px 0px 0px 15px; padding:0px;">Select the  Number of CIO CHOICE categories you would like to participate in.</span>
-                                                      <span class="input_lable fl"  style="width:800px; font-weight:normal; padding:0px; margin-left:15px;">( Each category entry form must be completed, details of the ICT categories is found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
+                                                      <span class="input_lable fl"  style="width:800px; font-weight:normal; padding:0px; margin-left:15px;">( Each category entry form must be completed, details of the ICT categories is found on the <a href="http://cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
 													</div>
                                                 <div class="category"></div>    
                                                 <div class="category1">
@@ -1824,7 +1824,7 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
                                                     
                                                     <div class="field fl">
 													<span class="input_lable fl">ICT Category & Code: </span>
-                                                    <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
+                                                    <span class="input_lable fl"  style="width:400px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please see categories found on the <a href="http://cio-choice.sg/ict_vendor_landing.php#tab2" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">categories</a>  tab)</span>
 													<br />
 													<input type="text" name="category_code[]" id="category_code" class="fl input_field" required/>
 													</div>
@@ -1846,16 +1846,16 @@ Once we receive your completed form, we&acute;ll be in touch to confirm your det
 													<span class="input_lable fl">Product Description: </span>
                                                     <span class="input_lable fl"  style="width:910px;height:25px; display:block; font-weight:normal; padding:0px; margin:0px;">(Please do not make description longer than 100 words)</span>
 													<br />
-                                                    <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea>
+                                                    <textarea name="product_description[]" class="fl input_field" id="post_code" style="width:890px; height:180px; padding:10px;" required></textarea> 
 													</div>
                                                 </div>
                                                    <!-- <h2 class="form_heading">4. Build your application</h2> -->
                                                     
                                                     <div class="field fl" style="width:800px;">
-													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab4" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">Terms &amp; Conditions</a> related to CIO CHOICE registration</label>
+													<input type="checkbox" name="term"  value="1" required/> <label for="" class="input_lable" style="padding:0px;">I agree with the <a href="http://cio-choice.sg/ict_vendor_landing.php#tab4" target="_self" style="text-decoration:underline; font-weight:bold; color:#20201F;">Terms &amp; Conditions</a> related to CIO CHOICE registration</label>
 													</div>
                                                     <div class="field fl" style="width:800px;">
-													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <a href="http://staging.cio-choice.sg/ict_vendor_landing.php#tab3" target="_self" style="text-decoration:underline; color:#20201F; font-weight:bold;">Participation Fees</a></label>
+													<input type="checkbox" name="fee_part"  value="yes" /> <label for="" class="input_lable" style="padding:0px;">I accept the CIO CHOICE  <a href="http://cio-choice.sg/ict_vendor_landing.php#tab3" target="_self" style="text-decoration:underline; color:#20201F; font-weight:bold;">Participation Fees</a></label>
 													</div>
                                                     <div >
                                                     <a href="#">

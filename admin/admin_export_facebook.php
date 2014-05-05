@@ -5,15 +5,17 @@
 	require_once("include/facebook/facebook.php");
 		$admin = $_SESSION['admin'];
 		$id = $_REQUEST['id'];
+    $page_id = $_REQUEST['page_id']  ;
 
 		 $res = mysql_query("select * from events where event_id = '$id'")or die (mysql_error());
 		 $row = mysql_fetch_array($res);
 
-        $config = array(
-	    'appId' => '1456796401221243',
-	    'secret' => '293e21d6ec9cf719ba67c993f2329960',
-	    "scope" => "read_stream,publish_stream,user_photos",
+     $config = array(
+	    'appId' => '462044317259506',//1456796401221243
+      'secret' => 'b2a70ea1e698df9651069477f42233b6',//293e21d6ec9cf719ba67c993f2329960
+	    "scope" => "manage_page,user_photos,photos,publish_stream",
 	    'fileUpload' => true,
+       'cookie' => true,
 	    'allowSignedRequest' => false // optional but should be set to false for non-canvas apps
   );
 
@@ -42,7 +44,15 @@
             'message' => $row['event_name'],
             'name' => str_replace(' ', '_', $row['event_name'])
         );
-        $create_album = $facebook->api('/me/albums', 'post', $album_details);
+     
+      // if($page_id =='me'){
+         $access_token = $facebook->getAccessToken();
+      // }else{
+      //    $page_info = $facebook->api("/".trim($page_id)."?fields=access_token");
+      //    $access_token = $page_info['access_token'];
+      //  }
+        $facebook->setAccessToken($access_token);
+        $create_album = $facebook->api('/'.trim($page_id).'/albums', 'post', $album_details);
         $album_uid = $create_album['id'];
          while($res1 = mysql_fetch_array($query1)){
          	$fb_image = $res1['event_fb_pic'];

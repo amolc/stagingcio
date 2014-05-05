@@ -1,109 +1,112 @@
 <!doctype html>
 <html>
 
-<head>
-<meta charset="utf-8">
-<title>cio-choice.sg</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <title>cio-choice.sg</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
 
-</head>
+    </head>
 
-<body>
-	<?php
-		// Turn off all error reporting
-		error_reporting(0);
-		include('sql_config/database/cio_db.php'); 
-		include('top_header.php');
-	?>
-	<div class="header-nav">                                              
-		<div class="wrapper">                                                   
-			<?php include('navigation.php'); ?>
-			<div class="clear"></div>                                 
-		</div>
-	</div>
-
-
-
-  <div class="wrapper">              
-    <div class="register-page">
-    	<div class="register-logo">
-            <img src="images/register/register-logo.jpg" width="961" height="219" alt="">
+    <body>
+        <?php
+        // Turn off all error reporting
+        error_reporting(1);
+        include('sql_config/database/cio_db.php');
+        include('top_header.php');
+        ?>
+        <div class="header-nav">                                              
+            <div class="wrapper">                                                   
+                <?php include('navigation.php'); ?>
+                <div class="clear"></div>                                 
+            </div>
         </div>
-        <!--register-logo-->
-				<?php
 
-						// include('sql_config/database/cio_db.php'); 
-						// include('../vendor/autoload.php');
-						include('email_function.php');
-						// use Mailgun\Mailgun;
+
+
+        <div class="wrapper">              
+            <div class="register-page">
+                <div class="register-logo">
+                    <img src="images/register/register-logo.jpg" width="961" height="219" alt="">
+                </div>
+                <!--register-logo-->
+                <?php
+                // include('sql_config/database/cio_db.php'); 
+                // include('../vendor/autoload.php');
+                include('email_function.php');
+                // use Mailgun\Mailgun;
+
+
+                if (isset($_POST['Submit']))
+                {
+                    $registration_type = mysql_real_escape_string($_POST['Which_You_Are']);
+                    $login_type = $_POST['Which_Way'];
+
+                    $registration_name = mysql_real_escape_string($_POST['name']);
+                    $registration_email = mysql_real_escape_string($_POST['email']);
+                    $filter = explode("@", $registration_email);
+                    if ($filter[1] == "gmail.com" || $filter[1] == "yahoo.com" || $filter[1] == "hotmail.com" || $filter[1] == "fountaintechies.com" )
+                    {
+                        header("Location: registration.php?email_error=ok"); 
+                    } else
+                    {
+
+                         
+                        $admin = 'andre.tan@day7.co';
+                        
+
+                        function randomPassword()
+                        {
+                            $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+                            $pass = array(); //remember to declare $pass as an array
+                            $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+                            for ($i = 0; $i < 8; $i++)
+                            {
+                                $n = rand(0, $alphaLength);
+                                $pass[] = $alphabet[$n];
+                            }
+                            return implode($pass); //turn the array into a string
+                        }
+
+                        $registration_password = randomPassword();
+                        //curent date
+                        $today_date = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+                        $current_date = date("m/d/Y", $today_date);
+
+                        // if ($registration_type == 'CIO' && $login_type == 'email')
+                       
 						
 						
-						if(isset($_POST['Submit'])) 
-						{ 
-							$registration_type = mysql_real_escape_string($_POST['Which_You_Are']);
-							$login_type = $_POST['Which_Way'];
-							
-							$registration_name = mysql_real_escape_string($_POST['name']);
-							$registration_email = mysql_real_escape_string($_POST['email']);
-							$filter = explode("@",$registration_email);
-							if($filter[1] == "gmail.com" || $filter[1] == "yahoo.com" || $filter[1] == "hotmail.com"|| $filter[1] == "outlook.com")  {
-								header("Location: registration.php?email_error=ok");
-							}
-							else
-							{
-							
-							$admin ='amol.chawathe@fountaintechies.com';
-							function randomPassword()
-							{
-								$alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
-								$pass = array(); //remember to declare $pass as an array
-								$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-								for ($i = 0; $i < 8; $i++) {
-									$n = rand(0, $alphaLength);
-									$pass[] = $alphabet[$n];
-								}
-								return implode($pass); //turn the array into a string
-							}
-							$registration_password = randomPassword();
-							//curent date
-							$today_date = mktime(0,0,0,date("m"),date("d"),date("Y"));
-							$current_date = date("m/d/Y", $today_date);
-
-							// if ($registration_type == 'CIO' && $login_type == 'email')
-							if ($registration_type == 'CIO')
-							{
-								$result= mysql_query("SELECT registration_email FROM registration WHERE registration_email='$registration_email'");
-								if (mysql_num_rows($result) > 0)
-								{
-									// echo "<h1 style='margin-bottom: 22px;text-align: center;'>Sorry this email address is already register with CIO CHOICE Singapore, please enter a new email address.</h1>";
-									header("Location:registration.php?exit=ok");
-								}
-								else 
-								{
-									$sql   = "insert into registration(registration_name,registration_email,corperate_email,registration_password,registration_type,login_type,registration_insert_date,registration_status) values('".$registration_name."','".$registration_email."','".$registration_email."','".$registration_password."','".$registration_type."','".$login_type."','".$current_date."','pending')";
-									$query = mysql_query($sql);
-									if($query)
-									{
-										email_to_cio_signup($registration_name , $registration_email , $web_url); //email function for cio
-																					
-										// echo "<h1 style='line-height: 30px;text-align: center;margin-bottom: 52px;'>Thank you for registering with CIO CHOICE Singapore, our moderators will review your account and keep you posted. Please check your email in the next 12-24 hours.</h1>";
-										header("Location:registration.php?sent=ok");
-										// email_admin_to_cio( ); //admin
-										require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-										$mail2 = new PHPMailer;
+                        
+                        if ($registration_type == 'CIO')
+                        {
+                            $result = mysql_query("SELECT registration_email FROM registration WHERE registration_email='$registration_email'");
+                            if (mysql_num_rows($result) > 0)
+                            {
+                                // echo "<h1 style='margin-bottom: 22px;text-align: center;'>Sorry this email address is already register with CIO CHOICE Singapore, please enter a new email address.</h1>";
+                                header("Location:registration.php?exit=ok");
+                            } else
+                            {
+                                $sql = "insert into registration(registration_name,registration_email,corperate_email,registration_password,registration_type,login_type,registration_insert_date,registration_status) values('" . $registration_name . "','" . $registration_email . "','" . $registration_email . "','" . $registration_password . "','" . $registration_type . "','" . $login_type . "','" . $current_date . "','pending')";
+                                $query = mysql_query($sql);
+                                if ($query)
+                                {
+									header("Location:registration.php?sent=ok");
+                                    email_to_cio_signup($registration_name, $registration_email, $web_url,$registration_type); //email function for cio
+                                   $mail2 = new PHPMailer;
 																		 
 										$mail2->isSMTP();                                      // Set mailer to use SMTP
-										$mail2->Host = 'smtp.gmail.com';                       // Specify main and backup server
+										$mail2->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
 										$mail2->SMTPAuth = true;                               // Enable SMTP authentication
-										$mail2->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-										$mail2->Password = '9cXWOqeaf';               // SMTP password
+										$mail2->Username = 'dayseven';                   // SMTP username
+										$mail2->Password = '123sendgrid';               // SMTP password
 										$mail2->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 										$mail2->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 										$mail2->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
 										$mail2->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
 										// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-										$mail2->addAddress($admin);               // Name is optional
+										$mail2->addAddress($admin);                // Name is optional
 										$mail2->WordWrap = 500;       
 										$mail2->isHTML(true);                                  // Set email format to HTML
 										$mail2->Subject = 'Thank you for joining us!';
@@ -114,7 +117,7 @@
 																<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
-																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+																		<a href="'.$web_url.'/index.php" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 																		<div style="clear:both;"></div>
 																		</div>
 																	</div>
@@ -197,39 +200,49 @@
 										   echo 'Mailer Error: ' . $mail2->ErrorInfo;
 										   exit;
 										}
+                                }
+                            }
+                        } else if ($registration_type == 'ICTVendor')
+                        {
+                            $result1 = mysql_query("SELECT registration_email FROM registration WHERE registration_email='$registration_email'");
+                            if (mysql_num_rows($result1) > 0)
+                            {
+                            	echo "wrongendpoint" ;
+                               	header("Location:registration.php?exit=ok");
+                            } else
+                            {
+                            	echo "endpoint1" ;
+								
+								
+                                $sql1 = "insert into registration(registration_name,registration_email,corperate_email,registration_password,registration_type,login_type,registration_insert_date,registration_status) values('" . $registration_name . "','" . $registration_email . "','" . $registration_email . "','" . $registration_password . "','" . $registration_type . "','" . $login_type . "','" . $current_date . "','pending')";
+                                $query1 = mysql_query($sql1);
 
-										
-													
-									}
-								}
-							}
-							else if($registration_type == 'ICTVendor')
-							{
-								$result1= mysql_query("SELECT registration_email FROM registration WHERE registration_email='$registration_email'");
-								if (mysql_num_rows($result1) > 0)
-								{
-									// echo "<h1 style='margin-bottom: 22px;text-align: center;'>Sorry this email address is already register with CIO CHOICE Singapore, please enter a new email address.</h1>";
-									header("Location:registration.php?exit=ok");
-								}
-								else 
-								{
-									$sql1   = "insert into registration(registration_name,registration_email,corperate_email,registration_password,registration_type,login_type,registration_insert_date,registration_status) values('".$registration_name."','".$registration_email."','".$registration_email."','".$registration_password."','".$registration_type."','".$login_type."','".$current_date."','pending')";
-									$query1 = mysql_query($sql1);
+                                if ($query1)
+                                {
+                                   // header("Location:registration.php?sent=ok");
+                                   
+									 
+				                      
+			                     	echo $registration_type ;
+			                     	echo "<br>" ;
+			                     	echo $login_type ;
 									
-									if($query1)
-									{
-										email_to_ict_signup($registration_name , $registration_email , $web_url); //email function for ict
-										// email_admin_to_ict( ); //for admin
-										// echo "<h1 style='line-height: 30px;text-align: center;margin-bottom: 52px;'>Thank you for registering with CIO CHOICE Singapore, our moderators will review your account and keep you posted. Please check your email in the next 12-24 hours.</h1>";
-												header("Location:registration.php?sent=ok");
-												require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-										$mail4 = new PHPMailer;
+                                    email_to_cio_signup($registration_name, $registration_email, $web_url,$registration_type); //email function for ict
+                                    
+                                    echo "endpoint5" ;
+                                    
+                                
+                                    header("Location:registration.php?sent=ok");
+                                    
+									//exit(); 
+									
+                                	$mail4 = new PHPMailer; 
 																		 
 										$mail4->isSMTP();                                      // Set mailer to use SMTP
-										$mail4->Host = 'smtp.gmail.com';                       // Specify main and backup server
+										$mail4->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
 										$mail4->SMTPAuth = true;                               // Enable SMTP authentication
-										$mail4->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-										$mail4->Password = '9cXWOqeaf';               // SMTP password
+										$mail4->Username = 'dayseven';                   // SMTP username
+										$mail4->Password = '123sendgrid';               // SMTP password
 										$mail4->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 										$mail4->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 										$mail4->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
@@ -247,7 +260,7 @@
 												<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
 																	<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
 																		<div style=" width:210px;height: 225px; margin:0 auto;">
-																		<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+																		<a href="'.$web_url.'/index.php" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
 																		<div style="clear:both;"></div>
 																		</div>
 																	</div>
@@ -330,162 +343,123 @@
 										   echo 'Mailer Error: ' . $mail4->ErrorInfo;
 										   exit;
 										}
-																	
-										// echo "<h1 style='line-height: 30px;text-align: center;margin-bottom: 52px;'> Thank you for registering, our moderators would approve your account and keep you posted. Please check your email in the next 12-24 hrs.</h1>";
-																						
-									}
-									else 
-									{
-										echo "error";
-									}
-									
-									
-							
-									}
-								}	
-							
-							}
-							
 
-						}
-						else
-						{
-					
-															if(isset($_REQUEST['sent']))
-															{
-																echo "<h1 style='line-height: 30px;text-align: center;margin-bottom: 52px;'>Thank you for registering with CIO CHOICE Singapore, our moderators will review your account and keep you posted. Please check your email in the next 12-24 hours.</h1>";
-															}
-															if(isset($_REQUEST['exit']))
-															{
-																echo "<h1 style='margin-bottom: 22px;text-align: center;line-height: 30px;'>Sorry this email address is already register with CIO CHOICE Singapore, please enter a new email address.</h1>";
-									
-															}
-															// if(isset($_REQUEST['not_reg']))
-															// {
-																// echo "<h1 style='color:red;margin-bottom: 22px;text-align: center;line-height: 30px;'>Error: Your email address is not found in our system. Please register </h1>";
-									
-															// }
-														
-					
+                                } else
+                                {
+                                    echo "error";
+                                }
+                            }
+                        }
+                    }
+                } else
+                {
 
-						?>
-        <form class="register-form" id="myform2" action="<?php $_SERVER["PHP_SELF"];?>" method="post">
-          <div class="black-box">
-            <h2>1 <span>I'm a...</span></h2>
-            
-            <div class="radio">
-                <div class="form-radio radio1">
-                <input id="male" type="radio" name="Which_You_Are" value="CIO" required>
-                <label for="male">CIO</label>
+                    if (isset($_REQUEST['sent']))
+                    {
+                        echo "<h1 style='line-height: 30px;text-align: center;margin-bottom: 52px;'>Thank you for registering with CIO CHOICE Singapore, our moderators will review your account and keep you posted. Please check your email in the next 12-24 hours.</h1>";
+                    }
+                    if (isset($_REQUEST['exit']))
+                    {
+                        echo "<h1 style='margin-bottom: 22px;text-align: center;line-height: 30px;'>Sorry this email address is already register with CIO CHOICE Singapore, please enter a new email address.</h1>";
+                    }
+                    // if(isset($_REQUEST['not_reg']))
+                    // {
+                    // echo "<h1 style='color:red;margin-bottom: 22px;text-align: center;line-height: 30px;'>Error: Your email address is not found in our system. Please register </h1>";
+                    // }
+                    ?>
+                    <form class="register-form" id="myform2" action="<?php $_SERVER["PHP_SELF"]; ?>" method="post">
+                        <div class="black-box">
+                            <h2>1 <span>I'm a...</span></h2>
+
+                            <div class="radio">
+                                <div class="form-radio radio1">
+                                    <input id="male" type="radio" name="Which_You_Are" value="CIO" required>
+                                    <label for="male"> CIO or ICT Decision Maker</label>
+                                </div>
+
+                                <div class="form-radio radio2">
+                                    <input id="female" type="radio" name="Which_You_Are" value="ICTVendor" required>
+                                    <label for="female">ICT Vendor</label>
+                                </div>
+
+                            </div>
+                            <!--radio-->
+
+                        </div>
+                        <!--black-box-->
+
+                        <div class="black-box black-box2">
+                            <h2>2 <span>I'd like to connect by...</span></h2>
+
+                            <div class="radio">
+                                <div class="form-radio radio3">
+                                    <input id="corporate-email" type="radio" name="Which_Way" value="email" required>
+                                    <label for="corporate-email">Corporate Email</label>
+                                </div>
+
+                                <div class="form-radio radio4">
+                                    <input id="linkedin" type="radio" name="Which_Way" value="Linkedin">
+                                    <label for="linkedin">Linkedin</label>
+                                </div>
+
+                            </div>
+                            <!--radio-->
+
+                        </div>
+                        <!--black-box-->
+                        <div class="clear"></div>
+
+
+                        <div class="red-box">
+                            <h2>3 <span>Send us your details...</span></h2>			
+                            <div class="form-row">
+                                Full Name <input name="name" style="width: 278px;" type="text" required>
+                                Corporate Email <input style="margin-right:0;width: 278px;" name="email" id="email" type="email" class="no-margin" required >
+                            </div>
+                            <!--form-row-->
+
+                            <?php
+                            if (isset($_REQUEST['email_error']))
+                            {
+                                echo '<div style="background:#c5090a;" class="red_strip fl">';
+                                echo '<h1>SORRY WE ONLY ACCEPT YOUR COMPANY EMAIL ADDRESS</h1>';
+                                echo '<script type="text/javascript">
+							$(function()
+							{
+									$("#email").focus();
+							});
+							</script>';
+                            }
+                            ?>
+
+
+                            <div class="form-submit">
+                                <input class="register_btn" name="Submit" type="submit" value="">
+                            </div>
+                        </div>
+
+
+                        <!--form-row--> 
+
                 </div>
-                
-                <div class="form-radio radio2">
-                <input id="female" type="radio" name="Which_You_Are" value="ICTVendor" required>
-                <label for="female">ICT Vendor</label>
-                </div>
-                
-            </div>
-            <!--radio-->
-            
-            </div>
-            <!--black-box-->
-            
-          <div class="black-box black-box2">
-            <h2>2 <span>I'd like to connect by...</span></h2>
-            
-            <div class="radio">
-                <div class="form-radio radio3">
-                <input id="corporate-email" type="radio" name="Which_Way" value="email" required>
-                <label for="corporate-email">Corporate Email</label>
-                </div>
-                
-                <div class="form-radio radio4">
-                <input id="linkedin" type="radio" name="Which_Way" value="Linkedin">
-                <label for="linkedin">Linkedin</label>
-                </div>
-                
-            </div>
-            <!--radio-->
-            
-            </div>
-            <!--black-box-->
-            		<div class="clear"></div>
-          
-          
-          <div class="red-box">
-          	<h2>3 <span>Send us your details...</span></h2>			
-            <div class="form-row">
-                    Full Name <input name="name" style="width: 278px;" type="text" required>
-                   Corporate Email <input style="margin-right:0;width: 278px;" name="email" id="email" type="email" class="no-margin" required >
-            </div>
-            <!--form-row-->
-                
-				<?php if(isset($_REQUEST['email_error'])) { 
-				echo '<div style="background:#c5090a;" class="red_strip fl">';
-				echo '<h1>SORRY WE ONLY ACCEPT YOUR COMPANY EMAIL ADDRESS</h1>';
-				echo '<script type="text/javascript">
-				$(function()
-				{
-						$("#email").focus();
-				});
-				</script>';
-				}
-				?>
-															
-                	
-                 <div class="form-submit">
-                <input class="register_btn" name="Submit" type="submit" value="">
-				</div>
-				</div>
-                
-            
-            <!--form-row--> 
-                
-        </div>
-        <!--red-box-->
-          	
-                    
-            
-        </form>
-        <?php
-		}
-		?>
+                <!--red-box-->
+
+
+
+            </form>
+            <?php
+        }
+        ?>
     </div>
     <!--register-page-->
 </div>
 <!--wrapper-->                                            
-                                           
-                                            <?php
 
-											include('quick_contact.php');
-                                                    include('footer.php');
-													
-                                              ?>                                   
-                                            
+<?php
+include('quick_contact.php');
+include('footer.php');
+?>                                   
 
- 
-
-    <!-- Google CDN jQuery with fallback to local 
-	<script type="text/javascript" src="js/jquery.min.js"></script>-->
-	<!--<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript">
-		(function($){
-			$(window).load(function(){
-				$("#content_6").mCustomScrollbar({
-					scrollButtons:{
-						enable:true
-					},
-					theme:"dark-thick"
-				});
-				$("#content_7").mCustomScrollbar({
-					scrollButtons:{
-						enable:true
-					},
-					theme:"dark-thick"
-				});
-			});
-		})(jQuery);
-	</script>-->
 
 </body>
 </html>

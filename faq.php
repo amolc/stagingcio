@@ -7,6 +7,14 @@
 <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#accordion li").first().addClass("active_faq");
+	
+	});
+
+</script>
 
 
 
@@ -41,7 +49,26 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                                     
                                                     	<div class="faqs_question fl">
                                                         	<ul id="accordion">
-                                                            <li class="active_faq">1. What is CIO CHOICE?</li>
+															<?php
+																$faq_result = mysql_query("SELECT
+																						*
+																						FROM
+																						faq 
+																						");
+
+																//fetch tha data from the database 
+																while ($faq_row = mysql_fetch_array($faq_result))  
+																{
+															?>
+																<li><?php echo $faq_row['faq_heading']; ?></li>
+																<ul>
+																	<li><?php echo $faq_row['faq_description']; ?></li>
+																</ul>
+															<?php
+																
+																}
+															?>
+                                                           <!-- <li class="active_faq">1. What is CIO CHOICE?</li>
                                                             <ul>
                                                                 <li>
                                                                  
@@ -90,7 +117,7 @@ CIO CHOICE provides significant visibility and brand awareness for your product(
                                                             <ul>
                                                                 <li> 
                                                                  
-                                                                The recognitions will be announced and conferred upon at the Red Carpet Night event in a glamorous setting at the St. Regis Singapore on May 28, 2014. A large gathering of CIOs and Industry leaders will witness and celebrate the success of the industry’s most outstanding vendors in a fun-filled and entertaining evening.</li>
+                                                                The recognitions will be announced and conferred upon at the Red Carpet Night event in a glamorous setting at the St. Regis Singapore. A large gathering of CIOs and Industry leaders will witness and celebrate the success of the industry’s most outstanding vendors in a fun-filled and entertaining evening.</li>
                                                             </ul>
                                                             
                                                             <li>7. Is this going to be a yearly recognition or just a one-time event?</li>
@@ -99,6 +126,7 @@ CIO CHOICE provides significant visibility and brand awareness for your product(
                                                                  
                                                                 This will be an annual event eagerly anticipated by the whole ICT industry.</li>
                                                             </ul>
+															-->
                                                         
                                                         </ul>
                                                         </div>

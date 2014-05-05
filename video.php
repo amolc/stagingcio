@@ -112,7 +112,7 @@ height: 200px!important;
 															
 															echo str_replace("<i>"," ",$row2['video_path']); ?></div>
 															 <div style="clear:both;"></div>
-                                                            <h2><?php echo $row2['video_title']; ?></h2>
+                                                            <h2 style=" margin-top: 20px;height: auto;margin-bottom: 20px;line-height: 25px;width:500px;"><?php echo $row2['video_title']; ?></h2>
                                                             <h3>Posted: <span><?php echo $row2['video_date']; ?></span></h3>
                                                             <p><?php echo $row2['video_description']; ?></p>
                                                         </div>

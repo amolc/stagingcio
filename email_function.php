@@ -1,21 +1,22 @@
 <?php 
 	//email send to cio when sign up
-	function email_to_cio_signup($registration_name , $registration_email ,$web_url) {
-		require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
+    require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
+
+	function email_to_cio_signup($registration_name , $registration_email ,$web_url,$registration_type) {
 
 		$mail = new PHPMailer;
 		 
 		$mail->isSMTP();                                      // Set mailer to use SMTP
-		$mail->Host = 'smtp.gmail.com';                       // Specify main and backup server
+		$mail->Host = 'smtp.sendgrid.net';                       // Specify main and backup server
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-		$mail->Password = '9cXWOqeaf';               // SMTP password
+		$mail->Username = 'dayseven';                   // SMTP username
+		$mail->Password = '123sendgrid';               // SMTP password
 		$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 		$mail->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 		$mail->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from
 		$mail->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
 		// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-		$mail->addAddress($registration_email);  
+		$mail->addAddress($registration_email); 
 		$mail->WordWrap = 500;      
 		$mail->isHTML(true);                                  // Set email format to HTML
 		 
@@ -27,7 +28,7 @@
     	<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
     		<div style=" float:left; width:100%; height:225px; min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
             	<div style=" width:210px;height: 225px; margin:0 auto;">
-            	<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+            	<a href="'.$web_url.'/index.php" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
                 <div style="clear:both;"></div>
                 </div>
             </div>
@@ -41,7 +42,7 @@
                         
               <p style=" float:left; width:90%; display:block;  font-family:Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:20px; font-weight:900; color:#df3030;">Your account is currently awaiting moderation </p>
                         
-              <p style=" float:left; width:90%; display:block;  font-family:Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">If you application is valid we’ll be in touch shortly and provide you with your personal login details. Thanks again for your patience, in the meantime please feel free to <a href="'.$web_url.'/contact_us.php" style=" width:50%; margin:0px; font-family:Arial, Helvetica, sans-serif; color:#616161;">get in touch.</a></p>
+              <p style=" float:left; width:90%; display:block;  font-family:Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">If you application is valid we\'ll be in touch shortly and provide you with your personal login details. Thanks again for your patience, in the meantime please feel free to <a href="'.$web_url.'/contact_us.php" style=" width:50%; margin:0px; font-family:Arial, Helvetica, sans-serif; color:#616161;">get in touch.</a></p>
                         
               <div style="float:left; width:90%; margin:30px 5% 0px 5%;"> 
                        		<a href="'.$web_url.'/index.php" style="width:100%; line-height:22px; padding:15px 0px; text-align:center; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px; text-decoration:none; border-radius:5px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">return TO CIO CHOICE SINGAPORE</a>
@@ -74,7 +75,7 @@
                                                             
                     <li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
                   </ul>
-                  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+                  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright ï¿½ 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
               </div>
             </div>
               
@@ -100,13 +101,34 @@
 		   echo 'Mailer Error: ' . $mail->ErrorInfo;
 		   exit;
 		}
-
+    $mail->ClearAllRecipients();
+    $mail->addAddress('andre.tan@day7.co'); 
+    $mail->addAddress('registration@cio-choice.sg'); 
+    $mail->addAddress('matthew.harper@day7.co'); 
+    $mail->Subject = 'A new member has just registered using the Cio-Choice.sg network.';
+     $mail->Body='
+    <html>
+    <body>
+     <ul style="  float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
+                                                          
+					<li style="float:left; list-style-type: none;"> Type : '.$registration_type.'</li>						  
+                    <li style=" float:left; list-style-type: none;"> Name : '.$registration_name.'</li>                               
+                    <li style="clear:both; float:left; list-style-type: none; ">Email : '.$registration_email.'</li>
+                 
+                  </ul>
+    </body>
+    </html>';
+    $mail->send();
 	}
 	//ict sign up email
 	function email_to_ict_signup($registration_name , $registration_email , $web_url) 
 	{
-		require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-
+		
+		
+		 require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
+		 
+		 echo "endpoint2" ;
+		 
 		$mail3 = new PHPMailer;
 		 
 		$mail3->isSMTP();                                      // Set mailer to use SMTP
@@ -118,8 +140,9 @@
 		$mail3->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
 		$mail3->setFrom('registration@cio-choice.sg', 'CIO CHOICE');     //Set who the message is to be sent from 
 		$mail3->addReplyTo('registration@cio-choice.sg', 'CIO CHOICE');  //Set an alternative reply-to address
-		// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-		$mail3->addAddress($registration_email);               // Name is optional 
+		$mail3->addAddress($registration_email);
+    
+
 		$mail3->isHTML(true);                                   // Set email format 
 		$mail3->Subject = 'Thank You for joining cio-choice.sg';
 		$mail3->Body    = '
@@ -130,7 +153,7 @@
     	<div style="float:left; width:100%; margin:0px 0px 25px 0px; background:white; box-shadow:0px 2px 5px #7d7c7c;">
     		<div style=" float:left; width:100%; height:225px;min-height: 225px; background:url('.$web_url.'/images/cio_choice_head_bg.png) repeat-x  100px top;">
             	<div style=" width:210px; height: 225px;margin:0 auto;">
-            	<a href="#" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
+            	<a href="'.$web_url.'/index.php" style="height:245px;"><img src="'.$web_url.'/images/cio_choice_head_logo.png" alt="" width="207" height="221"></a>
                 <div style="clear:both;"></div>
                 </div>
             </div>
@@ -144,7 +167,7 @@
                         
               <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:20px; font-weight:900; color:#df3030;">Your account is currently awaiting moderation </p>
                         
-              <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">If you application is valid we’ll be in touch shortly and provide you with your personal login details. Thanks again for your patience, in the meantime please feel free to <a href="'.$web_url.'/contact_us.php" style=" width:50%; margin:0px;   font-family:Source Sans Pro; color:#616161;">get in touch.</a></p>
+              <p style=" float:left; width:90%; display:block; font-family: Arial, Helvetica, sans-serif; line-height:20px; margin:15px 5% 0px 5%; padding:0px; font-size:15px; font-weight:400;">If you application is valid weï¿½ll be in touch shortly and provide you with your personal login details. Thanks again for your patience, in the meantime please feel free to <a href="'.$web_url.'/contact_us.php" style=" width:50%; margin:0px;   font-family:Source Sans Pro; color:#616161;">get in touch.</a></p>
                         
               <div style="float:left; width:90%; margin:30px 5% 0px 5%;">
                        		<a href="'.$web_url.'/index.php" style="width:100%; line-height:22px; padding:15px 0px; text-align:center; text-shadow:0px 2px #4b0e0e; float:left; color:#FFF;  font:Lato; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px; text-decoration:none; border-radius:5px; text-transform:uppercase; letter-spacing:1px; background: -webkit-linear-gradient(#e63535, #c11e1e); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#e63535, #c11e1e); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#e63535, #c11e1e); /* For Firefox 3.6 to 15 */ background: linear-gradient(#e63535, #c11e1e); /* Standard syntax */">return TO CIO CHOICE SINGAPORE</a>
@@ -177,7 +200,7 @@
                                                             
                     <li style="	float:left; list-style-type: none; margin:0px;"><a href="'.$web_url.'/privacy_policy.php" style="float:left; font-family: Arial, Helvetica, sans-serif; display: block; font-size:13px; font-weight:bold; color:#585858; text-decoration: underline; padding:0px 0px 0px 10px;">Privacy Policy</a></li>
                   </ul>
-                  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright © 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
+                  <p style=" float:left; font-family: Arial, Helvetica, sans-serif; width:100%; display:block; font-size:13px; font-weight:400; color:#504d4d; margin:15px 0px;">Copyright ï¿½ 2014 CIO CHOICE Singapore. All Rights Reserved.</p>
               </div>
             </div>
               
@@ -194,83 +217,33 @@
 </div>
 </body>
 </html>';
-		$mail3->AltBody = 'hi raza how r u?';
+		$mail3->AltBody = 'test';
 
-		if(!$mail3->send())
-		{
-		   echo 'Message could not be sent.';
-		   echo 'Mailer Error: ' . $mail3->ErrorInfo;
-		   exit;
-		}
+		$mail3->send() ;
+		
+    
+		echo "endpoint3" ;
+		
+ 		    //$mail3->ClearAllRecipients();
+		   // $mail3->addAddress('andre.tan@day7.co'); 
+		   // $mail3->addAddress('amol.chawathe@fountaintechies.com'); 
+		   // $mail3->Subject = 'A new member has just registered using the Cio-Choice.sg network.';
+		   // $mail3->Body='
+		   // <html>
+		   // <body>
+		   //  <ul style="  float:left; margin:20px 0px 0px 0px; padding:0px; display:block;">
+		   //                                                       
+		   //                 <li style=" float:left; list-style-type: none;"> Name : '.$registration_name.'</li>
+		   //                                                         
+		   //                 <li style="clear:both; float:left; list-style-type: none; margin:0px;">Email : '.$registration_email.'</li>
+		   //               </ul>
+		   // </body>
+		   // </html>';
+		   // $mail3->send();
+	
 												
 	}
 	
-/*	function email_admin_to_cio( )
-	{
-		$admin ='bilal@fountaintechies.com';
-		require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-		$mail2 = new PHPMailer;
-										 
-		$mail2->isSMTP();                                      // Set mailer to use SMTP
-		$mail2->Host = 'smtp.gmail.com';                       // Specify main and backup server
-		$mail2->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail2->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-		$mail2->Password = '9cXWOqeaf';               // SMTP password
-		$mail2->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-		$mail2->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-		$mail2->setFrom('ciochoice.sg@gmail.com', 'Cio choice');     //Set who the message is to be sent from
-		$mail2->addReplyTo('ciochoice.sg@gmail.com', 'Cio choice');  //Set an alternative reply-to address
-		// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-		$mail2->addAddress($admin);               // Name is optional
-		$mail2->WordWrap = 500;       
-		$mail2->isHTML(true);                                  // Set email format to HTML
-		$mail2->Subject = 'Registration Email';
-		$mail2->Body    = "Dear Admin
-							registration from client for approval
-							Regards
-							cio-choice.sg
-							"; 
-		$mail2->AltBody = 'hi raza how r u?';										 
-		if(!$mail2->send()) 
-		{
-		   echo 'Message could not be sent.';
-		   echo 'Mailer Error: ' . $mail2->ErrorInfo;
-		   exit;
-		}
-	}
-	function email_admin_to_ict( )
-	{
-		$admin ='bilal@fountaintechies.com';
-		require 'admin/classes/PHPMailer-master/PHPMailerAutoload.php';
-		$mail4 = new PHPMailer;
-										 
-		$mail4->isSMTP();                                      // Set mailer to use SMTP
-		$mail4->Host = 'smtp.gmail.com';                       // Specify main and backup server
-		$mail4->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail4->Username = 'ciochoice.sg@gmail.com';                   // SMTP username
-		$mail4->Password = '9cXWOqeaf';               // SMTP password
-		$mail4->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-		$mail4->Port = 587;                                    //Set the SMTP port number - 587 for authenticated TLS
-		$mail4->setFrom('ciochoice.sg@gmail.com', 'Cio choice');     //Set who the message is to be sent from
-		$mail4->addReplyTo('ciochoice.sg@gmail.com', 'Cio choice');  //Set an alternative reply-to address
-		// $mail->addAddress('raza.malik@fountaintechies.com', 'raza malik');  // Add a recipient
-		$mail4->addAddress($admin);               // Name is optional
-		$mail4->WordWrap = 500;                                 // Set word wrap to 50 characters
-		$mail4->isHTML(true);                                  // Set email format to HTML
-		 
-		$mail4->Subject = 'Registration Email';
-		$mail4->Body    = "Dear Admin
-							registration from client for approval
-							Regards
-							cio-choice.sg
-							"; 
-		$mail4->AltBody = 'hi raza how r u?';												 
-		if(!$mail4->send())
-		{
-		   echo 'Message could not be sent.';
-		   echo 'Mailer Error: ' . $mail4->ErrorInfo;
-		   exit;
-		}
-	}*/
+
 
 ?>
